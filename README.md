@@ -3,14 +3,12 @@
 # 🎯 KariyerinOlsun
 ### AI Destekli Mülakat Hazırlık Sistemi
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
 [![React](https://img.shields.io/badge/React-18+-blue.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue.svg)](https://www.typescriptlang.org/)
 
 > **🚀 Yapay zeka destekli mülakat hazırlık platformu ile kariyerinizi bir üst seviyeye taşıyın!**
 
-[Demo](#) • [Dokümantasyon](#) • [Kurulum](#-kurulum) • [Katkıda Bulun](#-katkıda-bulunma)
 
 ---
 
