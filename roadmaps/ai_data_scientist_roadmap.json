@@ -1,0 +1,77 @@
+{
+  "roadmap_name": "AI and Data Scientist",
+  "roadmap_description": "Matematik, istatistik, kodlama, makine öğrenmesi ve MLOps konularını kapsayan Yapay Zeka ve Veri Bilimci yol haritası.",
+  "sections": [
+    {
+      "section_name": "Mathematics",
+      "display_order": 1,
+      "skills": [
+        { "name": "Linear Algebra", "type": "math", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Calculus", "type": "math", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Mathematical Analysis", "type": "math", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Statistics",
+      "display_order": 2,
+      "skills": [
+        { "name": "Probability and Sampling", "type": "statistics", "level": "junior", "aliases": ["Probability"], "is_core": true },
+        { "name": "Hypothesis Testing", "type": "statistics", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "AB Testing", "type": "statistics", "level": "mid", "aliases": ["A/B Testing"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Econometrics",
+      "display_order": 3,
+      "skills": [
+        { "name": "Regression", "type": "econometrics", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Timeseries", "type": "econometrics", "level": "mid", "aliases": ["Time Series"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Coding",
+      "display_order": 4,
+      "skills": [
+        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Data Structures and Algorithms", "type": "concept", "level": "mid", "aliases": ["DSA"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Exploratory Data Analysis",
+      "display_order": 5,
+      "skills": [
+        { "name": "Pandas", "type": "library", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Data Visualization", "type": "skill", "level": "junior", "aliases": ["Data Viz"], "is_core": true },
+        { "name": "Seaborn", "type": "library", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Machine Learning",
+      "display_order": 6,
+      "skills": [
+        { "name": "Supervised Learning", "type": "ml_concept", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Unsupervised Learning", "type": "ml_concept", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Ensemble Methods", "type": "ml_concept", "level": "senior", "aliases": ["Ensembles"], "is_core": false },
+        { "name": "Neural Networks", "type": "ml_concept", "level": "senior", "aliases": ["NNs"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Deep Learning",
+      "display_order": 7,
+      "skills": [
+        { "name": "CNN", "type": "dl_arch", "level": "senior", "aliases": ["Convolutional Neural Networks"], "is_core": false },
+        { "name": "RNN", "type": "dl_arch", "level": "senior", "aliases": ["Recurrent Neural Networks"], "is_core": false },
+        { "name": "Transformers", "type": "dl_arch", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "MLOps",
+      "display_order": 8,
+      "skills": [
+        { "name": "Deployment Models", "type": "mlops_concept", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "CI/CD for ML", "type": "mlops_concept", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

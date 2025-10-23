@@ -1,0 +1,34 @@
+{
+  "roadmap_name": "Technical Writer",
+  "roadmap_description": "Teknik Yazar için dokümantasyon oluşturma, yazım standartları ve teknik iletişim yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Core Writing Skills",
+      "display_order": 1,
+      "skills": [
+        { "name": "Technical Writing", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Audience Analysis", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Editing and Proofreading", "type": "skill", "level": "junior", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Documentation Types",
+      "display_order": 2,
+      "skills": [
+        { "name": "API Documentation", "type": "doc_type", "level": "mid", "aliases": ["REST API Docs"], "is_core": true },
+        { "name": "User Guides", "type": "doc_type", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Tutorials", "type": "doc_type", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Tools and Standards",
+      "display_order": 3,
+      "skills": [
+        { "name": "Markdown", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Docs-as-Code", "type": "concept", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Confluence", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

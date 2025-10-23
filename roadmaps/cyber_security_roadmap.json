@@ -1,0 +1,70 @@
+{
+  "roadmap_name": "Cyber Security",
+  "roadmap_description": "Siber Güvenlik uzmanı için ağ, kriptografi, zafiyet analizi, bulut güvenliği, uyumluluk ve güvenlik araçları yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Foundational Knowledge",
+      "display_order": 1,
+      "skills": [
+        { "name": "Networking Concepts", "type": "concept", "level": "junior", "aliases": ["TCP/IP", "OSI Model"], "is_core": true },
+        { "name": "Security Concepts", "type": "concept", "level": "junior", "aliases": ["CIA Triad", "InfoSec"], "is_core": true },
+        { "name": "Cryptography", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Linux", "type": "os", "level": "junior", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Offensive Security (Red Team)",
+      "display_order": 2,
+      "skills": [
+        { "name": "Penetration Testing", "type": "skill", "level": "mid", "aliases": ["Pentesting", "Ethical Hacker", "CEH"], "is_core": true },
+        { "name": "Vulnerability Assessment", "type": "skill", "level": "mid", "aliases": ["Vulnerability Scanning"], "is_core": true },
+        { "name": "OWASP Top 10", "type": "standard", "level": "mid", "aliases": ["OWASP"], "is_core": true },
+        { "name": "Nmap", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Metasploit", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Burp Suite", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Defensive Security (Blue Team)",
+      "display_order": 3,
+      "skills": [
+        { "name": "Threat Detection", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Incident Response", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Firewall Management", "type": "skill", "level": "junior", "aliases": ["Firewalls"], "is_core": true },
+        { "name": "SIEM", "type": "tool", "level": "mid", "aliases": ["Security Information and Event Management"], "is_core": true },
+        { "name": "Intrusion Detection Systems", "type": "tool", "level": "mid", "aliases": ["IDS", "IPS"], "is_core": false },
+        { "name": "Digital Forensics", "type": "skill", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "Malware Analysis", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Cloud Security",
+      "display_order": 4,
+      "skills": [
+        { "name": "Cloud Security", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "AWS", "type": "cloud", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Azure", "type": "cloud", "level": "mid", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Compliance & Risk Management",
+      "display_order": 5,
+      "skills": [
+        { "name": "Risk Management", "type": "skill", "level": "mid", "aliases": ["Risk Assessment"], "is_core": true },
+        { "name": "Compliance", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "NIST", "type": "framework", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "ISO 27001", "type": "framework", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "SOC 2", "type": "framework", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Core Certifications",
+      "display_order": 6,
+      "skills": [
+        { "name": "CompTIA Security+", "type": "certification", "level": "junior", "aliases": ["Security+"], "is_core": true },
+        { "name": "Certified Ethical Hacker", "type": "certification", "level": "mid", "aliases": ["CEH"], "is_core": true },
+        { "name": "Certified Information Systems Security Professional", "type": "certification", "level": "senior", "aliases": ["CISSP"], "is_core": true }
+      ]
+    }
+  ]
+}

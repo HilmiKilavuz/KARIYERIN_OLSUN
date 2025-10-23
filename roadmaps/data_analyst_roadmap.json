@@ -1,0 +1,56 @@
+{
+  "roadmap_name": "Data Analyst",
+  "roadmap_description": "Data Analyst roadmap covering data collection, cleaning, analysis, visualization, and reporting.",
+  "sections": [
+    {
+      "section_name": "Foundational Skills",
+      "display_order": 1,
+      "skills": [
+        { "name": "Data Analytics", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": ["SQL databases & queries"], "is_core": true },
+        { "name": "Excel", "type": "tool", "level": "junior", "aliases": ["Advanced MS Excel"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Programming & Libraries",
+      "display_order": 2,
+      "skills": [
+        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Pandas", "type": "library", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Matplotlib", "type": "library", "level": "junior", "aliases": [], "is_core": false },
+        { "name": "R", "type": "language", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Data Analysis Process",
+      "display_order": 3,
+      "skills": [
+        { "name": "Data Collection", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Data Cleaning", "type": "skill", "level": "junior", "aliases": ["Data Processing"], "is_core": true },
+        { "name": "Statistical Analysis", "type": "analysis", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Data Mining", "type": "analysis", "level": "mid", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Data Visualization & Reporting",
+      "display_order": 4,
+      "skills": [
+        { "name": "Data Visualization", "type": "skill", "level": "junior", "aliases": ["Data Viz"], "is_core": true },
+        { "name": "Tableau", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Power BI", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Seaborn", "type": "library", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Reporting", "type": "skill", "level": "junior", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Business & Soft Skills",
+      "display_order": 5,
+      "skills": [
+        { "name": "Business Acumen", "type": "soft_skill", "level": "mid", "aliases": ["Data-Driven Decision Making"], "is_core": true },
+        { "name": "Project Management", "type": "soft_skill", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Critical Thinking", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Attention to Detail", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": true }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "roadmap_name": "PostgreSQL DBA",
+  "roadmap_description": "PostgreSQL Veritabanı Yöneticisi (DBA) için kurulum, yönetim, yedekleme, performans ve güvenlik yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Core PostgreSQL Concepts",
+      "display_order": 1,
+      "skills": [
+        { "name": "PostgreSQL Architecture", "type": "concept", "level": "junior", "aliases": ["Postgres"], "is_core": true },
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Installation and Configuration", "type": "skill", "level": "junior", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Administration & Maintenance",
+      "display_order": 2,
+      "skills": [
+        { "name": "Backup and Recovery", "type": "skill", "level": "junior", "aliases": ["pg_dump", "pg_restore"], "is_core": true },
+        { "name": "User and Role Management", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Monitoring", "type": "skill", "level": "mid", "aliases": ["pg_stat_statements"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Performance Tuning",
+      "display_order": 3,
+      "skills": [
+        { "name": "Performance Tuning", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Indexing", "type": "concept", "level": "mid", "aliases": ["Indexes"], "is_core": true },
+        { "name": "Query Optimization", "type": "skill", "level": "mid", "aliases": ["EXPLAIN ANALYZE"], "is_core": true },
+        { "name": "Connection Pooling", "type": "concept", "level": "senior", "aliases": ["PgBouncer"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "High Availability & Replication",
+      "display_order": 4,
+      "skills": [
+        { "name": "High Availability", "type": "concept", "level": "senior", "aliases": ["HA"], "is_core": true },
+        { "name": "Replication", "type": "concept", "level": "senior", "aliases": ["Streaming Replication"], "is_core": true },
+        { "name": "Failover", "type": "concept", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Security",
+      "display_order": 5,
+      "skills": [
+        { "name": "Security Management", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Authentication Methods", "type": "concept", "level": "mid", "aliases": ["pg_hba.conf"], "is_core": true },
+        { "name": "Encryption", "type": "concept", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

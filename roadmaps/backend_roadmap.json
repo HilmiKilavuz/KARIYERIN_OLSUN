@@ -1,0 +1,93 @@
+{
+  "roadmap_name": "Backend",
+  "roadmap_description": "Sunucu taraflı uygulama mantığı, API'ler, veritabanları, performans ve altyapı için yol haritası.",
+  "sections": [
+    {
+      "section_name": "Programming Languages",
+      "display_order": 1,
+      "skills": [
+        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Java", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "JavaScript", "type": "language", "level": "junior", "aliases": ["JS", "Node.js", "Node"], "is_core": true },
+        { "name": "C#", "type": "language", "level": "junior", "aliases": [".NET"], "is_core": true },
+        { "name": "Go", "type": "language", "level": "mid", "aliases": ["Golang"], "is_core": false },
+        { "name": "PHP", "type": "language", "level": "junior", "aliases": [], "is_core": false },
+        { "name": "Ruby", "type": "language", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Frameworks",
+      "display_order": 2,
+      "skills": [
+        { "name": "Spring", "type": "framework", "level": "mid", "aliases": ["Spring Boot"], "is_core": true },
+        { "name": "Django", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Flask", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Express.js", "type": "framework", "level": "mid", "aliases": ["Express"], "is_core": true },
+        { "name": ".NET Core", "type": "framework", "level": "mid", "aliases": ["ASP.NET Core"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Version Control",
+      "display_order": 3,
+      "skills": [
+        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "GitHub", "type": "platform", "level": "junior", "aliases": ["GitLab", "Bitbucket"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Databases",
+      "display_order": 4,
+      "skills": [
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "PostgreSQL", "type": "database", "level": "junior", "aliases": ["Postgres"], "is_core": true },
+        { "name": "MySQL", "type": "database", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "SQL Server", "type": "database", "level": "mid", "aliases": ["MS SQL"], "is_core": false },
+        { "name": "Oracle", "type": "database", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "MongoDB", "type": "database_nosql", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Redis", "type": "database_nosql", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Cassandra", "type": "database_nosql", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "Database Optimization", "type": "skill", "level": "mid", "aliases": ["Query Optimization"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "API Development",
+      "display_order": 5,
+      "skills": [
+        { "name": "REST", "type": "api", "level": "junior", "aliases": ["RESTful APIs"], "is_core": true },
+        { "name": "Authentication", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "API Performance", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Microservices", "type": "architecture", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "GraphQL", "type": "api", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "SOAP", "type": "api", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Caching & Message Queues",
+      "display_order": 6,
+      "skills": [
+        { "name": "Caching", "type": "concept", "level": "mid", "aliases": ["Caching Mechanisms"], "is_core": true },
+        { "name": "Redis", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Kafka", "type": "message_queue", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "RabbitMQ", "type": "message_queue", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Testing",
+      "display_order": 7,
+      "skills": [
+          { "name": "Unit Testing", "type": "testing", "level": "junior", "aliases": [], "is_core": true },
+          { "name": "Integration Testing", "type": "testing", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Infrastructure & Cloud",
+      "display_order": 8,
+      "skills": [
+        { "name": "Docker", "type": "containerization", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Cloud Platforms", "type": "concept", "level": "mid", "aliases": ["AWS", "Azure", "GCP"], "is_core": true },
+        { "name": "Scalability", "type": "concept", "level": "mid", "aliases": ["Scalable Systems"], "is_core": true },
+        { "name": "Kubernetes", "type": "containerization", "level": "senior", "aliases": ["K8s"], "is_core": false }
+      ]
+    }
+  ]
+}

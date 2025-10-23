@@ -1,0 +1,75 @@
+{
+  "roadmap_name": "Full Stack",
+  "roadmap_description": "Full-stack geliştirme için frontend, backend, veritabanları, API'ler ve temel DevOps yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Frontend Basics",
+      "display_order": 1,
+      "skills": [
+        { "name": "HTML", "type": "language", "level": "junior", "aliases": ["HTML5"], "is_core": true },
+        { "name": "CSS", "type": "language", "level": "junior", "aliases": ["CSS3"], "is_core": true },
+        { "name": "JavaScript", "type": "language", "level": "junior", "aliases": ["JS"], "is_core": true },
+        { "name": "Responsive Design", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Bootstrap", "type": "framework", "level": "junior", "aliases": [], "is_core": false },
+        { "name": "jQuery", "type": "library", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Version Control",
+      "display_order": 2,
+      "skills": [
+        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "GitHub", "type": "platform", "level": "junior", "aliases": ["GitLab", "Bitbucket"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Frontend Frameworks",
+      "display_order": 3,
+      "skills": [
+        { "name": "React", "type": "framework", "level": "mid", "aliases": ["React.js"], "is_core": true },
+        { "name": "Angular", "type": "framework", "level": "mid", "aliases": ["Angular JS", "Angular.js"], "is_core": true },
+        { "name": "Vue.js", "type": "framework", "level": "mid", "aliases": ["Vue"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Backend Development",
+      "display_order": 4,
+      "skills": [
+        { "name": "Node.js", "type": "runtime", "level": "mid", "aliases": ["Node"], "is_core": true },
+        { "name": "Python", "type": "language", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "PHP", "type": "language", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": ["SQL Databases"], "is_core": true },
+        { "name": "PostgreSQL", "type": "database", "level": "mid", "aliases": ["Postgres"], "is_core": true },
+        { "name": "MongoDB", "type": "database", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "API Development",
+      "display_order": 5,
+      "skills": [
+        { "name": "RESTful APIs", "type": "concept", "level": "mid", "aliases": ["REST"], "is_core": true },
+        { "name": "Authentication", "type": "concept", "level": "mid", "aliases": ["JWT"], "is_core": true },
+        { "name": "SOAP", "type": "concept", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    }, 
+    {
+      "section_name": "DevOps & Cloud Basics",
+      "display_order": 6,
+      "skills": [
+        { "name": "Linux", "type": "skill", "level": "mid", "aliases": ["Linux/Unix"], "is_core": true },
+        { "name": "Docker", "type": "containerization", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "AWS", "type": "cloud", "level": "mid", "aliases": ["Amazon Web Services"], "is_core": true },
+        { "name": "Google Compute Engine", "type": "cloud", "level": "mid", "aliases": ["GCP"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Stacks (Common Combinations)",
+      "display_order": 7,
+      "skills": [
+        { "name": "MEAN", "type": "stack", "level": "mid", "aliases": ["MEAN Stack"], "is_core": false },
+        { "name": "MERN", "type": "stack", "level": "mid", "aliases": ["MERN Stack"], "is_core": false },
+        { "name": "LAMP", "type": "stack", "level": "mid", "aliases": ["LAMP Stack"], "is_core": false }
+      ]
+    } 
+  ] 
+} 

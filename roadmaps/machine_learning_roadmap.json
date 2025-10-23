@@ -1,0 +1,88 @@
+{
+  "roadmap_name": "Machine Learning",
+  "roadmap_description": "Makine Öğrenmesi (ML) için temel matematik, programlama, veri işleme, modelleme ve derin öğrenme yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Programming and CS Fundamentals",
+      "display_order": 1,
+      "skills": [
+        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "R", "type": "language", "level": "junior", "aliases": [], "is_core": false },
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": ["T-SQL", "PL/SQL"], "is_core": true },
+        { "name": "Data Structures & Algorithms", "type": "concept", "level": "junior", "aliases": ["DSA"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Math Foundations",
+      "display_order": 2,
+      "skills": [
+        { "name": "Linear Algebra", "type": "math", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Calculus", "type": "math", "level": "junior", "aliases": ["Multivariable Calculus"], "is_core": true },
+        { "name": "Probability & Statistics", "type": "math", "level": "junior", "aliases": ["Statistics", "Probability"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Data Handling and Visualization",
+      "display_order": 3,
+      "skills": [
+        { "name": "NumPy", "type": "library", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Pandas", "type": "library", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Matplotlib", "type": "library", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Seaborn", "type": "library", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Core Machine Learning Concepts",
+      "display_order": 4,
+      "skills": [
+        { "name": "Machine Learning", "type": "concept", "level": "junior", "aliases": ["ML"], "is_core": true },
+        { "name": "Data Mining", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Predictive Modeling", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Scikit-learn", "type": "library", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Supervised Learning", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Unsupervised Learning", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Reinforcement Learning", "type": "concept", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Supervised Learning Applications",
+      "display_order": 5,
+      "skills": [
+        { "name": "Linear Regression", "type": "algorithm", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Logistic Regression", "type": "algorithm", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Demand Forecasting", "type": "application", "level": "mid", "aliases": ["Forecasting"], "is_core": false },
+        { "name": "Decision Trees", "type": "algorithm", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Random Forest", "type": "algorithm", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Unsupervised Learning Applications",
+      "display_order": 6,
+      "skills": [
+        { "name": "K-Means Clustering", "type": "algorithm", "level": "mid", "aliases": ["K-Means"], "is_core": true },
+        { "name": "Customer Segmentation", "type": "application", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Dimensionality Reduction", "type": "concept", "level": "mid", "aliases": ["PCA"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Deep Learning",
+      "display_order": 7,
+      "skills": [
+        { "name": "Deep Learning", "type": "concept", "level": "mid", "aliases": ["DL"], "is_core": true },
+        { "name": "TensorFlow", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "PyTorch", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Keras", "type": "framework", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Neural Networks", "type": "concept", "level": "mid", "aliases": ["NNs"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Advanced Topics",
+      "display_order": 8,
+      "skills": [
+        { "name": "Natural Language Processing", "type": "field", "level": "senior", "aliases": ["NLP", "Sentiment Analysis"], "is_core": false },
+        { "name": "Computer Vision", "type": "field", "level": "senior", "aliases": ["CV"], "is_core": false },
+        { "name": "MLOps", "type": "field", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

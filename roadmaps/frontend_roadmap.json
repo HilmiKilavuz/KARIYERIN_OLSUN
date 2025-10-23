@@ -1,0 +1,84 @@
+{
+  "roadmap_name": "Frontend",
+  "roadmap_description": "Kullanıcı arayüzü ve kullanıcı deneyimi geliştirmesi için hazırlanmış yol haritası.",
+  "sections": [
+    {
+      "section_name": "Internet Fundamentals",
+      "display_order": 1,
+      "skills": [
+        { "name": "HTTP", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "DNS", "type": "concept", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Core Technologies",
+      "display_order": 2,
+      "skills": [
+        { "name": "HTML", "type": "language", "level": "junior", "aliases": ["HTML5"], "is_core": true },
+        { "name": "CSS", "type": "language", "level": "junior", "aliases": ["CSS3"], "is_core": true },
+        { "name": "JavaScript", "type": "language", "level": "junior", "aliases": ["JS", "ECMAScript"], "is_core": true },
+        { "name": "DOM Manipulation", "type": "skill", "level": "junior", "aliases": ["DOM"], "is_core": true },
+        { "name": "RESTful APIs", "type": "concept", "level": "mid", "aliases": ["REST API", "REST"], "is_core": true },
+        { "name": "Fetch API / Ajax (XHR)", "type": "api", "level": "junior", "aliases": ["Ajax", "XHR"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Version Control & Packages",
+      "display_order": 3,
+      "skills": [
+        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "GitHub", "type": "platform", "level": "junior", "aliases": ["GitLab", "Bitbucket"], "is_core": true },
+        { "name": "npm", "type": "tool", "level": "junior", "aliases": ["yarn", "pnpm"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "CSS Enhancements",
+      "display_order": 4,
+      "skills": [
+        { "name": "Responsive Design", "type": "skill", "level": "junior", "aliases": ["responsive web design"], "is_core": true },
+        { "name": "Bootstrap", "type": "framework", "level": "junior", "aliases": [], "is_core": false },
+        { "name": "Tailwind CSS", "type": "framework", "level": "mid", "aliases": ["Tailwind"], "is_core": false },
+        { "name": "Sass", "type": "preprocessor", "level": "mid", "aliases": ["SCSS"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Frameworks",
+      "display_order": 5,
+      "skills": [
+        { "name": "React", "type": "framework", "level": "mid", "aliases": ["React.js", "React.JS"], "is_core": true },
+        { "name": "Vue.js", "type": "framework", "level": "mid", "aliases": ["Vue", "Vue.JS"], "is_core": false },
+        { "name": "Angular", "type": "framework", "level": "mid", "aliases": ["Angular.js"], "is_core": false },
+        { "name": "Svelte", "type": "framework", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Build Tools & Testing",
+      "display_order": 6,
+      "skills": [
+        { "name": "Vite", "type": "build_tool", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Webpack", "type": "build_tool", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Jest", "type": "testing", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "ESLint", "type": "linter", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Prettier", "type": "formatter", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Advanced Topics",
+      "display_order": 7,
+      "skills": [
+        { "name": "TypeScript", "type": "language", "level": "mid", "aliases": ["TS"], "is_core": true },
+        { "name": "SSR", "type": "concept", "level": "mid", "aliases": ["Server Side Rendering"], "is_core": false },
+        { "name": "GraphQL", "type": "api", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "PWAs", "type": "concept", "level": "mid", "aliases": ["Progressive Web Apps"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Soft Skills & Methodologies",
+      "display_order": 8,
+      "skills": [
+        { "name": "Team Collaboration", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": false },
+        { "name": "Problem-Solving", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "roadmap_name": "Product Manager",
+  "roadmap_description": "Ürün Yöneticisi (PM) için ürün stratejisi, yol haritası planlama, kullanıcı araştırması ve proje yönetimi yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Product Management Fundamentals",
+      "display_order": 1,
+      "skills": [
+        { "name": "Product Management", "type": "concept", "level": "junior", "aliases": ["PM"], "is_core": true },
+        { "name": "Product Lifecycle", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Agile Methodologies", "type": "methodology", "level": "junior", "aliases": ["Agile", "Scrum", "Kanban"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Product Strategy",
+      "display_order": 2,
+      "skills": [
+        { "name": "Product Strategy", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Market Research", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Competitor Analysis", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Business Model Canvas", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "User Research and Design",
+      "display_order": 3,
+      "skills": [
+        { "name": "User Research", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "User Personas", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "User Experience", "type": "concept", "level": "mid", "aliases": ["UX"], "is_core": true },
+        { "name": "A/B Testing", "type": "skill", "level": "mid", "aliases": ["AB Testing"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Product Planning and Execution",
+      "display_order": 4,
+      "skills": [
+        { "name": "Roadmapping", "type": "skill", "level": "mid", "aliases": ["Product Roadmap"], "is_core": true },
+        { "name": "Prioritization", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "User Stories", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Jira", "type": "tool", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Leadership and Communication",
+      "display_order": 5,
+      "skills": [
+        { "name": "Stakeholder Management", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Communication Skills", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Leadership", "type": "soft_skill", "level": "senior", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Metrics and Analytics",
+      "display_order": 6,
+      "skills": [
+        { "name": "Data Analysis", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "KPIs", "type": "concept", "level": "mid", "aliases": ["Key Performance Indicators"], "is_core": true },
+        { "name": "Google Analytics", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

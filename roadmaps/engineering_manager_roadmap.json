@@ -1,0 +1,54 @@
+{
+  "roadmap_name": "Engineering Manager",
+  "roadmap_description": "Mühendislik Yöneticisi için insan yönetimi, proje yönetimi, teknik liderlik ve strateji yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "People Management",
+      "display_order": 1,
+      "skills": [
+        { "name": "People Management", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "1-on-1s", "type": "skill", "level": "senior", "aliases": ["One on Ones"], "is_core": true },
+        { "name": "Mentoring", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Performance Reviews", "type": "skill", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "Conflict Resolution", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Team & Technical Leadership",
+      "display_order": 2,
+      "skills": [
+        { "name": "Team Leadership", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Technical Vision", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "System Design", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Code Review Culture", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Project Management",
+      "display_order": 3,
+      "skills": [
+        { "name": "Project Management", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Agile Methodologies", "type": "methodology", "level": "senior", "aliases": ["Agile", "Scrum", "Kanban"], "is_core": true },
+        { "name": "Roadmap Planning", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Stakeholder Management", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Recruitment & Hiring",
+      "display_order": 4,
+      "skills": [
+        { "name": "Hiring", "type": "skill", "level": "senior", "aliases": ["Recruitment"], "is_core": true },
+        { "name": "Interviewing", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Onboarding", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Business & Strategy",
+      "display_order": 5,
+      "skills": [
+        { "name": "Budgeting", "type": "skill", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "Product Strategy", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

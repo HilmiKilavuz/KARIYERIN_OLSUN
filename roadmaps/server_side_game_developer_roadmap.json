@@ -1,0 +1,45 @@
+{
+  "roadmap_name": "Server-Side Game Developer",
+  "roadmap_description": "Sunucu Taraflı Oyun Geliştiricisi için ağ, veritabanı, altyapı ve güvenlik yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Choose a Language",
+      "display_order": 1,
+      "skills": [
+        { "name": "C++", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Go", "type": "language", "level": "mid", "aliases": ["Golang"], "is_core": true },
+        { "name": "Rust", "type": "language", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Java", "type": "language", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Networking",
+      "display_order": 2,
+      "skills": [
+        { "name": "Networking Protocols", "type": "concept", "level": "junior", "aliases": ["TCP", "UDP"], "is_core": true },
+        { "name": "WebSockets", "type": "protocol", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Socket Programming", "type": "skill", "level": "mid", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Databases",
+      "display_order": 3,
+      "skills": [
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "NoSQL", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Redis", "type": "database", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "PostgreSQL", "type": "database", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Infrastructure & Deployment",
+      "display_order": 4,
+      "skills": [
+        { "name": "Linux", "type": "os", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Docker", "type": "containerization", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Kubernetes", "type": "orchestration", "level": "senior", "aliases": ["K8s"], "is_core": false },
+        { "name": "AWS", "type": "cloud", "level": "mid", "aliases": [], "is_core": true }
+      ]
+    }
+  ]
+}

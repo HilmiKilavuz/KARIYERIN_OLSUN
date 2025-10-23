@@ -1,0 +1,66 @@
+{
+  "roadmap_name": "QA Engineer",
+  "roadmap_description": "Quality Assurance (QA) Engineer roadmap covering manual testing, automation, performance, and security testing competencies.",
+  "sections": [
+    {
+      "section_name": "QA Fundamentals",
+      "display_order": 1,
+      "skills": [
+        { "name": "Quality Assurance", "type": "concept", "level": "junior", "aliases": ["QA"], "is_core": true },
+        { "name": "Software Development Life Cycle", "type": "concept", "level": "junior", "aliases": ["SDLC"], "is_core": true },
+        { "name": "Test Planning", "type": "skill", "level": "junior", "aliases": ["Test Plans"], "is_core": true },
+        { "name": "Test Cases", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Bug Tracking", "type": "skill", "level": "junior", "aliases": ["Jira", "Azure DevOps"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Manual & Functional Testing",
+      "display_order": 2,
+      "skills": [
+        { "name": "Manual Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Functional Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Regression Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "UI/UX Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Automation Testing",
+      "display_order": 3,
+      "skills": [
+        { "name": "Automation Testing", "type": "concept", "level": "mid", "aliases": ["Automated Testing", "SDET"], "is_core": true },
+        { "name": "Selenium", "type": "framework", "level": "mid", "aliases": ["Selenium WebDriver"], "is_core": true },
+        { "name": "Python", "type": "language", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Java", "type": "language", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Cypress", "type": "framework", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Playwright", "type": "framework", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "API Testing",
+      "display_order": 4,
+      "skills": [
+        { "name": "API Testing", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Postman", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "REST Assured", "type": "library", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Specialized Testing",
+      "display_order": 5,
+      "skills": [
+        { "name": "Performance Testing", "type": "testing_type", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "Security Testing", "type": "testing_type", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "JMeter", "type": "tool", "level": "senior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "CI/CD Integration",
+      "display_order": 6,
+      "skills": [
+        { "name": "CI/CD", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Jenkins", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "GitHub Actions", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+# Python'a ait otomatik oluşturulan önbellek dosyaları
+__pycache__/
+*.pyc
+
+# Sanal ortam klasörü (Eğer "venv" gibi bir klasör kullanıyorsanız)
+# venv/
+
+# Çevre değişkeni dosyaları (API anahtarları gibi gizli bilgileri içerebilir)
+# .env

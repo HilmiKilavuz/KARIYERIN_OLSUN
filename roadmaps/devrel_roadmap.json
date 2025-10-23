@@ -1,0 +1,55 @@
+{
+  "roadmap_name": "DevRel",
+  "roadmap_description": "Geliştirici İlişkileri (DevRel) için teknik iletişim, topluluk yönetimi ve strateji yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Core Concepts",
+      "display_order": 1,
+      "skills": [
+        { "name": "Developer Relations", "type": "concept", "level": "junior", "aliases": ["DevRel"], "is_core": true },
+        { "name": "Developer Advocacy", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Developer Marketing", "type": "concept", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Content Creation",
+      "display_order": 2,
+      "skills": [
+        { "name": "Technical Writing", "type": "skill", "level": "junior", "aliases": ["Blogging"], "is_core": true },
+        { "name": "Public Speaking", "type": "skill", "level": "junior", "aliases": ["Presentations"], "is_core": true },
+        { "name": "Video Content Creation", "type": "skill", "level": "mid", "aliases": ["Screencasting"], "is_core": false },
+        { "name": "Code Samples", "type": "skill", "level": "junior", "aliases": ["Demos"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Community Management",
+      "display_order": 3,
+      "skills": [
+        { "name": "Community Management", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Social Media", "type": "skill", "level": "junior", "aliases": ["Twitter", "LinkedIn"], "is_core": true },
+        { "name": "Forum Management", "type": "skill", "level": "mid", "aliases": ["Discord", "Slack", "Discourse"], "is_core": false },
+        { "name": "Event Organization", "type": "skill", "level": "mid", "aliases": ["Meetups", "Hackathons"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Technical Foundations",
+      "display_order": 4,
+      "skills": [
+        { "name": "APIs", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "SDKs", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": false },
+        { "name": "JavaScript", "type": "language", "level": "junior", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Strategy & Metrics",
+      "display_order": 5,
+      "skills": [
+        { "name": "Developer Onboarding", "type": "strategy", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Feedback Collection", "type": "strategy", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Measuring Success", "type": "strategy", "level": "senior", "aliases": ["Metrics", "KPIs"], "is_core": false }
+      ]
+    }
+  ]
+}

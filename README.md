@@ -1,126 +1,76 @@
-<div align="center">
+# Supabase CV Analiz Motoru
 
-# 🎯 KariyerinOlsun
-### AI Destekli Mülakat Hazırlık Sistemi
+Bu proje, Supabase veritabanındaki aday profillerini çeken, bu profillerdeki yetenek listelerini yerel bir SQLite veritabanında tanımlı rol haritalarıyla karşılaştıran ve analiz sonuçlarını (puanlama, rol tespiti, rapor) tekrar Supabase'e yazan bir Python servisidir.
 
-[![Node.js](https://img.shields.io/badge/Node.js-18+-green.svg)](https://nodejs.org/)
-[![React](https://img.shields.io/badge/React-18+-blue.svg)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5+-blue.svg)](https://www.typescriptlang.org/)
+Sistem, "iş kuyruğu" mantığıyla çalışır; `aday_profil` tablosundaki `status='pending'` olarak işaretlenmiş kayıtları işler ve işi bitince `status='completed'` olarak günceller.
 
-> **🚀 Yapay zeka destekli mülakat hazırlık platformu ile kariyerinizi bir üst seviyeye taşıyın!**
+## Ana Özellikler
 
+* **Veritabanı Güdümlü:** Yerel dosya sistemi yerine Supabase'i bir iş kuyruğu olarak kullanır.
+* **Otomatik Rol Tespiti:** Adayın yetenek listesine göre en uygun rolü (`Backend`, `Frontend` vb.) otomatik olarak bulur.
+* **Detaylı Puanlama:** Adayın role olan uygunluğunu `overall_score` (Genel Puan) ve `core_score` (Kritik Yetkinlik Puanı) olarak hesaplar.
+* **Modüler (SOLID):** Her bileşen kendi sorumluluğuna odaklanmıştır (örn: `SupabaseCvFetcher` sadece veritabanıyla, `ComparisonEngine` sadece puanlamayla ilgilenir).
 
----
+## Proje Mimarisi ve İş Akışı
 
-</div>
+1.  **Tetikleme:** `supabase_skill_analyzer.py` script'i çalıştırılır.
+2.  **Veri Çekme:** `SupabaseCvFetcher`, `aday_profil` tablosundan `status='pending'` olan tüm kayıtları çeker.
+3.  **Analiz (Döngü):** Her bir aday için:
+    * `RoleDetector`, adayın yetenek listesine (`yetenekler`) bakarak en uygun rolü (`detected_role`) bulur.
+    * `RoadmapRepository`, bu rol için gereken yetenekleri `roadmap_database.db` (SQLite) dosyasından okur.
+    * `ComparisonEngine`, adayın yetenekleri ile rolün gerektirdiği yetenekleri karşılaştırır, `overall_score` ve `core_score` hesaplanır.
+    * `ReportGenerator`, bu verilerle detaylı bir metin raporu oluşturur.
+4.  **Veri Yazma:** `SupabaseCvFetcher`, bu analiz sonuçlarını (rol, puanlar, rapor) `analiz_sonuclari` tablosuna **yeni bir satır** olarak ekler.
+5.  **İşaretleme:** `SupabaseCvFetcher`, son olarak orijinal kaydın (`aday_profil` tablosundaki) `status`'unu `'completed'` olarak günceller ki bu iş bir daha yapılmasın.
 
-## 📋 Proje Hakkında
+## Proje Dosya Yapısı (Çekirdek Modüller)
 
-**KariyerinOlsun**, öğrencilerin ve profesyonellerin mülakatlara daha iyi hazırlanmasını sağlayan kapsamlı bir yapay zeka destekli platformdur. Sistem, kullanıcıların CV bilgilerini analiz ederek eksik beceri ve bilgileri tespit eder, kişiselleştirilmiş mülakat deneyimi sunar ve detaylı performans analizi sağlar.
+Proje, SOLID prensiplerine uygun olarak modüllere ayrılmıştır:
 
-### 🎯 Ana Hedef
-- ✅ **CV Analizi**: Eksik beceri ve bilgilerin tespiti
-- ✅ **AI Mülakat**: Gerçek zamanlı simülasyon
-- ✅ **Çok Boyutlu Analiz**: Metin, ses, görüntü ve duygu analizi
-- ✅ **Kişiselleştirilmiş Raporlama**: Detaylı performans analizi
+| Dosya | Sorumluluğu |
+| :--- | :--- |
+| **`supabase_skill_analyzer.py`** | **(Ana Çalıştırıcı)** Orkestra şefi. Tüm analiz akışını yönetir. |
+| **`supabase_cv_fetcher.py`** | Supabase ile iletişimi yönetir (Veri Çekme / Veri Yazma). |
+| **`comparison_engine.py`** | Analiz motoru. Yetenekleri karşılaştırır ve puanları hesaplar. |
+| **`role_detector.py`** | Adayın yetenek listesine göre en uygun rolü tespit eder. |
+| **`roadmap_repository.py`** | `roadmap_database.db`'den rol haritası verilerini okur. |
+| **`report_generator.py`** | Analiz sonuçlarını metin bir rapora dönüştürür. |
+| **`roadmap_database.db`** | Rol haritalarını, yetenekleri ve ağırlıkları içeren SQLite veritabanı. |
+| | |
+| **`main.py`** (Araç) | `roadmaps/` klasöründeki JSON'ları okuyup `roadmap_database.db` dosyasını oluşturur. |
+| **`database_manager.py`** (Araç) | `main.py` tarafından kullanılan, SQLite DB şemasını oluşturan modül. |
+| **`roadmap_parser.py`** (Araç) | `main.py` tarafından kullanılan, JSON dosyalarını okuyan modül. |
+| `roadmaps/` (Klasör) | Rol haritalarının JSON formatında saklandığı yer. |
 
-## ✨ Özellikler
+## Kurulum (Setup)
 
-<table>
-<tr>
-<td width="50%">
+1.  **Depoyu Klonla:**
+    ```bash
+    git clone [HTTPS_VEYA_SSH_LINKINIZ]
+    cd CVANALIZPROJESI
+    ```
 
-### 🔍 **CV Analiz Sistemi**
-- 📄 CV yükleme ve otomatik analiz
-- 🔍 İlgili sektördeki eksik bilgi tespiti
-- 💡 Kişiselleştirilmiş gelişim önerileri
-- 📊 Sektörel bilgi boşluklarının belirlenmesi
+2.  **Bağımlılıkları Yükle:**
+    ```bash
+    pip install -r requirements.txt
+    ```
 
-### 🎤 **AI Destekli Mülakat**
-- ⚡ Gerçek zamanlı mülakat simülasyonu
-- 🎯 Sektörel ve pozisyon bazlı soru havuzu
-- 🤖 Doğal dil işleme ile akıllı soru üretimi
+3.  **Supabase Kurulumu:**
+    * Supabase projenizde iki tablo oluşturun:
+        * **`aday_profil`**: Aday bilgilerini ve `yetenekler` (text) sütununu içermelidir. Mutlaka `status` (text) adında bir sütun ekleyin ve "Default Value" olarak `'pending'` atayın.
+        * **`analiz_sonuclari`**: `aday_id` (foreign key), `detected_role` (text), `overall_score` (float4), `core_score` (float4), `report_text` (text) sütunlarını içermelidir. `created_at` sütununun "Default Value" olarak `now()` kullandığından emin olun.
+    * `supabase_cv_fetcher.py` dosyasının içine kendi `SUPABASE_URL` ve `SUPABASE_KEY` bilgilerinizi girin. (Güvenlik için bunları Environment Variables olarak ayarlamanız tavsiye edilir.)
 
-</td>
-<td width="50%">
+4.  **Rol Haritası Veritabanını Oluştur (İlk Kurulum):**
+    Projenin analiz yapabilmesi için `roadmap_database.db` dosyasına ihtiyacı vardır. Bu dosyayı `roadmaps/` klasöründeki JSON'ları kullanarak oluşturmak için `main.py` script'ini çalıştırın:
+    ```bash
+    python main.py
+    ```
+    (Bu işlemi sadece `roadmap_database.db` yoksa veya rol haritalarını güncellediyseniz yapmanız gerekir.)
 
-### 📊 **Çok Boyutlu Analiz**
-- 📝 **Metin Analizi**: Cevap kalitesi değerlendirmesi
-- 🎵 **Ses Analizi**: Konuşma hızı ve tonlama
-- 👁️ **Görüntü Analizi**: Mimik ve beden dili
-- 😊 **Duygu Analizi**: Stres ve motivasyon ölçümü
+## Kullanım
 
-### 📈 **Detaylı Raporlama**
-- 📋 Kapsamlı performans raporu
-- 💪 Güçlü yönler ve gelişim alanları
-- 🎯 Kişiselleştirilmiş öneriler
-- 📈 İlerleme takibi ve geçmiş analizler
+Sistemi çalıştırmak (Supabase'deki `'pending'` işleri kontrol edip işlemek) için ana orkestra şefi script'ini çalıştırmanız yeterlidir:
 
-</td>
-</tr>
-</table>
-
-## 🛠️ Teknoloji Stack
-
-<div align="center">
-
-### Frontend
-![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
-![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
-![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)
-
-### Backend
-![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/Express.js-404D59?style=for-the-badge)
-![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=for-the-badge&logo=supabase&logoColor=white)
-
-### AI/ML Services
-![OpenAI](https://img.shields.io/badge/OpenAI-412991?style=for-the-badge&logo=openai&logoColor=white)
-![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)
-
-### DevOps
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![AWS](https://img.shields.io/badge/Amazon_AWS-232F3E?style=for-the-badge&logo=amazon-aws&logoColor=white)
-
-</div>
-
-
-
-## 🎯 Kullanım Senaryoları
-
-<div align="center">
-
-| 🎯 **Adım** | 📋 **İşlem** | 🚀 **Sonuç** |
-|-------------|--------------|--------------|
-| **1️⃣ CV Analizi** | CV yükleme ve analiz | Eksik beceri tespiti |
-| **2️⃣ Mülakat Simülasyonu** | AI destekli sorular | Gerçek zamanlı deneyim |
-| **3️⃣ Performans Analizi** | Çok boyutlu değerlendirme | Detaylı raporlama |
-
-</div>
-
-### 📊 İş Akışı
-
-```mermaid
-graph TD
-    A[👤 Kullanıcı Kaydı] --> B[📄 CV Yükleme]
-    B --> C[🔍 CV Analizi]
-    C --> D[💡 Eksik Beceri Tespiti]
-    D --> E[🎯 Mülakat Seçimi]
-    E --> F[🤖 AI Soru Üretimi]
-    F --> G[🎤 Gerçek Zamanlı Mülakat]
-    G --> H[📊 Çok Boyutlu Analiz]
-    H --> I[📈 Detaylı Rapor]
-    I --> J[🎯 Kişiselleştirilmiş Öneriler]
-```
-
-
-
-<div align="center">
-
-### ⭐ Bu projeyi beğendiyseniz yıldız vermeyi unutmayın!
-
-**🚀 Kariyerinizi bir üst seviyeye taşıyın!**
-
-Made with ❤️ by KariyerinOlsun Team
-
-</div>
+```bash
+python supabase_skill_analyzer.py

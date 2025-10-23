@@ -1,0 +1,43 @@
+{
+  "roadmap_name": "Software Architect",
+  "roadmap_description": "Yazılım Mimarı için sistem tasarımı, mimari desenler, kalite nitelikleri ve teknik liderlik yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Core Responsibilities",
+      "display_order": 1,
+      "skills": [
+        { "name": "System Design", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Architectural Patterns", "type": "concept", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Quality Attributes", "type": "concept", "level": "senior", "aliases": ["Non-Functional Requirements"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Architectural Patterns",
+      "display_order": 2,
+      "skills": [
+        { "name": "Microservices", "type": "pattern", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Service-Oriented Architecture", "type": "pattern", "level": "senior", "aliases": ["SOA"], "is_core": true },
+        { "name": "Event-Driven Architecture", "type": "pattern", "level": "senior", "aliases": [], "is_core": false },
+        { "name": "Monolithic Architecture", "type": "pattern", "level": "senior", "aliases": ["Monolith"], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Design Principles",
+      "display_order": 3,
+      "skills": [
+        { "name": "SOLID", "type": "principle", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Domain-Driven Design", "type": "principle", "level": "senior", "aliases": ["DDD"], "is_core": true },
+        { "name": "Design Patterns", "type": "concept", "level": "senior", "aliases": ["GoF"], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Cloud & Infrastructure",
+      "display_order": 4,
+      "skills": [
+        { "name": "Cloud Architecture", "type": "skill", "level": "senior", "aliases": ["AWS", "Azure", "GCP"], "is_core": true },
+        { "name": "Docker", "type": "containerization", "level": "senior", "aliases": [], "is_core": true },
+        { "name": "Kubernetes", "type": "orchestration", "level": "senior", "aliases": ["K8s"], "is_core": true }
+      ]
+    }
+  ]
+}

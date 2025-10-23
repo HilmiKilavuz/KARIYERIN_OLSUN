@@ -1,0 +1,57 @@
+{
+  "roadmap_name": "BI Analyst",
+  "roadmap_description": "İş Zekası (BI) analisti için veri modelleme, ETL, veri görselleştirme ve raporlama yetkinliklerini kapsayan yol haritası.",
+  "sections": [
+    {
+      "section_name": "Core Concepts",
+      "display_order": 1,
+      "skills": [
+        { "name": "Business Intelligence", "type": "concept", "level": "junior", "aliases": ["BI"], "is_core": true },
+        { "name": "Data Warehousing", "type": "concept", "level": "junior", "aliases": ["DWH"], "is_core": true },
+        { "name": "ETL", "type": "concept", "level": "junior", "aliases": ["Extract, Transform, Load"], "is_core": true },
+        { "name": "Data Modeling", "type": "concept", "level": "junior", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Database & SQL",
+      "display_order": 2,
+      "skills": [
+        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Joins", "type": "sql_skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Window Functions", "type": "sql_skill", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Stored Procedures", "type": "sql_skill", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Data Visualization & Reporting Tools",
+      "display_order": 3,
+      "skills": [
+        { "name": "Data Visualization", "type": "skill", "level": "junior", "aliases": ["Data Viz"], "is_core": true },
+        { "name": "Tableau", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
+        { "name": "Power BI", "type": "tool", "level": "mid", "aliases": ["Microsoft Power BI"], "is_core": true },
+        { "name": "Looker", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Qlik Sense", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
+        { "name": "Dashboard Design", "type": "skill", "level": "mid", "aliases": [], "is_core": true }
+      ]
+    },
+    {
+      "section_name": "Data Warehousing Platforms",
+      "display_order": 4,
+      "skills": [
+        { "name": "Amazon Redshift", "type": "platform", "level": "mid", "aliases": ["Redshift"], "is_core": false },
+        { "name": "Google BigQuery", "type": "platform", "level": "mid", "aliases": ["BigQuery"], "is_core": false },
+        { "name": "Snowflake", "type": "platform", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    },
+    {
+      "section_name": "Analytical Skills",
+      "display_order": 5,
+      "skills": [
+        { "name": "Statistical Analysis", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "KPIs", "type": "concept", "level": "junior", "aliases": ["Key Performance Indicators"], "is_core": true },
+        { "name": "Excel", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
+        { "name": "Python", "type": "language", "level": "mid", "aliases": [], "is_core": false }
+      ]
+    }
+  ]
+}
