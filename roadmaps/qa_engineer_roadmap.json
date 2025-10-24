@@ -6,60 +6,80 @@
       "section_name": "QA Fundamentals",
       "display_order": 1,
       "skills": [
-        { "name": "Quality Assurance", "type": "concept", "level": "junior", "aliases": ["QA"], "is_core": true },
-        { "name": "Software Development Life Cycle", "type": "concept", "level": "junior", "aliases": ["SDLC"], "is_core": true },
-        { "name": "Test Planning", "type": "skill", "level": "junior", "aliases": ["Test Plans"], "is_core": true },
-        { "name": "Test Cases", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Bug Tracking", "type": "skill", "level": "junior", "aliases": ["Jira", "Azure DevOps"], "is_core": true }
+        { "name": "Quality Assurance", "type": "concept", "aliases": ["QA", "Software Quality Assurance"], "is_core": true, "weight": 7 },
+        { "name": "Software Development Life Cycle", "type": "concept", "aliases": ["SDLC"], "is_core": true, "weight": 7 },
+        { "name": "Test Planning", "type": "skill", "aliases": ["Test Plans", "Test Strategy"], "is_core": true, "weight": 6 },
+        { "name": "Test Cases", "type": "skill", "aliases": ["Test Case Design", "Test Scenarios"], "is_core": true, "weight": 7 },
+        { "name": "Bug Tracking", "type": "skill", "aliases": ["Jira", "Azure DevOps", "Bug Reporting", "Defect Management"], "is_core": true, "weight": 7 }
+      ]
+    },
+    {
+      "section_name": "Core Technical Skills",
+      "display_order": 2,
+      "skills": [
+          { "name": "SQL Basics", "type": "language", "aliases": ["SQL", "Database Queries"], "is_core": true, "weight": 6 },
+          { "name": "Git", "type": "tool", "aliases": ["Version Control", "Github"], "is_core": true, "weight": 5 },
+          { "name": "Basic Programming Concepts", "type": "concept", "aliases": ["Programming Fundamentals"], "is_core": true, "weight": 5 }
       ]
     },
     {
       "section_name": "Manual & Functional Testing",
-      "display_order": 2,
+      "display_order": 3,
       "skills": [
-        { "name": "Manual Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Functional Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Regression Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "UI/UX Testing", "type": "testing_type", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "Manual Testing", "type": "testing_type", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Functional Testing", "type": "testing_type", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "Regression Testing", "type": "testing_type", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "Exploratory Testing", "type": "testing_type", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "UI/UX Testing", "type": "testing_type", "aliases": ["Usability Testing"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Automation Testing",
-      "display_order": 3,
+      "display_order": 4,
       "skills": [
-        { "name": "Automation Testing", "type": "concept", "level": "mid", "aliases": ["Automated Testing", "SDET"], "is_core": true },
-        { "name": "Selenium", "type": "framework", "level": "mid", "aliases": ["Selenium WebDriver"], "is_core": true },
-        { "name": "Python", "type": "language", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Java", "type": "language", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Cypress", "type": "framework", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Playwright", "type": "framework", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Automation Testing", "type": "concept", "aliases": ["Automated Testing", "Test Automation", "SDET"], "is_core": true, "weight": 7 },
+        { "name": "Selenium", "type": "framework", "aliases": ["Selenium WebDriver", "Webdriver"], "is_core": true, "weight": 7 },
+        { "name": "Python", "type": "language", "aliases": ["Pytest"], "is_core": true, "weight": 7 },
+        { "name": "Java", "type": "language", "aliases": ["TestNG", "JUnit"], "is_core": true, "weight": 7 },
+        { "name": "Cypress", "type": "framework", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Playwright", "type": "framework", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Page Object Model", "type": "design_pattern", "aliases": ["POM"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "API Testing",
-      "display_order": 4,
+      "display_order": 5,
       "skills": [
-        { "name": "API Testing", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Postman", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "REST Assured", "type": "library", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "API Testing", "type": "skill", "aliases": ["Web Service Testing"], "is_core": true, "weight": 7 },
+        { "name": "Postman", "type": "tool", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "REST Assured", "type": "library", "aliases": [], "is_core": false, "weight": 5 }
       ]
     },
     {
+        "section_name": "Mobile Testing",
+        "display_order": 6,
+        "skills": [
+            { "name": "Mobile Testing", "type": "testing_type", "aliases": ["iOS Testing", "Android Testing"], "is_core": true, "weight": 6 },
+            { "name": "Appium", "type": "framework", "aliases": [], "is_core": false, "weight": 5 }
+        ]
+    },
+    {
       "section_name": "Specialized Testing",
-      "display_order": 5,
+      "display_order": 7,
       "skills": [
-        { "name": "Performance Testing", "type": "testing_type", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "Security Testing", "type": "testing_type", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "JMeter", "type": "tool", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Performance Testing", "type": "testing_type", "aliases": ["Load Testing", "Stress Testing"], "is_core": false, "weight": 5 },
+        { "name": "Security Testing", "type": "testing_type", "aliases": ["Penetration Testing Basics", "OWASP"], "is_core": false, "weight": 5 },
+        { "name": "Accessibility Testing", "type": "testing_type", "aliases": ["a11y Testing"], "is_core": false, "weight": 4 },
+        { "name": "JMeter", "type": "tool", "aliases": ["Apache JMeter"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "CI/CD Integration",
-      "display_order": 6,
+      "display_order": 8,
       "skills": [
-        { "name": "CI/CD", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Jenkins", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "GitHub Actions", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "CI/CD", "type": "concept", "aliases": ["Continuous Integration", "Continuous Testing"], "is_core": true, "weight": 6 },
+        { "name": "Jenkins", "type": "tool", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "GitHub Actions", "type": "tool", "aliases": ["GitLab CI"], "is_core": false, "weight": 5 }
       ]
     }
   ]

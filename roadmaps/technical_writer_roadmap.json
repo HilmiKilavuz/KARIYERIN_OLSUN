@@ -6,29 +6,43 @@
       "section_name": "Core Writing Skills",
       "display_order": 1,
       "skills": [
-        { "name": "Technical Writing", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Audience Analysis", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Editing and Proofreading", "type": "skill", "level": "junior", "aliases": [], "is_core": true }
+        { "name": "Technical Writing", "type": "skill", "aliases": ["Writing Style", "Clarity", "Conciseness"], "is_core": true, "weight": 7 },
+        { "name": "Audience Analysis", "type": "skill", "aliases": ["Target Audience"], "is_core": true, "weight": 7 },
+        { "name": "Editing and Proofreading", "type": "skill", "aliases": ["Editing", "Proofreading", "Grammar", "Style Guides"], "is_core": true, "weight": 7 },
+        { "name": "Information Architecture", "type": "skill", "aliases": ["Structuring Content", "IA"], "is_core": true, "weight": 6 },
+        { "name": "Content Strategy", "type": "skill", "aliases": [], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Documentation Types",
       "display_order": 2,
       "skills": [
-        { "name": "API Documentation", "type": "doc_type", "level": "mid", "aliases": ["REST API Docs"], "is_core": true },
-        { "name": "User Guides", "type": "doc_type", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Tutorials", "type": "doc_type", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "API Documentation", "type": "doc_type", "aliases": ["REST API Docs", "API Docs", "API Reference"], "is_core": true, "weight": 7 },
+        { "name": "User Guides", "type": "doc_type", "aliases": ["User Manuals", "End-User Documentation"], "is_core": true, "weight": 7 },
+        { "name": "Tutorials", "type": "doc_type", "aliases": ["How-to Guides", "Walkthroughs"], "is_core": true, "weight": 6 },
+        { "name": "Release Notes", "type": "doc_type", "aliases": [], "is_core": false, "weight": 4 },
+        { "name": "Knowledge Base Articles", "type": "doc_type", "aliases": ["KB Articles"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Tools and Standards",
       "display_order": 3,
       "skills": [
-        { "name": "Markdown", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Docs-as-Code", "type": "concept", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Confluence", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Markdown", "type": "tool", "aliases": ["MD"], "is_core": true, "weight": 7 },
+        { "name": "Git", "type": "tool", "aliases": ["Version Control", "Github", "GitLab"], "is_core": true, "weight": 7 },
+        { "name": "Docs-as-Code", "type": "concept", "aliases": ["Documentation as Code"], "is_core": true, "weight": 6 },
+        { "name": "Static Site Generators", "type": "tool", "aliases": ["MkDocs", "Hugo", "Jekyll", "Docusaurus"], "is_core": false, "weight": 5 },
+        { "name": "Confluence", "type": "tool", "aliases": ["Wiki Software"], "is_core": false, "weight": 4 },
+        { "name": "Basic HTML/CSS", "type": "skill", "aliases": ["HTML", "CSS"], "is_core": false, "weight": 3 }
       ]
+    },
+    {
+        "section_name": "Communication & Collaboration",
+        "display_order": 4,
+        "skills": [
+            { "name": "Communication Skills", "type": "soft_skill", "aliases": ["Interviewing SMEs", "Collaboration"], "is_core": true, "weight": 7 },
+            { "name": "Project Management Basics", "type": "skill", "aliases": ["Agile Basics"], "is_core": false, "weight": 3 }
+        ]
     }
   ]
 }

@@ -6,77 +6,83 @@
       "section_name": "Learn the Basics",
       "display_order": 1,
       "skills": [
-        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Data Structures and Algorithms", "type": "concept", "level": "junior", "aliases": ["DSA"], "is_core": false },
-        { "name": "Linux Basics", "type": "skill", "level": "junior", "aliases": ["Linux"], "is_core": true },
-        { "name": "Java", "type": "language", "level": "junior", "aliases": [], "is_core": false },
-        { "name": "Scala", "type": "language", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Python", "type": "language", "aliases": ["Py"], "is_core": true, "weight": 7 },
+        { "name": "Data Structures and Algorithms", "type": "concept", "aliases": ["DSA", "Algorithms", "Data Structures"], "is_core": false, "weight": 4 },
+        { "name": "Linux Basics", "type": "skill", "aliases": ["Linux", "Unix", "Bash", "Shell"], "is_core": true, "weight": 6 },
+        { "name": "Git", "type": "tool", "aliases": ["Github", "Version Control"], "is_core": true, "weight": 5 },
+        { "name": "Java", "type": "language", "aliases": [], "is_core": false, "weight": 3 },
+        { "name": "Scala", "type": "language", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Database Fundamentals",
       "display_order": 2,
       "skills": [
-        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Data Normalization", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Data Modelling Techniques", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "CAP Theorem", "type": "concept", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "OLTP vs OLAP", "type": "concept", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "SQL", "type": "language", "aliases": ["Structured Query Language"], "is_core": true, "weight": 7 },
+        { "name": "Data Normalization", "type": "concept", "aliases": ["Normalization"], "is_core": true, "weight": 5 },
+        { "name": "Data Modelling Techniques", "type": "concept", "aliases": ["Data Modeling", "Star Schema", "Snowflake Schema"], "is_core": true, "weight": 6 },
+        { "name": "PostgreSQL", "type": "database", "aliases": ["Postgres"], "is_core": true, "weight": 6 },
+        { "name": "MySQL", "type": "database", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "CAP Theorem", "type": "concept", "aliases": [], "is_core": false, "weight": 3 },
+        { "name": "OLTP vs OLAP", "type": "concept", "aliases": ["OLTP", "OLAP"], "is_core": false, "weight": 4 }
       ]
     },
     {
-      "section_name": "Data Warehousing",
-      "display_order": 4,
+      "section_name": "Data Warehousing & Data Lakes",
+      "display_order": 3,
       "skills": [
-        { "name": "Data Warehouse", "type": "concept", "level": "mid", "aliases": ["DWH"], "is_core": true },
-        { "name": "Amazon Redshift", "type": "dwh_platform", "level": "mid", "aliases": ["Redshift"], "is_core": false },
-        { "name": "Google BigQuery", "type": "dwh_platform", "level": "mid", "aliases": ["BigQuery"], "is_core": false },
-        { "name": "Snowflake", "type": "dwh_platform", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Data Lake", "type": "concept", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Data Warehouse", "type": "concept", "aliases": ["DWH"], "is_core": true, "weight": 7 },
+        { "name": "Data Lake", "type": "concept", "aliases": ["Data Lakehouse"], "is_core": true, "weight": 6 },
+        { "name": "Amazon Redshift", "type": "dwh_platform", "aliases": ["Redshift"], "is_core": false, "weight": 5 },
+        { "name": "Google BigQuery", "type": "dwh_platform", "aliases": ["BigQuery"], "is_core": false, "weight": 5 },
+        { "name": "Snowflake", "type": "dwh_platform", "aliases": [], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "Cloud Computing",
-      "display_order": 5,
+      "display_order": 4,
       "skills": [
-        { "name": "AWS", "type": "cloud", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Azure", "type": "cloud", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Google Cloud", "type": "cloud", "level": "mid", "aliases": ["GCP"], "is_core": true }
+        { "name": "AWS", "type": "cloud", "aliases": ["Amazon Web Services"], "is_core": true, "weight": 7 },
+        { "name": "Azure", "type": "cloud", "aliases": ["Microsoft Azure"], "is_core": true, "weight": 7 },
+        { "name": "Google Cloud", "type": "cloud", "aliases": ["GCP", "Google Cloud Platform"], "is_core": true, "weight": 7 }
       ]
     },
     {
       "section_name": "Data Ingestion & Big Data Tools",
-      "display_order": 6,
+      "display_order": 5,
       "skills": [
-        { "name": "ETL Process", "type": "concept", "level": "mid", "aliases": ["ETL"], "is_core": true },
-        { "name": "Streaming", "type": "ingestion_type", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Apache Airflow", "type": "pipeline_tool", "level": "mid", "aliases": ["Airflow"], "is_core": false },
-        { "name": "Apache Spark", "type": "big_data", "level": "senior", "aliases": ["Spark"], "is_core": true },
-        { "name": "Hadoop Ecosystem", "type": "big_data", "level": "senior", "aliases": ["Hadoop"], "is_core": false }
+        { "name": "ETL Process", "type": "concept", "aliases": ["ETL", "ELT"], "is_core": true, "weight": 7 },
+        { "name": "Streaming", "type": "ingestion_type", "aliases": ["Real-time Data Processing", "Stream Processing"], "is_core": true, "weight": 6 },
+        { "name": "Apache Spark", "type": "big_data", "aliases": ["Spark", "PySpark"], "is_core": true, "weight": 7 },
+        { "name": "Apache Airflow", "type": "pipeline_tool", "aliases": ["Airflow"], "is_core": true, "weight": 6 },
+        { "name": "Apache Kafka", "type": "streaming_platform", "aliases": ["Kafka"], "is_core": true, "weight": 6 },
+        { "name": "dbt", "type": "pipeline_tool", "aliases": ["Data Build Tool"], "is_core": false, "weight": 5 },
+        { "name": "Hadoop Ecosystem", "type": "big_data", "aliases": ["Hadoop", "HDFS", "MapReduce"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Containers & Orchestration",
-      "display_order": 7,
+      "display_order": 6,
       "skills": [
-        { "name": "Docker", "type": "containerization", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Kubernetes", "type": "orchestration", "level": "senior", "aliases": ["K8s"], "is_core": true }
+        { "name": "Docker", "type": "containerization", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Kubernetes", "type": "orchestration", "aliases": ["K8s"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "Infrastructure as Code (IaC)",
-      "display_order": 8,
+      "display_order": 7,
       "skills": [
-        { "name": "Terraform", "type": "iac", "level": "senior", "aliases": ["IaC"], "is_core": false }
+        { "name": "Terraform", "type": "iac", "aliases": ["IaC"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Data Serving & Governance",
-      "display_order": 9,
+      "display_order": 8,
       "skills": [
-        { "name": "Business Intelligence", "type": "concept", "level": "mid", "aliases": ["BI"], "is_core": false },
-        { "name": "Data Governance", "type": "concept", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Data Quality", "type": "governance", "level": "senior", "aliases": [], "is_core": true }
+        { "name": "Data Governance", "type": "concept", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "Data Quality", "type": "governance", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "Data Catalog", "type": "governance", "aliases": ["Data Discovery"], "is_core": false, "weight": 4 },
+        { "name": "Business Intelligence", "type": "concept", "aliases": ["BI", "Reporting", "Dashboards"], "is_core": false, "weight": 3 }
       ]
     }
   ]

@@ -6,114 +6,114 @@
       "section_name": "Pick a Language",
       "display_order": 1,
       "skills": [
-        { "name": "Kotlin", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Java", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "C++", "type": "language", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Kotlin", "type": "language", "level": "junior", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Java", "type": "language", "level": "junior", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "C++", "type": "language", "level": "mid", "aliases": ["cpp"], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "The Fundamentals",
       "display_order": 2,
       "skills": [
-        { "name": "Android Studio", "type": "tool", "level": "junior", "aliases": ["Development IDE"], "is_core": true },
-        { "name": "Basics of OOP", "type": "concept", "level": "junior", "aliases": ["Object Oriented Programming"], "is_core": true },
-        { "name": "Gradle", "type": "build_tool", "level": "junior", "aliases": [], "is_core": true }
+        { "name": "Android Studio", "type": "tool", "level": "junior", "aliases": ["Development IDE"], "is_core": true, "weight": 7 },
+        { "name": "Basics of OOP", "type": "concept", "level": "junior", "aliases": ["Object Oriented Programming", "OOP"], "is_core": true, "weight": 6 },
+        { "name": "Gradle", "type": "build_tool", "level": "junior", "aliases": [], "is_core": true, "weight": 5 }
       ]
     },
     {
       "section_name": "Version Control",
       "display_order": 3,
       "skills": [
-        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true }
+        { "name": "Git", "type": "tool", "level": "junior", "aliases": ["Github", "GitLab"], "is_core": true, "weight": 7 }
       ]
     },
     {
       "section_name": "App Components",
       "display_order": 4,
       "skills": [
-        { "name": "Activity", "type": "component", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Services", "type": "component", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Intent", "type": "component", "level": "junior", "aliases": ["Intents"], "is_core": true },
-        { "name": "Activity LifeCycle", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Broadcast Receiver", "type": "component", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Content Provider", "type": "component", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Activity", "type": "component", "level": "junior", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Services", "type": "component", "level": "junior", "aliases": ["Service"], "is_core": true, "weight": 6 },
+        { "name": "Intent", "type": "component", "level": "junior", "aliases": ["Intents"], "is_core": true, "weight": 5 },
+        { "name": "Activity LifeCycle", "type": "concept", "level": "junior", "aliases": ["Lifecycle"], "is_core": true, "weight": 6 },
+        { "name": "Broadcast Receiver", "type": "component", "level": "mid", "aliases": [], "is_core": false, "weight": 3 },
+        { "name": "Content Provider", "type": "component", "level": "mid", "aliases": [], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "Interface & Navigation",
       "display_order": 5,
       "skills": [
-        { "name": "Jetpack Compose", "type": "ui_framework", "level": "mid", "aliases": ["Compose"], "is_core": true },
-        { "name": "XML Layouts", "type": "ui", "level": "junior", "aliases": ["Layouts"], "is_core": true },
-        { "name": "Navigation Components", "type": "library", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Fragments", "type": "ui", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Jetpack Compose", "type": "ui_framework", "level": "mid", "aliases": ["Compose"], "is_core": true, "weight": 7 },
+        { "name": "XML Layouts", "type": "ui", "level": "junior", "aliases": ["Layouts", "XML"], "is_core": true, "weight": 6 },
+        { "name": "Navigation Components", "type": "library", "level": "mid", "aliases": ["Jetpack Navigation"], "is_core": true, "weight": 5 },
+        { "name": "Fragments", "type": "ui", "level": "mid", "aliases": ["Fragment"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Design & Architecture",
       "display_order": 6,
       "skills": [
-        { "name": "Clean Architecture", "type": "architecture", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "MVVM", "type": "architecture", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Repository Pattern", "type": "design_pattern", "level": "mid", "aliases": [], "is_core": true }
+        { "name": "Clean Architecture", "type": "architecture", "level": "mid", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "MVVM", "type": "architecture", "level": "mid", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Repository Pattern", "type": "design_pattern", "level": "mid", "aliases": [], "is_core": true, "weight": 5 }
       ]
     },
     {
       "section_name": "Storage",
       "display_order": 7,
       "skills": [
-        { "name": "Room Database", "type": "storage", "level": "mid", "aliases": ["Room"], "is_core": true },
-        { "name": "DataStore", "type": "storage", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Shared Preferences", "type": "storage", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "Room Database", "type": "storage", "level": "mid", "aliases": ["Room"], "is_core": true, "weight": 7 },
+        { "name": "DataStore", "type": "storage", "level": "mid", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Shared Preferences", "type": "storage", "level": "junior", "aliases": [], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "Asynchronism & Network",
       "display_order": 8,
       "skills": [
-        { "name": "Coroutines", "type": "asynchronism", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Flow", "type": "asynchronism", "level": "mid", "aliases": ["Kotlin Flow"], "is_core": true },
-        { "name": "RxJava", "type": "library", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Retrofit", "type": "library", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "OkHttp", "type": "library", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Coroutines", "type": "asynchronism", "level": "mid", "aliases": ["Kotlin Coroutines"], "is_core": true, "weight": 7 },
+        { "name": "Flow", "type": "asynchronism", "level": "mid", "aliases": ["Kotlin Flow"], "is_core": true, "weight": 6 },
+        { "name": "Retrofit", "type": "library", "level": "mid", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "RxJava", "type": "library", "level": "senior", "aliases": [], "is_core": true, "weight": 5 },
+        { "name": "OkHttp", "type": "library", "level": "mid", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Dependency Injection",
       "display_order": 9,
       "skills": [
-        { "name": "Dependency Injection", "type": "concept", "level": "junior", "aliases": ["DI"], "is_core": true },
-        { "name": "Hilt", "type": "di_framework", "level": "mid", "aliases": ["Dagger Hilt"], "is_core": true },
-        { "name": "Dagger", "type": "di_framework", "level": "senior", "aliases": ["Dagger2"], "is_core": true },
-        { "name": "Koin", "type": "di_framework", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Dependency Injection", "type": "concept", "level": "junior", "aliases": ["DI"], "is_core": true, "weight": 5 },
+        { "name": "Hilt", "type": "di_framework", "level": "mid", "aliases": ["Dagger Hilt"], "is_core": true, "weight": 7 },
+        { "name": "Dagger", "type": "di_framework", "level": "senior", "aliases": ["Dagger2"], "is_core": true, "weight": 6 },
+        { "name": "Koin", "type": "di_framework", "level": "mid", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Graphics & Native",
       "display_order": 10,
       "skills": [
-        { "name": "Android NDK", "type": "tool", "level": "senior", "aliases": ["NDK"], "is_core": true },
-        { "name": "OpenGL", "type": "graphics", "level": "senior", "aliases": ["OpenGL ES"], "is_core": false },
-        { "name": "Vulkan", "type": "graphics", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Android NDK", "type": "tool", "level": "senior", "aliases": ["NDK"], "is_core": true, "weight": 4 },
+        { "name": "OpenGL", "type": "graphics", "level": "senior", "aliases": ["OpenGL ES"], "is_core": false, "weight": 2 },
+        { "name": "Vulkan", "type": "graphics", "level": "senior", "aliases": [], "is_core": false, "weight": 2 }
       ]
     },
     {
       "section_name": "Hardware & Connectivity",
       "display_order": 11,
       "skills": [
-        { "name": "BLE", "type": "connectivity", "level": "senior", "aliases": ["Bluetooth Low Energy"], "is_core": false },
-        { "name": "Beacons", "type": "connectivity", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "BLE", "type": "connectivity", "level": "senior", "aliases": ["Bluetooth Low Energy", "Bluetooth"], "is_core": false, "weight": 3 },
+        { "name": "Beacons", "type": "connectivity", "level": "senior", "aliases": [], "is_core": false, "weight": 2 }
       ]
     },
     {
       "section_name": "Testing & Distribution",
       "display_order": 12,
       "skills": [
-        { "name": "Unit Testing", "type": "testing", "level": "junior", "aliases": ["JUnit"], "is_core": true },
-        { "name": "Google Playstore", "type": "distribution", "level": "junior", "aliases": ["Play Store"], "is_core": true },
-        { "name": "Associate Android Developer", "type": "certification", "level": "mid", "aliases": ["Google Certified"], "is_core": false },
-        { "name": "Espresso", "type": "testing", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Leak Canary", "type": "debugging", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Unit Testing", "type": "testing", "level": "junior", "aliases": ["JUnit"], "is_core": true, "weight": 6 },
+        { "name": "Google Playstore", "type": "distribution", "level": "junior", "aliases": ["Play Store", "Google Play"], "is_core": true, "weight": 6 },
+        { "name": "Associate Android Developer", "type": "certification", "level": "mid", "aliases": ["Google Certified"], "is_core": false, "weight": 2 },
+        { "name": "Espresso", "type": "testing", "level": "mid", "aliases": [], "is_core": false, "weight": 4 },
+        { "name": "Leak Canary", "type": "debugging", "level": "mid", "aliases": [], "is_core": false, "weight": 3 }
       ]
     }
   ]

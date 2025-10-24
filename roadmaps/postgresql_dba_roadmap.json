@@ -3,50 +3,63 @@
   "roadmap_description": "PostgreSQL Veritabanı Yöneticisi (DBA) için kurulum, yönetim, yedekleme, performans ve güvenlik yetkinliklerini kapsayan yol haritası.",
   "sections": [
     {
-      "section_name": "Core PostgreSQL Concepts",
+      "section_name": "Core PostgreSQL & OS Concepts",
       "display_order": 1,
       "skills": [
-        { "name": "PostgreSQL Architecture", "type": "concept", "level": "junior", "aliases": ["Postgres"], "is_core": true },
-        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Installation and Configuration", "type": "skill", "level": "junior", "aliases": [], "is_core": true }
+        { "name": "PostgreSQL Architecture", "type": "concept", "aliases": ["Postgres", "Postgres Architecture"], "is_core": true, "weight": 7 },
+        { "name": "SQL", "type": "language", "aliases": ["Advanced SQL"], "is_core": true, "weight": 7 },
+        { "name": "Installation and Configuration", "type": "skill", "aliases": ["PostgreSQL Installation", "postgresql.conf", "pg_hba.conf"], "is_core": true, "weight": 6 },
+        { "name": "Linux Basics", "type": "os", "aliases": ["Linux", "Unix"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "Administration & Maintenance",
       "display_order": 2,
       "skills": [
-        { "name": "Backup and Recovery", "type": "skill", "level": "junior", "aliases": ["pg_dump", "pg_restore"], "is_core": true },
-        { "name": "User and Role Management", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Monitoring", "type": "skill", "level": "mid", "aliases": ["pg_stat_statements"], "is_core": true }
+        { "name": "Backup and Recovery", "type": "skill", "aliases": ["pg_dump", "pg_restore", "Point-in-Time Recovery", "PITR", "pgBackRest"], "is_core": true, "weight": 7 },
+        { "name": "User and Role Management", "type": "skill", "aliases": ["Roles", "Permissions", "Grants"], "is_core": true, "weight": 6 },
+        { "name": "Monitoring", "type": "skill", "aliases": ["pg_stat_statements", "pg_stat_activity", "Database Monitoring"], "is_core": true, "weight": 7 },
+        { "name": "VACUUM & Autovacuum", "type": "concept", "aliases": ["VACUUM", "Autovacuum Tuning"], "is_core": true, "weight": 6 },
+        { "name": "pgAdmin", "type": "tool", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "pgBadger", "type": "tool", "aliases": ["Log Analysis"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Performance Tuning",
       "display_order": 3,
       "skills": [
-        { "name": "Performance Tuning", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Indexing", "type": "concept", "level": "mid", "aliases": ["Indexes"], "is_core": true },
-        { "name": "Query Optimization", "type": "skill", "level": "mid", "aliases": ["EXPLAIN ANALYZE"], "is_core": true },
-        { "name": "Connection Pooling", "type": "concept", "level": "senior", "aliases": ["PgBouncer"], "is_core": false }
+        { "name": "Performance Tuning", "type": "skill", "aliases": ["PostgreSQL Performance"], "is_core": true, "weight": 7 },
+        { "name": "Indexing", "type": "concept", "aliases": ["Indexes", "Index Types", "Index Maintenance"], "is_core": true, "weight": 7 },
+        { "name": "Query Optimization", "type": "skill", "aliases": ["EXPLAIN ANALYZE", "Query Tuning"], "is_core": true, "weight": 7 },
+        { "name": "Connection Pooling", "type": "concept", "aliases": ["PgBouncer", "Connection Pooler"], "is_core": true, "weight": 6 },
+        { "name": "Partitioning", "type": "concept", "aliases": ["Table Partitioning"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "High Availability & Replication",
       "display_order": 4,
       "skills": [
-        { "name": "High Availability", "type": "concept", "level": "senior", "aliases": ["HA"], "is_core": true },
-        { "name": "Replication", "type": "concept", "level": "senior", "aliases": ["Streaming Replication"], "is_core": true },
-        { "name": "Failover", "type": "concept", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "High Availability", "type": "concept", "aliases": ["HA", "PostgreSQL HA"], "is_core": true, "weight": 7 },
+        { "name": "Replication", "type": "concept", "aliases": ["Streaming Replication", "Logical Replication"], "is_core": true, "weight": 7 },
+        { "name": "Failover", "type": "concept", "aliases": ["Patroni", "pg_auto_failover"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Security",
       "display_order": 5,
       "skills": [
-        { "name": "Security Management", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Authentication Methods", "type": "concept", "level": "mid", "aliases": ["pg_hba.conf"], "is_core": true },
-        { "name": "Encryption", "type": "concept", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Security Management", "type": "skill", "aliases": ["PostgreSQL Security"], "is_core": true, "weight": 7 },
+        { "name": "Authentication Methods", "type": "concept", "aliases": ["pg_hba.conf"], "is_core": true, "weight": 6 },
+        { "name": "Encryption", "type": "concept", "aliases": ["SSL", "TLS", "Data Encryption"], "is_core": false, "weight": 4 }
       ]
+    },
+    {
+        "section_name": "Extensions",
+        "display_order": 6,
+        "skills": [
+            { "name": "PostgreSQL Extensions", "type": "concept", "aliases": ["Extensions"], "is_core": false, "weight": 3 },
+            { "name": "PostGIS", "type": "extension", "aliases": ["GIS"], "is_core": false, "weight": 2 }
+        ]
     }
   ]
 }

@@ -6,51 +6,64 @@
       "section_name": "Core Concepts",
       "display_order": 1,
       "skills": [
-        { "name": "Business Intelligence", "type": "concept", "level": "junior", "aliases": ["BI"], "is_core": true },
-        { "name": "Data Warehousing", "type": "concept", "level": "junior", "aliases": ["DWH"], "is_core": true },
-        { "name": "ETL", "type": "concept", "level": "junior", "aliases": ["Extract, Transform, Load"], "is_core": true },
-        { "name": "Data Modeling", "type": "concept", "level": "junior", "aliases": [], "is_core": true }
+        { "name": "Business Intelligence", "type": "concept", "aliases": ["BI"], "is_core": true, "weight": 7 },
+        { "name": "Data Warehousing", "type": "concept", "aliases": ["DWH"], "is_core": true, "weight": 7 },
+        { "name": "ETL", "type": "concept", "aliases": ["Extract, Transform, Load"], "is_core": true, "weight": 7 },
+        { "name": "Data Modeling", "type": "concept", "aliases": ["Star Schema", "Snowflake Schema"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "Database & SQL",
       "display_order": 2,
       "skills": [
-        { "name": "SQL", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Joins", "type": "sql_skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Window Functions", "type": "sql_skill", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Stored Procedures", "type": "sql_skill", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "SQL", "type": "language", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Joins", "type": "sql_skill", "aliases": ["SQL Joins"], "is_core": true, "weight": 7 },
+        { "name": "Window Functions", "type": "sql_skill", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Stored Procedures", "type": "sql_skill", "aliases": [], "is_core": false, "weight": 4 },
+        { "name": "PostgreSQL", "type": "database", "aliases": ["Postgres"], "is_core": false, "weight": 5 },
+        { "name": "MySQL", "type": "database", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "SQL Server", "type": "database", "aliases": ["MS SQL"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Data Visualization & Reporting Tools",
       "display_order": 3,
       "skills": [
-        { "name": "Data Visualization", "type": "skill", "level": "junior", "aliases": ["Data Viz"], "is_core": true },
-        { "name": "Tableau", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Power BI", "type": "tool", "level": "mid", "aliases": ["Microsoft Power BI"], "is_core": true },
-        { "name": "Looker", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Qlik Sense", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Dashboard Design", "type": "skill", "level": "mid", "aliases": [], "is_core": true }
+        { "name": "Data Visualization", "type": "skill", "aliases": ["Data Viz"], "is_core": true, "weight": 7 },
+        { "name": "Tableau", "type": "tool", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Power BI", "type": "tool", "aliases": ["Microsoft Power BI", "PowerBI"], "is_core": true, "weight": 7 },
+        { "name": "Looker", "type": "tool", "aliases": ["Looker Studio"], "is_core": false, "weight": 4 },
+        { "name": "Qlik Sense", "type": "tool", "aliases": ["Qlik"], "is_core": false, "weight": 3 },
+        { "name": "Dashboard Design", "type": "skill", "aliases": ["Dashboarding"], "is_core": true, "weight": 6 }
+      ]
+    },
+    {
+      "section_name": "ETL / Data Pipeline Tools",
+      "display_order": 4,
+      "skills": [
+        { "name": "dbt", "type": "tool", "aliases": ["Data Build Tool"], "is_core": true, "weight": 6 },
+        { "name": "Talend", "type": "tool", "aliases": ["Talend Open Studio"], "is_core": false, "weight": 4 },
+        { "name": "Informatica", "type": "tool", "aliases": ["Informatica PowerCenter"], "is_core": false, "weight": 4 },
+        { "name": "Fivetran", "type": "tool", "aliases": [], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "Data Warehousing Platforms",
-      "display_order": 4,
+      "display_order": 5,
       "skills": [
-        { "name": "Amazon Redshift", "type": "platform", "level": "mid", "aliases": ["Redshift"], "is_core": false },
-        { "name": "Google BigQuery", "type": "platform", "level": "mid", "aliases": ["BigQuery"], "is_core": false },
-        { "name": "Snowflake", "type": "platform", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Amazon Redshift", "type": "platform", "aliases": ["Redshift"], "is_core": false, "weight": 5 },
+        { "name": "Google BigQuery", "type": "platform", "aliases": ["BigQuery"], "is_core": false, "weight": 5 },
+        { "name": "Snowflake", "type": "platform", "aliases": [], "is_core": false, "weight": 5 }
       ]
     },
     {
-      "section_name": "Analytical Skills",
-      "display_order": 5,
+      "section_name": "Supporting Skills",
+      "display_order": 6,
       "skills": [
-        { "name": "Statistical Analysis", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "KPIs", "type": "concept", "level": "junior", "aliases": ["Key Performance Indicators"], "is_core": true },
-        { "name": "Excel", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Python", "type": "language", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Statistical Analysis", "type": "skill", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "KPIs", "type": "concept", "aliases": ["Key Performance Indicators"], "is_core": true, "weight": 7 },
+        { "name": "Excel", "type": "tool", "aliases": ["Microsoft Excel", "Advanced Excel"], "is_core": true, "weight": 7 },
+        { "name": "Python", "type": "language", "aliases": ["Pandas", "Numpy"], "is_core": false, "weight": 5 }
       ]
     }
   ]

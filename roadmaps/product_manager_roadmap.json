@@ -6,57 +6,70 @@
       "section_name": "Product Management Fundamentals",
       "display_order": 1,
       "skills": [
-        { "name": "Product Management", "type": "concept", "level": "junior", "aliases": ["PM"], "is_core": true },
-        { "name": "Product Lifecycle", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Agile Methodologies", "type": "methodology", "level": "junior", "aliases": ["Agile", "Scrum", "Kanban"], "is_core": true }
+        { "name": "Product Management", "type": "concept", "aliases": ["PM", "Product Ownership"], "is_core": true, "weight": 7 },
+        { "name": "Product Lifecycle", "type": "concept", "aliases": ["Product Development Lifecycle"], "is_core": true, "weight": 6 },
+        { "name": "Agile Methodologies", "type": "methodology", "aliases": ["Agile", "Scrum", "Kanban"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "Product Strategy",
       "display_order": 2,
       "skills": [
-        { "name": "Product Strategy", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Market Research", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Competitor Analysis", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Business Model Canvas", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Product Strategy", "type": "skill", "aliases": ["Vision", "Strategy Development"], "is_core": true, "weight": 7 },
+        { "name": "Market Research", "type": "skill", "aliases": ["Market Analysis"], "is_core": true, "weight": 7 },
+        { "name": "Competitor Analysis", "type": "skill", "aliases": ["Competitive Analysis"], "is_core": true, "weight": 6 },
+        { "name": "Go-to-Market Strategy", "type": "skill", "aliases": ["GTM"], "is_core": true, "weight": 5 },
+        { "name": "Business Model Canvas", "type": "tool", "aliases": ["BMC"], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "User Research and Design",
       "display_order": 3,
       "skills": [
-        { "name": "User Research", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "User Personas", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "User Experience", "type": "concept", "level": "mid", "aliases": ["UX"], "is_core": true },
-        { "name": "A/B Testing", "type": "skill", "level": "mid", "aliases": ["AB Testing"], "is_core": false }
+        { "name": "User Research", "type": "skill", "aliases": ["Customer Interviews", "Surveys"], "is_core": true, "weight": 7 },
+        { "name": "User Personas", "type": "skill", "aliases": ["Personas"], "is_core": true, "weight": 6 },
+        { "name": "User Experience", "type": "concept", "aliases": ["UX", "User Experience Design", "UX Design"], "is_core": true, "weight": 6 },
+        { "name": "Wireframing/Prototyping Tools", "type": "tool", "aliases": ["Figma", "Sketch", "Adobe XD", "Prototyping"], "is_core": false, "weight": 4 },
+        { "name": "A/B Testing", "type": "skill", "aliases": ["AB Testing", "Experimentation"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Product Planning and Execution",
       "display_order": 4,
       "skills": [
-        { "name": "Roadmapping", "type": "skill", "level": "mid", "aliases": ["Product Roadmap"], "is_core": true },
-        { "name": "Prioritization", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "User Stories", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Jira", "type": "tool", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "Roadmapping", "type": "skill", "aliases": ["Product Roadmap", "Product Roadmap Planning"], "is_core": true, "weight": 7 },
+        { "name": "Prioritization", "type": "skill", "aliases": ["Feature Prioritization", "RICE", "MoSCoW"], "is_core": true, "weight": 7 },
+        { "name": "User Stories", "type": "skill", "aliases": ["Writing User Stories", "Requirements Gathering"], "is_core": true, "weight": 6 },
+        { "name": "Jira", "type": "tool", "aliases": ["Jira Software", "Agile Tools"], "is_core": false, "weight": 5 }
+      ]
+    },
+    {
+      "section_name": "Technical Understanding",
+      "display_order": 5,
+      "skills": [
+          { "name": "Technical Literacy", "type": "skill", "aliases": ["Understanding Technology"], "is_core": true, "weight": 5 },
+          { "name": "APIs", "type": "concept", "aliases": ["API Basics"], "is_core": false, "weight": 4 },
+          { "name": "System Design Basics", "type": "concept", "aliases": ["Basic System Architecture"], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "Leadership and Communication",
-      "display_order": 5,
+      "display_order": 6,
       "skills": [
-        { "name": "Stakeholder Management", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Communication Skills", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Leadership", "type": "soft_skill", "level": "senior", "aliases": [], "is_core": true }
+        { "name": "Stakeholder Management", "type": "skill", "aliases": ["Stakeholder Communication"], "is_core": true, "weight": 7 },
+        { "name": "Communication Skills", "type": "soft_skill", "aliases": ["Presentation Skills"], "is_core": true, "weight": 7 },
+        { "name": "Leadership", "type": "soft_skill", "aliases": ["Team Leadership"], "is_core": true, "weight": 7 },
+        { "name": "Negotiation", "type": "soft_skill", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Metrics and Analytics",
-      "display_order": 6,
+      "display_order": 7,
       "skills": [
-        { "name": "Data Analysis", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "KPIs", "type": "concept", "level": "mid", "aliases": ["Key Performance Indicators"], "is_core": true },
-        { "name": "Google Analytics", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Data Analysis", "type": "skill", "aliases": ["Product Analytics", "Data Interpretation"], "is_core": true, "weight": 7 },
+        { "name": "KPIs", "type": "concept", "aliases": ["Key Performance Indicators", "Product Metrics", "OKRs"], "is_core": true, "weight": 7 },
+        { "name": "Google Analytics", "type": "tool", "aliases": ["GA", "Web Analytics"], "is_core": false, "weight": 5 },
+        { "name": "SQL Basics", "type": "language", "aliases": ["SQL"], "is_core": false, "weight": 4 }
       ]
     }
   ]

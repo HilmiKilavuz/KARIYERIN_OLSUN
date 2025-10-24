@@ -6,48 +6,52 @@
       "section_name": "People Management",
       "display_order": 1,
       "skills": [
-        { "name": "People Management", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "1-on-1s", "type": "skill", "level": "senior", "aliases": ["One on Ones"], "is_core": true },
-        { "name": "Mentoring", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Performance Reviews", "type": "skill", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "Conflict Resolution", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "People Management", "type": "skill", "aliases": ["Team Management"], "is_core": true, "weight": 7 },
+        { "name": "1-on-1s", "type": "skill", "aliases": ["One on Ones", "1:1s", "One-on-ones"], "is_core": true, "weight": 7 },
+        { "name": "Mentoring", "type": "skill", "aliases": ["Coaching"], "is_core": true, "weight": 6 },
+        { "name": "Communication", "type": "skill", "aliases": ["Effective Communication"], "is_core": true, "weight": 7 },
+        { "name": "Career Development", "type": "skill", "aliases": ["Career Growth"], "is_core": true, "weight": 6 },
+        { "name": "Performance Reviews", "type": "skill", "aliases": ["Performance Management", "Performance Appraisals"], "is_core": false, "weight": 5 },
+        { "name": "Conflict Resolution", "type": "skill", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Team & Technical Leadership",
       "display_order": 2,
       "skills": [
-        { "name": "Team Leadership", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Technical Vision", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "System Design", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Code Review Culture", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Team Leadership", "type": "skill", "aliases": ["Leadership"], "is_core": true, "weight": 7 },
+        { "name": "Technical Vision", "type": "skill", "aliases": ["Technical Direction"], "is_core": true, "weight": 6 },
+        { "name": "System Design", "type": "skill", "aliases": ["Software Architecture"], "is_core": true, "weight": 6 },
+        { "name": "Technical Strategy", "type": "skill", "aliases": ["Technology Strategy"], "is_core": true, "weight": 5 },
+        { "name": "Code Review Culture", "type": "skill", "aliases": ["Code Reviews"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Project Management",
       "display_order": 3,
       "skills": [
-        { "name": "Project Management", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Agile Methodologies", "type": "methodology", "level": "senior", "aliases": ["Agile", "Scrum", "Kanban"], "is_core": true },
-        { "name": "Roadmap Planning", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Stakeholder Management", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Project Management", "type": "skill", "aliases": ["Project Planning"], "is_core": true, "weight": 7 },
+        { "name": "Agile Methodologies", "type": "methodology", "aliases": ["Agile", "Scrum", "Kanban"], "is_core": true, "weight": 7 },
+        { "name": "Roadmap Planning", "type": "skill", "aliases": ["Product Roadmap"], "is_core": true, "weight": 6 },
+        { "name": "Cross-functional Collaboration", "type": "skill", "aliases": ["Collaboration"], "is_core": true, "weight": 5 },
+        { "name": "Stakeholder Management", "type": "skill", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Recruitment & Hiring",
       "display_order": 4,
       "skills": [
-        { "name": "Hiring", "type": "skill", "level": "senior", "aliases": ["Recruitment"], "is_core": true },
-        { "name": "Interviewing", "type": "skill", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Onboarding", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Hiring", "type": "skill", "aliases": ["Recruitment", "Talent Acquisition"], "is_core": true, "weight": 6 },
+        { "name": "Interviewing", "type": "skill", "aliases": ["Technical Interviews"], "is_core": true, "weight": 6 },
+        { "name": "Onboarding", "type": "skill", "aliases": ["New Hire Onboarding"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Business & Strategy",
       "display_order": 5,
       "skills": [
-        { "name": "Budgeting", "type": "skill", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "Product Strategy", "type": "skill", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Budgeting", "type": "skill", "aliases": ["Financial Management"], "is_core": false, "weight": 3 },
+        { "name": "Product Strategy", "type": "skill", "aliases": ["Business Strategy"], "is_core": false, "weight": 4 }
       ]
     }
   ]

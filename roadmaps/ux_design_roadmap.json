@@ -6,49 +6,55 @@
       "section_name": "UX Fundamentals",
       "display_order": 1,
       "skills": [
-        { "name": "User Experience", "type": "concept", "level": "junior", "aliases": ["UX"], "is_core": true },
-        { "name": "User-Centered Design", "type": "concept", "level": "junior", "aliases": ["UCD"], "is_core": true },
-        { "name": "Interaction Design", "type": "concept", "level": "junior", "aliases": [], "is_core": true }
+        { "name": "User Experience", "type": "concept", "aliases": ["UX", "UX Design"], "is_core": true, "weight": 7 },
+        { "name": "User-Centered Design", "type": "concept", "aliases": ["UCD", "Human-Centered Design"], "is_core": true, "weight": 7 },
+        { "name": "Interaction Design", "type": "concept", "aliases": ["IxD"], "is_core": true, "weight": 6 },
+        { "name": "Design Thinking", "type": "concept", "aliases": [], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "Research & Analysis",
       "display_order": 2,
       "skills": [
-        { "name": "User Research", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "User Personas", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Journey Mapping", "type": "skill", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "User Research", "type": "skill", "aliases": ["UX Research", "Qualitative Research", "Quantitative Research"], "is_core": true, "weight": 7 },
+        { "name": "User Personas", "type": "skill", "aliases": ["Personas"], "is_core": true, "weight": 6 },
+        { "name": "Journey Mapping", "type": "skill", "aliases": ["User Journey Mapping", "Customer Journey Mapping"], "is_core": true, "weight": 6 },
+        { "name": "Competitor Analysis", "type": "skill", "aliases": ["Competitive Analysis"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Design & Prototyping",
       "display_order": 3,
       "skills": [
-        { "name": "Information Architecture", "type": "skill", "level": "mid", "aliases": ["IA"], "is_core": true },
-        { "name": "Wireframing", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Prototyping", "type": "skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Figma", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Sketch", "type": "tool", "level": "junior", "aliases": [], "is_core": false },
-        { "name": "Adobe XD", "type": "tool", "level": "junior", "aliases": [], "is_core": false },
-        { "name": "Visual Design", "type": "skill", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "Information Architecture", "type": "skill", "aliases": ["IA"], "is_core": true, "weight": 7 },
+        { "name": "Wireframing", "type": "skill", "aliases": ["Wireframes"], "is_core": true, "weight": 7 },
+        { "name": "Prototyping", "type": "skill", "aliases": ["Interactive Prototyping"], "is_core": true, "weight": 7 },
+        { "name": "Figma", "type": "tool", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Sketch", "type": "tool", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Adobe XD", "type": "tool", "aliases": ["XD"], "is_core": false, "weight": 5 },
+        { "name": "Visual Design", "type": "skill", "aliases": ["UI Design", "User Interface Design"], "is_core": true, "weight": 6 },
+        { "name": "Design Systems", "type": "concept", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "Basic HTML/CSS Understanding", "type": "skill", "aliases": ["HTML", "CSS"], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "Testing & Validation",
       "display_order": 4,
       "skills": [
-        { "name": "Usability Testing", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "A/B Testing", "type": "skill", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Accessibility", "type": "skill", "level": "mid", "aliases": ["WCAG"], "is_core": true }
+        { "name": "Usability Testing", "type": "skill", "aliases": ["User Testing"], "is_core": true, "weight": 7 },
+        { "name": "A/B Testing", "type": "skill", "aliases": ["AB Testing", "Experimentation"], "is_core": false, "weight": 5 },
+        { "name": "Accessibility", "type": "skill", "aliases": ["a11y", "WCAG", "Accessibility Testing"], "is_core": true, "weight": 7 },
+        { "name": "Analytics Basics", "type": "skill", "aliases": ["Google Analytics", "Data Analysis"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Collaboration & Soft Skills",
       "display_order": 5,
       "skills": [
-        { "name": "Collaboration", "type": "soft_skill", "level": "junior", "aliases": ["Team Collaboration"], "is_core": true },
-        { "name": "Communication", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Problem-Solving", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "Collaboration", "type": "soft_skill", "aliases": ["Team Collaboration", "Working with Developers", "Working with PMs"], "is_core": true, "weight": 7 },
+        { "name": "Communication", "type": "soft_skill", "aliases": ["Presentation Skills", "Feedback"], "is_core": true, "weight": 7 },
+        { "name": "Problem-Solving", "type": "soft_skill", "aliases": ["Critical Thinking"], "is_core": true, "weight": 6 },
+        { "name": "Empathy", "type": "soft_skill", "aliases": ["User Empathy"], "is_core": true, "weight": 7 }
       ]
     }
   ]

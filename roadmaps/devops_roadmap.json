@@ -6,77 +6,94 @@
       "section_name": "Scripting & Programming",
       "display_order": 1,
       "skills": [
-        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Bash", "type": "scripting", "level": "junior", "aliases": ["Shell Scripting", "Shell"], "is_core": true },
-        { "name": "Go", "type": "language", "level": "mid", "aliases": ["Golang"], "is_core": false }
+        { "name": "Bash", "type": "scripting", "aliases": ["Shell Scripting", "Shell"], "is_core": true, "weight": 7 },
+        { "name": "Python", "type": "language", "aliases": ["Py"], "is_core": true, "weight": 6 },
+        { "name": "Go", "type": "language", "aliases": ["Golang"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Operating System & Networking",
       "display_order": 2,
       "skills": [
-        { "name": "Linux", "type": "os", "level": "junior", "aliases": ["Ubuntu", "CentOS", "RHEL"], "is_core": true },
-        { "name": "Networking Fundamentals", "type": "concept", "level": "junior", "aliases": ["DNS", "HTTP", "HTTPS", "Load Balancer", "TCP/IP"], "is_core": true }
+        { "name": "Linux", "type": "os", "aliases": ["Ubuntu", "CentOS", "RHEL", "Unix", "Linux Administration"], "is_core": true, "weight": 7 },
+        { "name": "Networking Fundamentals", "type": "concept", "aliases": ["DNS", "HTTP", "HTTPS", "Load Balancer", "TCP/IP", "TCP IP", "Networking", "Network"], "is_core": true, "weight": 7 },
+        { "name": "SQL Basics", "type": "language", "aliases": ["SQL"], "is_core": false, "weight": 3 }
+      ]
+    },
+    {
+      "section_name": "Version Control",
+      "display_order": 3,
+      "skills": [
+        { "name": "Git", "type": "tool", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "GitHub", "type": "platform", "aliases": ["GitLab", "Bitbucket"], "is_core": true, "weight": 5 }
       ]
     },
     {
       "section_name": "Cloud Computing Platforms",
-      "display_order": 3,
+      "display_order": 4,
       "skills": [
-        { "name": "AWS", "type": "cloud", "level": "mid", "aliases": ["Amazon Web Services"], "is_core": true },
-        { "name": "Azure", "type": "cloud", "level": "mid", "aliases": ["Microsoft Azure"], "is_core": true },
-        { "name": "Google Cloud", "type": "cloud", "level": "mid", "aliases": ["GCP"], "is_core": true }
+        { "name": "AWS", "type": "cloud", "aliases": ["Amazon Web Services"], "is_core": true, "weight": 7 },
+        { "name": "Azure", "type": "cloud", "aliases": ["Microsoft Azure"], "is_core": true, "weight": 7 },
+        { "name": "Google Cloud", "type": "cloud", "aliases": ["GCP", "Google Cloud Platform"], "is_core": true, "weight": 7 }
       ]
     },
     {
       "section_name": "CI/CD & Automation",
-      "display_order": 4,
+      "display_order": 5,
       "skills": [
-        { "name": "CI/CD", "type": "concept", "level": "mid", "aliases": ["CI/CD pipelines"], "is_core": true },
-        { "name": "Jenkins", "type": "ci_cd", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "GitLab", "type": "ci_cd", "level": "mid", "aliases": ["GitLab CI"], "is_core": true },
-        { "name": "GitHub Actions", "type": "ci_cd", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Azure DevOps", "type": "ci_cd", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Argo CD", "type": "ci_cd", "level": "senior", "aliases": ["GitOps"], "is_core": false }
+        { "name": "CI/CD", "type": "concept", "aliases": ["CI/CD pipelines", "Continuous Integration", "Continuous Deployment"], "is_core": true, "weight": 7 },
+        { "name": "Jenkins", "type": "ci_cd", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "GitLab", "type": "ci_cd", "aliases": ["GitLab CI"], "is_core": true, "weight": 6 },
+        { "name": "GitHub Actions", "type": "ci_cd", "aliases": ["Github Actions"], "is_core": false, "weight": 5 },
+        { "name": "Azure DevOps", "type": "ci_cd", "aliases": ["Azure Pipelines"], "is_core": false, "weight": 5 },
+        { "name": "Argo CD", "type": "ci_cd", "aliases": ["GitOps", "ArgoCD"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Containerization & Orchestration",
-      "display_order": 5,
+      "display_order": 6,
       "skills": [
-        { "name": "Docker", "type": "containerization", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Kubernetes", "type": "orchestration", "level": "senior", "aliases": ["K8s", "EKS", "AKS", "GKE"], "is_core": true },
-        { "name": "Helm", "type": "tool", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Docker", "type": "containerization", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Kubernetes", "type": "orchestration", "aliases": ["K8s", "EKS", "AKS", "GKE"], "is_core": true, "weight": 7 },
+        { "name": "Helm", "type": "tool", "aliases": [], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Configuration Management & IaC",
-      "display_order": 6,
+      "display_order": 7,
       "skills": [
-        { "name": "Ansible", "type": "config_management", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Terraform", "type": "iac", "level": "senior", "aliases": ["Infrastructure as Code", "IaC"], "is_core": true },
-        { "name": "Chef", "type": "config_management", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Puppet", "type": "config_management", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Ansible", "type": "config_management", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Terraform", "type": "iac", "aliases": ["Infrastructure as Code", "IaC"], "is_core": true, "weight": 7 },
+        { "name": "Chef", "type": "config_management", "aliases": [], "is_core": false, "weight": 3 },
+        { "name": "Puppet", "type": "config_management", "aliases": [], "is_core": false, "weight": 3 }
       ]
     },
     {
       "section_name": "Monitoring & Observability",
-      "display_order": 7,
+      "display_order": 8,
       "skills": [
-        { "name": "System Monitoring", "type": "skill", "level": "mid", "aliases": ["Monitoring", "Monitoring & Logging", "Monitoring & Alerting"], "is_core": true },
-        { "name": "Prometheus", "type": "monitoring", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Grafana", "type": "monitoring", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "ELK Stack", "type": "monitoring", "level": "senior", "aliases": ["Elasticsearch", "Logstash", "Kibana"], "is_core": true },
-        { "name": "Datadog", "type": "monitoring", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "Splunk", "type": "monitoring", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "Nagios", "type": "monitoring", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "System Monitoring", "type": "skill", "aliases": ["Monitoring", "Monitoring & Logging", "Monitoring & Alerting", "Observability"], "is_core": true, "weight": 7 },
+        { "name": "Prometheus", "type": "monitoring", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Grafana", "type": "monitoring", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "ELK Stack", "type": "monitoring", "aliases": ["Elasticsearch", "Logstash", "Kibana", "Elastic Stack", "EFK"], "is_core": true, "weight": 6 },
+        { "name": "Datadog", "type": "monitoring", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Splunk", "type": "monitoring", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Nagios", "type": "monitoring", "aliases": [], "is_core": false, "weight": 2 }
+      ]
+    },
+    {
+      "section_name": "Security",
+      "display_order": 9,
+      "skills": [
+          { "name": "DevSecOps", "type": "concept", "aliases": ["Security Best Practices"], "is_core": true, "weight": 5 },
+          { "name": "Secrets Management", "type": "skill", "aliases": ["HashiCorp Vault", "Vault", "AWS Secrets Manager"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Methodologies",
-      "display_order": 8,
+      "display_order": 10,
       "skills": [
-          { "name": "Agile", "type": "methodology", "level": "mid", "aliases": ["Scrum"], "is_core": false }
+          { "name": "Agile", "type": "methodology", "aliases": ["Scrum", "Kanban"], "is_core": false, "weight": 3 }
       ]
     }
   ]

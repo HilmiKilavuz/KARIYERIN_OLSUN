@@ -1,71 +1,64 @@
 # role_detector.py
 from roadmap_repository import RoadmapRepository
-from skill_extractor import SkillExtractor
-from collections import defaultdict
+from comparison_engine import ComparisonEngine
+
+# Tespit için bir minimum puan eşiği belirleyelim.
+# Bir rol, adayın yetenekleriyle %20'den az eşleşiyorsa,
+# o rolü "uygun" saymayız.
+MINIMUM_SCORE_THRESHOLD = 00.0 
 
 class RoleDetector:
     """
-    Bir CV'den ÖNCEDEN çıkarılmış yetkinlik listesine göre, AĞIRLIKLI puanlama
-    kullanarak en olası rolü tespit eder.
+    ComparisonEngine ve RoadmapRepository kullanarak, bir yetenek listesi için
+    en uygun rolü puanlama yaparak tespit eder.
     """
-    def __init__(self, db_file):
-        repository = RoadmapRepository(db_file)
-        self.skill_extractor = SkillExtractor(db_file)
-        # Veritabanından, her role ait yetkinlikleri ve AĞIRLIKLARINI al
-        # Veri yapısı: {'RoleName': {'skill_lower': weight, 'alias_lower': weight, ...}}
-        self.skills_by_roadmap = repository.get_all_skills_by_roadmap()
-
-    def detect_role(self, cv_skills):
+    def __init__(self, repository: RoadmapRepository, engine: ComparisonEngine):
         """
-        Verilen yetkinlik listesini analiz eder ve en yüksek AĞIRLIKLI puanı
-        alan rolü döndürür.
+        Gerekli uzmanları dışarıdan alır (Dependency Injection).
         """
-        if not self.skills_by_roadmap:
+        self.repository = repository
+        self.engine = engine
+        print("Akıllı RoleDetector başlatıldı (Puanlama motoru kullanılıyor).")
+
+    def detect_role(self, cv_skills: list):
+        """
+        Verilen yetenek listesini, veritabanındaki TÜM rollerle karşılaştırır
+        ve en yüksek puanı alan rolü döndürür.
+        """
+        if not cv_skills:
             return None
 
-        # 1. Gelen yetkinlik listesini küçük harfe çevir ve set yap
-        cv_skills_set = {skill.lower() for skill in cv_skills}
-
-        scores = defaultdict(int) # Puanları toplamak için defaultdict kullanalım
-        # 2. Her bir yol haritası için ağırlıklı puanlama yap
-        for roadmap, roadmap_skills_weights in self.skills_by_roadmap.items():
-            current_roadmap_score = 0
-            # CV'deki her yetkinliği kontrol et
-            for cv_skill in cv_skills_set:
-                # Eğer bu yetkinlik, mevcut yol haritasının yetkinlik/ağırlık sözlüğünde varsa
-                if cv_skill in roadmap_skills_weights:
-                    # O yetkinliğin ağırlığını toplam puana ekle
-                    current_roadmap_score += roadmap_skills_weights[cv_skill]
-
-            scores[roadmap] = current_roadmap_score
-
-        # 3. En yüksek puanı alan rolü bul ve döndür
-        if not scores:
+        # 1. Veritabanındaki tüm mevcut rol isimlerini al
+        all_roles = self.repository.get_all_role_names()
+        if not all_roles:
+            print("❌ RoleDetector: Veritabanında hiç rol haritası bulunamadı.")
             return None
 
-        # Puanı en yüksek olanı bul (eğer puanlar eşitse ilk bulunanı alır)
-        best_match_role = max(scores, key=scores.get)
+        role_scores = []
 
-        # Eğer en yüksek puan 0 ise, hiçbir anlamlı eşleşme bulunamamıştır
-        if scores[best_match_role] == 0:
+        # 2. Her bir rol için adayın puanını hesapla
+        for role_name in all_roles:
+            roadmap_data = self.repository.get_skills_for_roadmap(role_name)
+            if not roadmap_data:
+                continue # Bu rol için yol haritası yoksa atla
+
+            # 3. Puanlama motorunu (ComparisonEngine) kullan
+            matched, missing, overall_score, core_score = self.engine.analyze_skills(cv_skills, roadmap_data)
+            
+            # Puanlamada Genel Puanı (overall_score) baz alıyoruz
+            role_scores.append({'role': role_name, 'score': overall_score})
+
+        if not role_scores:
+            print("❌ RoleDetector: Hiçbir rol için puanlama yapılamadı.")
             return None
 
-        return best_match_role
+        # 4. En yüksek puanı alan rolü bul
+        best_match = max(role_scores, key=lambda x: x['score'])
 
-# --- Bu sınıfı test etmek için basit bir kod ---
-if __name__ == '__main__':
-    DB_FILE = "roadmap_database.db"
-    # Örnek CV Yetkinlikleri (Jude Hall'dan alınmış gibi)
-    sample_cv_skills_test = [
-        'Python', 'Kubernetes', 'TensorFlow', 'PyTorch', 'Deep Learning',
-        'Machine Learning', 'AWS', 'Fine-Tuning', 'Azure AI'
-    ]
+        # 5. Minimum eşiği kontrol et
+        if best_match['score'] < MINIMUM_SCORE_THRESHOLD:
+            print(f"   ℹ️ RoleDetector: En yakın rol '{best_match['role']}' bulundu (%{best_match['score']:.1f}) ancak minimum eşiğin (%{MINIMUM_SCORE_THRESHOLD}) altında kaldı.")
+            return None
 
-    print("--- Ağırlıklı Rol Tespiti Testi ---")
-    detector = RoleDetector(DB_FILE)
-    detected_role_test = detector.detect_role(sample_cv_skills_test)
-
-    if detected_role_test:
-        print(f"Test CV'si için tespit edilen en olası rol: {detected_role_test}")
-    else:
-        print("Test CV'si için uygun bir rol bulunamadı.")
+        # En iyi ve eşiği geçen rolü döndür
+        return best_match['role']

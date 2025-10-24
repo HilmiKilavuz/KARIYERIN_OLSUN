@@ -16,9 +16,9 @@
       "display_order": 2,
       "skills": [
         { "name": "OpenAI Models", "type": "platform", "level": "junior", "aliases": ["OpenAI"], "is_core": true, "weight": 2 },
-        { "name": "Hugging Face Models", "type": "platform", "level": "junior", "aliases": ["Hugging Face"], "is_core": true, "weight": 2 },
-        { "name": "Anthropic's Claude", "type": "platform", "level": "junior", "aliases": ["Claude"], "is_core": false, "weight": 1 },
-        { "name": "Google's Gemini", "type": "platform", "level": "junior", "aliases": ["Gemini"], "is_core": false, "weight": 1 }
+        { "name": "Hugging Face Models", "type": "platform", "level": "junior", "aliases": ["Hugging Face", "HuggingFace"], "is_core": true, "weight": 2 },
+        { "name": "Anthropic's Claude", "type": "platform", "level": "junior", "aliases": ["Claude", "Anthropic"], "is_core": false, "weight": 1 },
+        { "name": "Google's Gemini", "type": "platform", "level": "junior", "aliases": ["Gemini", "Google Gemini"], "is_core": false, "weight": 1 }
       ]
     },
     {
@@ -35,26 +35,54 @@
       "display_order": 4,
       "skills": [
         { "name": "Bias and Fairness", "type": "concept", "level": "mid", "aliases": [], "is_core": true, "weight": 3 },
-        { "name": "Prompt Injection Attacks", "type": "security", "level": "mid", "aliases": [], "is_core": false, "weight": 1 }
+        { "name": "Prompt Injection Attacks", "type": "security", "level": "mid", "aliases": ["Prompt Injection"], "is_core": false, "weight": 1 }
       ]
     },
     {
       "section_name": "Embeddings & Vector Databases",
-      "display_order": 6,
+      "display_order": 5,
       "skills": [
         { "name": "Embeddings", "type": "concept", "level": "mid", "aliases": [], "is_core": true, "weight": 3 },
-        { "name": "Vector Databases", "type": "concept", "level": "mid", "aliases": ["Vector DB"], "is_core": true, "weight": 3 },
+        { "name": "Vector Databases", "type": "concept", "level": "mid", "aliases": ["Vector DB", "VectorDB"], "is_core": true, "weight": 3 },
         { "name": "Semantic Search", "type": "use_case", "level": "mid", "aliases": [], "is_core": false, "weight": 1 },
-        { "name": "Pinecone", "type": "vector_db", "level": "mid", "aliases": [], "is_core": false, "weight": 1 }
+        { "name": "Pinecone", "type": "vector_db", "level": "mid", "aliases": [], "is_core": false, "weight": 1 },
+        { "name": "Supabase (Vektör)", "type": "vector_db", "level": "mid", "aliases": ["Supabase"], "is_core": false, "weight": 1 }
       ]
     },
     {
       "section_name": "RAG (Retrieval-Augmented Generation)",
-      "display_order": 7,
+      "display_order": 6,
       "skills": [
         { "name": "RAG", "type": "concept", "level": "senior", "aliases": ["Retrieval-Augmented Generation"], "is_core": true, "weight": 3 },
         { "name": "LangChain", "type": "framework", "level": "mid", "aliases": [], "is_core": false, "weight": 2 },
-        { "name": "LlamaIndex", "type": "framework", "level": "mid", "aliases": [], "is_core": false, "weight": 2 }
+        { "name": "LlamaIndex", "type": "framework", "level": "mid", "aliases": ["Llama Index"], "is_core": false, "weight": 2 }
+      ]
+    },
+    {
+      "section_name": "AI Agents",
+      "display_order": 7,
+      "skills": [
+        { "name": "AI Agents", "type": "concept", "level": "senior", "aliases": ["Agents"], "is_core": true, "weight": 3 },
+        { "name": "OpenAI Functions", "type": "api", "level": "senior", "aliases": ["OpenAI Tools"], "is_core": true, "weight": 2 }
+      ]
+    },
+    {
+      "section_name": "Multimodal AI",
+      "display_order": 8,
+      "skills": [
+        { "name": "OpenAI Vision API", "type": "api", "level": "mid", "aliases": ["Vision API"], "is_core": false, "weight": 2 },
+        { "name": "DALL-E API", "type": "api", "level": "mid", "aliases": ["DALL-E"], "is_core": false, "weight": 1 },
+        { "name": "Whisper API", "type": "api", "level": "mid", "aliases": ["Whisper"], "is_core": false, "weight": 1 }
+      ]
+    },
+    {
+      "section_name": "Data Science & NLP Toolkit",
+      "display_order": 9,
+      "skills": [
+        { "name": "Pandas", "type": "library", "level": "mid", "aliases": [], "is_core": true, "weight": 3 },
+        { "name": "NumPy", "type": "library", "level": "mid", "aliases": [], "is_core": true, "weight": 3 },
+        { "name": "Scikit-learn", "type": "library", "level": "mid", "aliases": ["scikit-learn", "sklearn"], "is_core": true, "weight": 3 },
+        { "name": "spaCy", "type": "library", "level": "mid", "aliases": [], "is_core": false, "weight": 2 }
       ]
     },
     {
@@ -63,9 +91,10 @@
       "skills": [
         { "name": "Machine Learning", "type": "concept", "level": "junior", "aliases": ["ML"], "is_core": true, "weight": 3 },
         { "name": "Deep Learning", "type": "concept", "level": "mid", "aliases": ["DL"], "is_core": true, "weight": 3 },
-        { "name": "TensorFlow", "type": "framework", "level": "mid", "aliases": [], "is_core": true, "weight": 3 },
+        { "name": "TensorFlow", "type": "framework", "level": "mid", "aliases": ["Tensorflow"], "is_core": true, "weight": 3 },
         { "name": "PyTorch", "type": "framework", "level": "mid", "aliases": [], "is_core": true, "weight": 3 },
         { "name": "Kubernetes", "type": "orchestration", "level": "senior", "aliases": ["K8s"], "is_core": false, "weight": 2 },
+        { "name": "Docker", "type": "containerization", "level": "mid", "aliases": [], "is_core": false, "weight": 2 },
         { "name": "Amazon SageMaker", "type": "platform", "level": "senior", "aliases": ["SageMaker"], "is_core": false, "weight": 2 },
         { "name": "Azure AI", "type": "platform", "level": "mid", "aliases": ["Azure"], "is_core": false, "weight": 2 }
       ]

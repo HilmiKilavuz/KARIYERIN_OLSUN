@@ -6,78 +6,101 @@
       "section_name": "Internet Fundamentals",
       "display_order": 1,
       "skills": [
-        { "name": "HTTP", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "DNS", "type": "concept", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "HTTP", "type": "concept", "aliases": ["HTTPS"], "is_core": true, "weight": 6 },
+        { "name": "DNS", "type": "concept", "aliases": [], "is_core": false, "weight": 3 },
+        { "name": "Browser Fundamentals", "type": "concept", "aliases": ["How Browsers Work"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Core Technologies",
       "display_order": 2,
       "skills": [
-        { "name": "HTML", "type": "language", "level": "junior", "aliases": ["HTML5"], "is_core": true },
-        { "name": "CSS", "type": "language", "level": "junior", "aliases": ["CSS3"], "is_core": true },
-        { "name": "JavaScript", "type": "language", "level": "junior", "aliases": ["JS", "ECMAScript"], "is_core": true },
-        { "name": "DOM Manipulation", "type": "skill", "level": "junior", "aliases": ["DOM"], "is_core": true },
-        { "name": "RESTful APIs", "type": "concept", "level": "mid", "aliases": ["REST API", "REST"], "is_core": true },
-        { "name": "Fetch API / Ajax (XHR)", "type": "api", "level": "junior", "aliases": ["Ajax", "XHR"], "is_core": false }
+        { "name": "HTML", "type": "language", "aliases": ["HTML5"], "is_core": true, "weight": 7 },
+        { "name": "CSS", "type": "language", "aliases": ["CSS3"], "is_core": true, "weight": 7 },
+        { "name": "JavaScript", "type": "language", "aliases": ["JS", "ECMAScript", "ES6+"], "is_core": true, "weight": 7 },
+        { "name": "DOM Manipulation", "type": "skill", "aliases": ["DOM"], "is_core": true, "weight": 6 },
+        { "name": "Browser APIs", "type": "api", "aliases": ["Web APIs", "LocalStorage", "SessionStorage"], "is_core": false, "weight": 4 },
+        { "name": "RESTful APIs", "type": "concept", "aliases": ["REST API", "REST"], "is_core": true, "weight": 6 },
+        { "name": "Fetch API / Ajax (XHR)", "type": "api", "aliases": ["Ajax", "XHR", "Axios"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Version Control & Packages",
       "display_order": 3,
       "skills": [
-        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "GitHub", "type": "platform", "level": "junior", "aliases": ["GitLab", "Bitbucket"], "is_core": true },
-        { "name": "npm", "type": "tool", "level": "junior", "aliases": ["yarn", "pnpm"], "is_core": true }
+        { "name": "Git", "type": "tool", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "GitHub", "type": "platform", "aliases": ["GitLab", "Bitbucket"], "is_core": true, "weight": 6 },
+        { "name": "npm", "type": "tool", "aliases": ["yarn", "pnpm", "Node Package Manager"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "CSS Enhancements",
       "display_order": 4,
       "skills": [
-        { "name": "Responsive Design", "type": "skill", "level": "junior", "aliases": ["responsive web design"], "is_core": true },
-        { "name": "Bootstrap", "type": "framework", "level": "junior", "aliases": [], "is_core": false },
-        { "name": "Tailwind CSS", "type": "framework", "level": "mid", "aliases": ["Tailwind"], "is_core": false },
-        { "name": "Sass", "type": "preprocessor", "level": "mid", "aliases": ["SCSS"], "is_core": false }
+        { "name": "Responsive Design", "type": "skill", "aliases": ["responsive web design", "Media Queries"], "is_core": true, "weight": 7 },
+        { "name": "Bootstrap", "type": "framework", "aliases": [], "is_core": false, "weight": 4 },
+        { "name": "Tailwind CSS", "type": "framework", "aliases": ["Tailwind"], "is_core": true, "weight": 6 },
+        { "name": "Sass", "type": "preprocessor", "aliases": ["SCSS", "CSS Preprocessors"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Frameworks",
       "display_order": 5,
       "skills": [
-        { "name": "React", "type": "framework", "level": "mid", "aliases": ["React.js", "React.JS"], "is_core": true },
-        { "name": "Vue.js", "type": "framework", "level": "mid", "aliases": ["Vue", "Vue.JS"], "is_core": false },
-        { "name": "Angular", "type": "framework", "level": "mid", "aliases": ["Angular.js"], "is_core": false },
-        { "name": "Svelte", "type": "framework", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "React", "type": "framework", "aliases": ["React.js", "React JS", "ReactJS"], "is_core": true, "weight": 7 },
+        { "name": "Vue.js", "type": "framework", "aliases": ["Vue", "Vue JS", "VueJS"], "is_core": true, "weight": 7 },
+        { "name": "Angular", "type": "framework", "aliases": ["Angular.js", "AngularJS"], "is_core": true, "weight": 7 },
+        { "name": "Svelte", "type": "framework", "aliases": ["SvelteKit"], "is_core": false, "weight": 4 }
+      ]
+    },
+    {
+      "section_name": "State Management",
+      "display_order": 6,
+      "skills": [
+        { "name": "State Management Concepts", "type": "concept", "aliases": ["Component State", "Global State"], "is_core": true, "weight": 6 },
+        { "name": "Redux", "type": "library", "aliases": ["Redux Toolkit"], "is_core": true, "weight": 6 },
+        { "name": "Zustand", "type": "library", "aliases": [], "is_core": false, "weight": 4 },
+        { "name": "Vuex", "type": "library", "aliases": ["Pinia"], "is_core": true, "weight": 6 },
+        { "name": "Context API", "type": "api", "aliases": ["React Context"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Build Tools & Testing",
-      "display_order": 6,
+      "display_order": 7,
       "skills": [
-        { "name": "Vite", "type": "build_tool", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Webpack", "type": "build_tool", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Jest", "type": "testing", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "ESLint", "type": "linter", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "Prettier", "type": "formatter", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Vite", "type": "build_tool", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "Webpack", "type": "build_tool", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Jest", "type": "testing", "aliases": ["Unit Testing", "React Testing Library", "Vitest"], "is_core": true, "weight": 6 },
+        { "name": "ESLint", "type": "linter", "aliases": ["Linting"], "is_core": false, "weight": 4 },
+        { "name": "Prettier", "type": "formatter", "aliases": ["Code Formatting"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Advanced Topics",
-      "display_order": 7,
+      "display_order": 8,
       "skills": [
-        { "name": "TypeScript", "type": "language", "level": "mid", "aliases": ["TS"], "is_core": true },
-        { "name": "SSR", "type": "concept", "level": "mid", "aliases": ["Server Side Rendering"], "is_core": false },
-        { "name": "GraphQL", "type": "api", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "PWAs", "type": "concept", "level": "mid", "aliases": ["Progressive Web Apps"], "is_core": false }
+        { "name": "TypeScript", "type": "language", "aliases": ["TS"], "is_core": true, "weight": 7 },
+        { "name": "SSR", "type": "concept", "aliases": ["Server Side Rendering", "Next.js", "Nuxt.js"], "is_core": false, "weight": 5 },
+        { "name": "GraphQL", "type": "api", "aliases": ["Apollo Client"], "is_core": false, "weight": 4 },
+        { "name": "PWAs", "type": "concept", "aliases": ["Progressive Web Apps", "Service Workers"], "is_core": false, "weight": 3 }
+      ]
+    },
+    {
+      "section_name": "Web Fundamentals",
+      "display_order": 9,
+      "skills": [
+          { "name": "Web Performance", "type": "skill", "aliases": ["Performance Optimization", "Lighthouse"], "is_core": true, "weight": 6 },
+          { "name": "Accessibility", "type": "skill", "aliases": ["a11y", "WCAG"], "is_core": true, "weight": 6 },
+          { "name": "SEO Basics", "type": "concept", "aliases": ["Search Engine Optimization"], "is_core": false, "weight": 2 }
       ]
     },
     {
       "section_name": "Soft Skills & Methodologies",
-      "display_order": 8,
+      "display_order": 10,
       "skills": [
-        { "name": "Team Collaboration", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": false },
-        { "name": "Problem-Solving", "type": "soft_skill", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "Team Collaboration", "type": "soft_skill", "aliases": ["Communication"], "is_core": false, "weight": 4 },
+        { "name": "Problem-Solving", "type": "soft_skill", "aliases": ["Debugging"], "is_core": true, "weight": 5 },
+        { "name": "Agile", "type": "methodology", "aliases": ["Scrum"], "is_core": false, "weight": 3 }
       ]
     }
   ]

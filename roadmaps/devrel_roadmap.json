@@ -6,49 +6,59 @@
       "section_name": "Core Concepts",
       "display_order": 1,
       "skills": [
-        { "name": "Developer Relations", "type": "concept", "level": "junior", "aliases": ["DevRel"], "is_core": true },
-        { "name": "Developer Advocacy", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Developer Marketing", "type": "concept", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "Developer Relations", "type": "concept", "aliases": ["DevRel", "Developer Experience", "DX"], "is_core": true, "weight": 7 },
+        { "name": "Developer Advocacy", "type": "concept", "aliases": ["Developer Advocate"], "is_core": true, "weight": 7 },
+        { "name": "Developer Marketing", "type": "concept", "aliases": ["Dev Mktg"], "is_core": false, "weight": 4 },
+        { "name": "Understanding the Product", "type": "skill", "aliases": ["Product Knowledge"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "Content Creation",
       "display_order": 2,
       "skills": [
-        { "name": "Technical Writing", "type": "skill", "level": "junior", "aliases": ["Blogging"], "is_core": true },
-        { "name": "Public Speaking", "type": "skill", "level": "junior", "aliases": ["Presentations"], "is_core": true },
-        { "name": "Video Content Creation", "type": "skill", "level": "mid", "aliases": ["Screencasting"], "is_core": false },
-        { "name": "Code Samples", "type": "skill", "level": "junior", "aliases": ["Demos"], "is_core": true }
+        { "name": "Technical Writing", "type": "skill", "aliases": ["Blogging", "Tutorials", "Articles"], "is_core": true, "weight": 7 },
+        { "name": "Public Speaking", "type": "skill", "aliases": ["Presentations", "Conference Speaking", "Talks"], "is_core": true, "weight": 7 },
+        { "name": "Code Samples", "type": "skill", "aliases": ["Demos", "Example Code"], "is_core": true, "weight": 6 },
+        { "name": "Video Content Creation", "type": "skill", "aliases": ["Screencasting", "Livestreaming"], "is_core": false, "weight": 5 },
+        { "name": "Video Editing", "type": "skill", "aliases": [], "is_core": false, "weight": 3 }
+      ]
+    },
+    {
+      "section_name": "Documentation",
+      "display_order": 3,
+      "skills": [
+          { "name": "Documentation Writing", "type": "skill", "aliases": ["Docs", "Writing Documentation"], "is_core": true, "weight": 7 },
+          { "name": "Documentation Platforms", "type": "tool", "aliases": ["Docs-as-code", "MkDocs", "Docusaurus", "ReadTheDocs"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Community Management",
-      "display_order": 3,
+      "display_order": 4,
       "skills": [
-        { "name": "Community Management", "type": "skill", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Social Media", "type": "skill", "level": "junior", "aliases": ["Twitter", "LinkedIn"], "is_core": true },
-        { "name": "Forum Management", "type": "skill", "level": "mid", "aliases": ["Discord", "Slack", "Discourse"], "is_core": false },
-        { "name": "Event Organization", "type": "skill", "level": "mid", "aliases": ["Meetups", "Hackathons"], "is_core": false }
+        { "name": "Community Management", "type": "skill", "aliases": ["Community Building"], "is_core": true, "weight": 7 },
+        { "name": "Social Media", "type": "skill", "aliases": ["Twitter", "LinkedIn", "Mastodon"], "is_core": true, "weight": 6 },
+        { "name": "Forum Management", "type": "skill", "aliases": ["Discord", "Slack", "Discourse", "Community Forum"], "is_core": false, "weight": 5 },
+        { "name": "Event Organization", "type": "skill", "aliases": ["Meetups", "Hackathons", "Conferences"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Technical Foundations",
-      "display_order": 4,
+      "display_order": 5,
       "skills": [
-        { "name": "APIs", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "SDKs", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Python", "type": "language", "level": "junior", "aliases": [], "is_core": false },
-        { "name": "JavaScript", "type": "language", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "APIs", "type": "concept", "aliases": ["REST API", "GraphQL"], "is_core": true, "weight": 7 },
+        { "name": "SDKs", "type": "concept", "aliases": ["Software Development Kit"], "is_core": true, "weight": 6 },
+        { "name": "Git", "type": "tool", "aliases": ["Github"], "is_core": true, "weight": 6 },
+        { "name": "Python", "type": "language", "aliases": ["Py"], "is_core": false, "weight": 4 },
+        { "name": "JavaScript", "type": "language", "aliases": ["JS", "Node.js"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Strategy & Metrics",
-      "display_order": 5,
+      "display_order": 6,
       "skills": [
-        { "name": "Developer Onboarding", "type": "strategy", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Feedback Collection", "type": "strategy", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Measuring Success", "type": "strategy", "level": "senior", "aliases": ["Metrics", "KPIs"], "is_core": false }
+        { "name": "Developer Onboarding", "type": "strategy", "aliases": ["Developer Journey", "Time to First Hello World"], "is_core": true, "weight": 6 },
+        { "name": "Feedback Collection", "type": "strategy", "aliases": ["Developer Feedback", "User Research"], "is_core": true, "weight": 6 },
+        { "name": "Measuring Success", "type": "strategy", "aliases": ["Metrics", "KPIs", "DevRel Metrics"], "is_core": false, "weight": 5 }
       ]
     }
   ]

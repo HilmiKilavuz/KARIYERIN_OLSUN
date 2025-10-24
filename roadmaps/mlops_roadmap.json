@@ -3,74 +3,95 @@
   "roadmap_description": "Makine Öğrenmesi Operasyonları (MLOps) için CI/CD, otomasyon, altyapı yönetimi ve model izleme yetkinliklerini kapsayan yol haritası.",
   "sections": [
     {
-      "section_name": "MLOps Fundamentals",
+      "section_name": "MLOps Fundamentals & Programming",
       "display_order": 1,
       "skills": [
-        { "name": "MLOps Lifecycle", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Machine Learning", "type": "concept", "level": "junior", "aliases": ["ML"], "is_core": true }
+        { "name": "MLOps Lifecycle", "type": "concept", "aliases": ["MLOps Principles", "MLOps"], "is_core": true, "weight": 7 },
+        { "name": "Machine Learning", "type": "concept", "aliases": ["ML", "Basic ML Knowledge"], "is_core": true, "weight": 6 },
+        { "name": "Python", "type": "language", "aliases": ["Py"], "is_core": true, "weight": 6 },
+        { "name": "Bash", "type": "scripting", "aliases": ["Shell Scripting"], "is_core": false, "weight": 4 }
       ]
     },
     {
-      "section_name": "Source Code Management",
+      "section_name": "Source Code & Data/Model Versioning",
       "display_order": 2,
       "skills": [
-        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "GitHub", "type": "platform", "level": "junior", "aliases": ["GitLab"], "is_core": true }
+        { "name": "Git", "type": "tool", "aliases": ["Version Control"], "is_core": true, "weight": 7 },
+        { "name": "GitHub", "type": "platform", "aliases": ["GitLab", "Bitbucket"], "is_core": true, "weight": 5 },
+        { "name": "DVC", "type": "tool", "aliases": ["Data Version Control", "Model Versioning"], "is_core": true, "weight": 6 }
       ]
     },
     {
       "section_name": "CI/CD for ML",
       "display_order": 3,
       "skills": [
-        { "name": "CI/CD", "type": "concept", "level": "mid", "aliases": ["Continuous Integration", "Continuous Deployment"], "is_core": true },
-        { "name": "Jenkins", "type": "tool", "level": "mid", "aliases": [], "is_core": false },
-        { "name": "GitHub Actions", "type": "tool", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "GitLab CI", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "CI/CD", "type": "concept", "aliases": ["Continuous Integration", "Continuous Deployment", "CI CD Pipelines"], "is_core": true, "weight": 7 },
+        { "name": "GitHub Actions", "type": "tool", "aliases": ["Github Actions"], "is_core": true, "weight": 6 },
+        { "name": "Jenkins", "type": "tool", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "GitLab CI", "type": "tool", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Azure DevOps", "type": "tool", "aliases": ["Azure Pipelines"], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Containerization & Orchestration",
       "display_order": 4,
       "skills": [
-        { "name": "Docker", "type": "containerization", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Kubernetes", "type": "orchestration", "level": "senior", "aliases": ["K8s"], "is_core": true }
+        { "name": "Docker", "type": "containerization", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Kubernetes", "type": "orchestration", "aliases": ["K8s", "EKS", "AKS", "GKE", "KubeFlow"], "is_core": true, "weight": 7 }
       ]
     },
     {
       "section_name": "Infrastructure as Code (IaC)",
       "display_order": 5,
       "skills": [
-        { "name": "Terraform", "type": "iac", "level": "senior", "aliases": ["IaC"], "is_core": true },
-        { "name": "CloudFormation", "type": "iac", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Terraform", "type": "iac", "aliases": ["IaC", "Infrastructure as Code"], "is_core": true, "weight": 7 },
+        { "name": "CloudFormation", "type": "iac", "aliases": ["AWS CloudFormation"], "is_core": false, "weight": 5 },
+        { "name": "ARM Templates", "type": "iac", "aliases": ["Azure Resource Manager"], "is_core": false, "weight": 4 }
       ]
     },
     {
-      "section_name": "Cloud Platforms",
+      "section_name": "Cloud Platforms & ML Services",
       "display_order": 6,
       "skills": [
-        { "name": "AWS", "type": "cloud", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Azure", "type": "cloud", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "GCP", "type": "cloud", "level": "mid", "aliases": ["Google Cloud"], "is_core": true }
+        { "name": "AWS", "type": "cloud", "aliases": ["Amazon Web Services"], "is_core": true, "weight": 7 },
+        { "name": "Azure", "type": "cloud", "aliases": ["Microsoft Azure"], "is_core": true, "weight": 7 },
+        { "name": "GCP", "type": "cloud", "aliases": ["Google Cloud", "Google Cloud Platform"], "is_core": true, "weight": 7 },
+        { "name": "AWS SageMaker", "type": "ml_platform", "aliases": ["SageMaker"], "is_core": true, "weight": 6 },
+        { "name": "Azure Machine Learning", "type": "ml_platform", "aliases": ["Azure ML"], "is_core": true, "weight": 6 },
+        { "name": "Google AI Platform", "type": "ml_platform", "aliases": ["Vertex AI", "GCP AI"], "is_core": true, "weight": 6 }
+      ]
+    },
+    {
+      "section_name": "Experiment Tracking & Feature Stores",
+      "display_order": 7,
+      "skills": [
+          { "name": "Experiment Tracking", "type": "concept", "aliases": [], "is_core": true, "weight": 6 },
+          { "name": "MLflow", "type": "tool", "aliases": ["ML Flow"], "is_core": true, "weight": 6 },
+          { "name": "Weights & Biases", "type": "tool", "aliases": ["W&B", "WandB"], "is_core": false, "weight": 5 },
+          { "name": "Feature Store", "type": "concept", "aliases": ["Feature Stores"], "is_core": true, "weight": 5 },
+          { "name": "Feast", "type": "tool", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "ML Model Serving",
-      "display_order": 7,
+      "display_order": 8,
       "skills": [
-        { "name": "Model Serving", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "TensorFlow Serving", "type": "tool", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "TorchServe", "type": "tool", "level": "senior", "aliases": [], "is_core": false },
-        { "name": "Seldon Core", "type": "tool", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Model Serving", "type": "concept", "aliases": ["Model Deployment"], "is_core": true, "weight": 7 },
+        { "name": "REST API", "type": "api", "aliases": ["Flask API", "FastAPI"], "is_core": true, "weight": 6 },
+        { "name": "TensorFlow Serving", "type": "tool", "aliases": ["TF Serving"], "is_core": false, "weight": 5 },
+        { "name": "TorchServe", "type": "tool", "aliases": [], "is_core": false, "weight": 5 },
+        { "name": "Seldon Core", "type": "tool", "aliases": ["Seldon"], "is_core": false, "weight": 4 }
       ]
     },
     {
-      "section_name": "Monitoring",
-      "display_order": 8,
+      "section_name": "Monitoring & Logging",
+      "display_order": 9,
       "skills": [
-        { "name": "Monitoring", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Prometheus", "type": "tool", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Grafana", "type": "tool", "level": "senior", "aliases": [], "is_core": true },
-        { "name": "Data Drift", "type": "concept", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Monitoring", "type": "concept", "aliases": ["Model Monitoring", "System Monitoring"], "is_core": true, "weight": 7 },
+        { "name": "Prometheus", "type": "tool", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Grafana", "type": "tool", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Data Drift", "type": "concept", "aliases": ["Concept Drift"], "is_core": true, "weight": 6 },
+        { "name": "Logging", "type": "concept", "aliases": ["ELK Stack", "Elastic"], "is_core": false, "weight": 5 }
       ]
     }
   ]

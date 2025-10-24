@@ -6,76 +6,91 @@
       "section_name": "The Basics",
       "display_order": 1,
       "skills": [
-        { "name": "Swift", "type": "language", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Xcode", "type": "ide", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Object-Oriented Programming", "type": "concept", "level": "junior", "aliases": ["OOP"], "is_core": true },
-        { "name": "Git", "type": "tool", "level": "junior", "aliases": [], "is_core": true }
+        { "name": "Swift", "type": "language", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Xcode", "type": "ide", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Object-Oriented Programming", "type": "concept", "aliases": ["OOP", "Object Oriented"], "is_core": true, "weight": 6 },
+        { "name": "Git", "type": "tool", "aliases": ["Github", "Version Control"], "is_core": true, "weight": 7 }
       ]
     },
     {
       "section_name": "UI Frameworks",
       "display_order": 2,
       "skills": [
-        { "name": "UIKit", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "SwiftUI", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "Auto Layout", "type": "concept", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Storyboards", "type": "tool", "level": "junior", "aliases": [], "is_core": false }
+        { "name": "UIKit", "type": "framework", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "SwiftUI", "type": "framework", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "Auto Layout", "type": "concept", "aliases": ["Constraints"], "is_core": true, "weight": 6 },
+        { "name": "Storyboards", "type": "tool", "aliases": ["Interface Builder", "XIBs"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Architecture",
       "display_order": 3,
       "skills": [
-        { "name": "MVVM", "type": "architecture", "level": "mid", "aliases": ["MVVM-C"], "is_core": true },
-        { "name": "MVC", "type": "architecture", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "SOLID", "type": "concept", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "VIPER", "type": "architecture", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "MVVM", "type": "architecture", "aliases": ["MVVM-C"], "is_core": true, "weight": 7 },
+        { "name": "MVC", "type": "architecture", "aliases": ["Model View Controller"], "is_core": true, "weight": 6 },
+        { "name": "SOLID", "type": "concept", "aliases": ["SOLID Principles"], "is_core": true, "weight": 6 },
+        { "name": "VIPER", "type": "architecture", "aliases": [], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Data Management",
       "display_order": 4,
       "skills": [
-        { "name": "Core Data", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "UserDefaults", "type": "storage", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Codable", "type": "protocol", "level": "junior", "aliases": [], "is_core": true },
-        { "name": "Realm", "type": "database", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Core Data", "type": "framework", "aliases": [], "is_core": true, "weight": 6 },
+        { "name": "UserDefaults", "type": "storage", "aliases": [], "is_core": true, "weight": 5 },
+        { "name": "Codable", "type": "protocol", "aliases": ["JSON Parsing", "Decodable", "Encodable"], "is_core": true, "weight": 6 },
+        { "name": "Realm", "type": "database", "aliases": ["Realm Swift"], "is_core": false, "weight": 4 }
       ]
     },
     {
       "section_name": "Networking",
       "display_order": 5,
       "skills": [
-        { "name": "URLSession", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "REST APIs", "type": "concept", "level": "mid", "aliases": ["REST"], "is_core": true },
-        { "name": "Alamofire", "type": "library", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "URLSession", "type": "framework", "aliases": [], "is_core": true, "weight": 7 },
+        { "name": "REST APIs", "type": "concept", "aliases": ["REST", "API Integration"], "is_core": true, "weight": 7 },
+        { "name": "Alamofire", "type": "library", "aliases": [], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Concurrency",
       "display_order": 6,
       "skills": [
-        { "name": "Grand Central Dispatch", "type": "framework", "level": "mid", "aliases": ["GCD"], "is_core": true },
-        { "name": "Swift Concurrency", "type": "language_feature", "level": "mid", "aliases": ["async/await"], "is_core": true },
-        { "name": "Combine", "type": "framework", "level": "senior", "aliases": [], "is_core": false }
+        { "name": "Grand Central Dispatch", "type": "framework", "aliases": ["GCD", "DispatchQueue"], "is_core": true, "weight": 7 },
+        { "name": "Swift Concurrency", "type": "language_feature", "aliases": ["async/await", "async await"], "is_core": true, "weight": 7 },
+        { "name": "Combine", "type": "framework", "aliases": [], "is_core": false, "weight": 5 }
       ]
     },
     {
       "section_name": "Dependency Management",
       "display_order": 7,
       "skills": [
-        { "name": "Swift Package Manager", "type": "tool", "level": "mid", "aliases": ["SPM"], "is_core": true },
-        { "name": "Dependency Injection", "type": "concept", "level": "mid", "aliases": ["DI"], "is_core": true },
-        { "name": "CocoaPods", "type": "tool", "level": "mid", "aliases": [], "is_core": false }
+        { "name": "Swift Package Manager", "type": "tool", "aliases": ["SPM", "SwiftPM"], "is_core": true, "weight": 7 },
+        { "name": "Dependency Injection", "type": "concept", "aliases": ["DI"], "is_core": true, "weight": 6 },
+        { "name": "CocoaPods", "type": "tool", "aliases": ["Pods"], "is_core": false, "weight": 4 }
+      ]
+    },
+    {
+      "section_name": "Location & Maps",
+      "display_order": 8,
+      "skills": [
+          { "name": "Core Location", "type": "framework", "aliases": ["Location Services"], "is_core": false, "weight": 5 },
+          { "name": "MapKit", "type": "framework", "aliases": ["Maps"], "is_core": false, "weight": 4 }
+      ]
+    },
+    {
+      "section_name": "Accessibility",
+      "display_order": 9,
+      "skills": [
+          { "name": "Accessibility", "type": "concept", "aliases": ["a11y"], "is_core": true, "weight": 5 }
       ]
     },
     {
       "section_name": "Testing & Distribution",
-      "display_order": 8,
+      "display_order": 10,
       "skills": [
-        { "name": "XCTest", "type": "framework", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "App Store Connect", "type": "platform", "level": "mid", "aliases": [], "is_core": true },
-        { "name": "TestFlight", "type": "platform", "level": "mid", "aliases": [], "is_core": true }
+        { "name": "XCTest", "type": "framework", "aliases": ["Unit Testing", "UI Testing"], "is_core": true, "weight": 6 },
+        { "name": "App Store Connect", "type": "platform", "aliases": ["iTunes Connect"], "is_core": true, "weight": 7 },
+        { "name": "TestFlight", "type": "platform", "aliases": [], "is_core": true, "weight": 6 }
       ]
     }
   ]
