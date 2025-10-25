@@ -1,0 +1,36 @@
+# --- API Anahtarları ve Gizli Dosyalar ---
+# API anahtarlarını içeren .env dosyası (EN ÖNEMLİSİ)
+.env
+
+# API anahtarlarını içeren Word belgesi
+keys.docx
+
+# --- Python Sanal Ortamı ---
+# venv klasörünün tamamını yok say
+venv/
+*.venv
+
+# --- IDE ve Editör Ayarları ---
+# Visual Studio Code ayarları
+.vscode/
+
+# --- İşletim Sistemi Dosyaları ---
+# Windows küçük resim önbelleği
+Thumbs.db
+# macOS sistem dosyası
+.DS_Store
+
+# --- Python Önbelleği ---
+__pycache__/
+*.pyc
+
+# --- Örnek CV Dosyaları ---
+# Test için kullandığın PDF'leri yükleme
+*.pdf
+
+# --- Geçici Çıktı Dosyaları ---
+# Analiz ve ham metin çıktıları
+cv_summary.txt
+cv_extracted_text.txt
+cmd.txt
+README.txt
