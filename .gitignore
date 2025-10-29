@@ -34,3 +34,5 @@ cv_summary.txt
 cv_extracted_text.txt
 cmd.txt
 README.txt
+
+cv_parser.py
