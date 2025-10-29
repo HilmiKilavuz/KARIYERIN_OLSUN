@@ -1,1 +1,0 @@
-curl -X POST -F "file=@vc.pdf" http://localhost:5000/upload_cv
