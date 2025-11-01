@@ -1,0 +1,35 @@
+# Python sanal ortam klasörü
+venv/
+env/
+.venv/
+*.env
+*.venv
+
+# Python cache dosyaları
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+
+# API Anahtarları ve Hassas Bilgiler
+.env
+.env.local
+*.key
+
+# IDE ve editor dosyaları
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Çıktı dosyaları (CV metinleri ve analizler)
+cv_analysis.txt
+cv_extracted_text.txt
+
+# OS dosyaları
+.DS_Store
+Thumbs.db
+desktop.ini
+
