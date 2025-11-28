@@ -2,6 +2,8 @@
 __pycache__/
 *.pyc
 
+.env
+.env.local
 # Sanal ortam klasörü (Eğer "venv" gibi bir klasör kullanıyorsanız)
 # venv/
 
