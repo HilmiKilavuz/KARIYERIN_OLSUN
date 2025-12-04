@@ -1,34 +1,78 @@
-# main.py
-from database_manager import DatabaseManager
-from roadmap_parser import RoadmapParser
+import functions_framework
+from supabase_cv_fetcher import SupabaseCvFetcher
+# Aşağıdaki sınıfların proje klasöründe olduğunu görselden teyit ettim:
+try:
+    from roadmap_repository import RoadmapRepository
+    from comparison_engine import ComparisonEngine
+    from report_generator import ReportGenerator
+    from role_detector import RoleDetector
+except ImportError as e:
+    print(f"Kritik Hata: Modüller yüklenemedi! {e}")
 
-# --- AYARLAR ---
 DB_FILE = "roadmap_database.db"
-ROADMAPS_FOLDER = "roadmaps"
 
-def main():
-    """Orkestra şefi: İş akışını yönetir."""
-    print("Veritabanı doldurma işlemi başlatılıyor...")
+@functions_framework.http
+def run_cv_analysis(request):
+    """
+    Bu fonksiyon, senin mevcut sistemini Google Cloud üzerinde çalıştırır.
+    Mevcut kodlarına dokunmaz, onları sadece çağırır.
+    """
+    print("--- Cloud Analiz Başlatıldı ---")
 
-    # 1. Adım: Roadmap verilerini JSON dosyalarından oku.
-    parser = RoadmapParser(ROADMAPS_FOLDER)
-    roadmaps_data = parser.load_all_roadmaps()
+    # 1. Senin Supabase Fetcher sınıfını kullanıyoruz
+    fetcher = SupabaseCvFetcher()
+    if not fetcher.supabase:
+        return "Supabase bağlantısı kurulamadı (.env kontrolü yapın).", 500
 
-    if not roadmaps_data:
-        print("İşlenecek veri bulunamadı. İşlem sonlandırılıyor.")
-        return
+    # 2. Bekleyen işleri al
+    pending_list = fetcher.get_pending_skill_lists()
+    if not pending_list:
+        return "İşlenecek yeni veri yok.", 200
 
-    # 2. Adım: Veritabanını yönet ve okunan veriyi ekle.
-    db_manager = DatabaseManager(DB_FILE)
+    print(f"{len(pending_list)} adet kayıt işlenecek.")
+
+    # 3. Senin analiz sınıflarını hazırlıyoruz
     try:
-        db_manager.connect()
-        db_manager.populate_database(roadmaps_data)
+        repository = RoadmapRepository(DB_FILE)
+        engine = ComparisonEngine()
+        reporter = ReportGenerator()
+        role_detector = RoleDetector(DB_FILE)
     except Exception as e:
-        print(f"Ana işlem sırasında bir hata oluştu: {e}")
-    finally:
-        db_manager.close()
+        return f"Sınıflar başlatılamadı: {e}", 500
 
-    print("\nİşlem tamamlandı.")
+    processed_count = 0
 
-if __name__ == "__main__":
-    main()
+    # 4. Analiz Döngüsü (Senin mantığın)
+    for item in pending_list:
+        try:
+            input_id = item['id']
+            cv_skills = item['skills']
+            
+            # A) Rolü Bul
+            detected_role = role_detector.detect_role(cv_skills)
+            if not detected_role:
+                print(f"ID {input_id}: Rol bulunamadı.")
+                fetcher.save_results_and_update_status(input_id, 'error', error_message="Rol tespit edilemedi")
+                continue
+
+            # B) Roadmap Verisini Çek
+            roadmap_data = repository.get_skills_for_roadmap(detected_role)
+
+            # C) Puanla
+            matched, missing, overall_score, core_score = engine.analyze_skills(cv_skills, roadmap_data)
+
+            # D) Rapor Yaz
+            report_text = reporter.generate_report(detected_role, matched, missing, overall_score, core_score)
+
+            # E) Kaydet
+            success = fetcher.save_results_and_update_status(
+                input_id, 'completed', detected_role, overall_score, core_score, report_text
+            )
+            
+            if success: processed_count += 1
+
+        except Exception as e:
+            print(f"Hata (ID {item['id']}): {e}")
+            fetcher.save_results_and_update_status(item['id'], 'error', error_message=str(e))
+
+    return f"İşlem tamam. {processed_count} adet analiz yapıldı.", 200
