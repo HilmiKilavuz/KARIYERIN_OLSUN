@@ -1,0 +1,1 @@
+web: functions-framework --target=run_cv_analysis
