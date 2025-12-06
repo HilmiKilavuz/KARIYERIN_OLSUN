@@ -8,7 +8,115 @@ from report_generator import ReportGenerator
 from role_detector import RoleDetector
 from supabase_cv_fetcher import SupabaseCvFetcher 
 
+# --- AYARLAR ---# supabase_skill_analyzer.py
+import time
+from roadmap_repository import RoadmapRepository
+from comparison_engine import ComparisonEngine
+from report_generator import ReportGenerator
+from role_detector import RoleDetector
+from supabase_cv_fetcher import SupabaseCvFetcher 
+
 # --- AYARLAR ---
+DB_FILE = "roadmap_database.db"
+
+def analyze_and_update_supabase(skill_record, repository, role_detector, engine, reporter, fetcher):
+    """
+    Tek bir kaydı analiz eder. (Yardımcı Fonksiyon)
+    """
+    input_id = skill_record.get('id')
+    cv_skills = skill_record.get('skills')
+
+    if not input_id or not isinstance(cv_skills, list) or not cv_skills:
+        print(f"   ⚠️ Geçersiz kayıt (ID: {input_id}). Atlanıyor.")
+        if input_id:
+             fetcher.save_results_and_update_status(input_id, 'error', error_message="Gecersiz yetenek listesi formati veya bos.")
+        return False
+
+    print(f"--- Girdi ID {input_id} işleniyor... ---")
+
+    try:
+        # 1. Rol Tespiti
+        detected_role = role_detector.detect_role(cv_skills)
+        if not detected_role:
+            print(f"   ❌ Uygun rol bulunamadı (ID: {input_id}).")
+            fetcher.save_results_and_update_status(input_id, 'error', error_message="Uygun rol bulunamadı.")
+            return False
+
+        print(f"   -> Tespit edilen rol: '{detected_role}'")
+
+        # 2. Analiz
+        roadmap_data = repository.get_skills_for_roadmap(detected_role)
+        if not roadmap_data:
+            print(f"   ❌ '{detected_role}' için roadmap yok.")
+            fetcher.save_results_and_update_status(input_id, 'error', detected_role=detected_role, error_message="Yol haritasi verisi yok.")
+            return False
+
+        matched, missing, overall_score, core_score = engine.analyze_skills(cv_skills, roadmap_data)
+        final_report = reporter.generate_report(detected_role, matched, missing, overall_score, core_score)
+
+        # 3. Kaydet
+        success = fetcher.save_results_and_update_status(
+            input_id, 'completed',
+            detected_role=detected_role,
+            overall_score=overall_score,
+            core_score=core_score,
+            report_text=final_report
+        )
+        return success
+
+    except Exception as e:
+        print(f"❌ Hata (ID {input_id}): {e}")
+        fetcher.save_results_and_update_status(input_id, 'error', error_message=str(e))
+        return False
+
+def process_all_pending_cvs():
+    """
+    Main.py tarafından çağrılacak olan ANA FONKSİYON budur.
+    Tüm süreci başlatır ve sonucu metin olarak döndürür.
+    """
+    print("--- Cloud Analiz Süreci Başlatılıyor... ---")
+    start_time = time.time()
+    
+    # 1. Uzmanları Hazırla
+    try:
+        repository = RoadmapRepository(DB_FILE)
+        engine = ComparisonEngine()
+        # Dependency Injection (Senin kodundaki özel yapı)
+        role_detector = RoleDetector(repository, engine) 
+        reporter = ReportGenerator()
+        fetcher = SupabaseCvFetcher()
+    except Exception as e:
+        return f"Sistem Başlatılamadı: {e}"
+
+    # 2. Supabase Bağlantı Kontrolü
+    if not fetcher.supabase:
+        repository.close()
+        return "Supabase bağlantısı kurulamadı (.env kontrol et)."
+
+    # 3. Verileri Çek
+    pending_skill_lists = fetcher.get_pending_skill_lists(limit=50)
+    
+    if not pending_skill_lists:
+        repository.close()
+        return "İşlenecek yeni kayıt yok."
+
+    # 4. Döngüyü Başlat
+    processed_count = 0
+    success_count = 0
+    
+    for skill_record in pending_skill_lists:
+        is_success = analyze_and_update_supabase(skill_record, repository, role_detector, engine, reporter, fetcher)
+        processed_count += 1
+        if is_success: success_count += 1
+
+    # 5. Kapanış
+    repository.close()
+    end_time = time.time()
+    duration = end_time - start_time
+    
+    result_msg = f"Tamamlandı. Toplam: {processed_count}, Başarılı: {success_count}. Süre: {duration:.2f}sn"
+    print(result_msg)
+    return result_msg
 DB_FILE = "roadmap_database.db"
 
 def analyze_and_update_supabase(skill_record, repository, role_detector, engine, reporter, fetcher):
