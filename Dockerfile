@@ -20,5 +20,5 @@ RUN pip install --no-cache-dir -r requirements.txt
 # 5. Şimdi geri kalan tüm kodlarını içeri al
 COPY . .
 
-# 6. Uygulamayı başlat (Google'ın istediği porttan)
-CMD exec functions-framework --target=run_cv_analysis --port=8080
+# 6. Uygulamayı başlat (Cloud Run için Gunicorn kullan)
+CMD exec gunicorn --bind :$PORT --workers 1 --threads 8 --timeout 0 server:app
