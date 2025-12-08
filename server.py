@@ -53,6 +53,12 @@ def start_background_worker():
     worker_thread.start()
     logger.info("✅ Background worker thread başlatıldı.")
 
+# Gunicorn ile çalışırken worker'ı başlat
+# Flask app oluşturulduğunda bir kere çalıştır
+if not worker_running:
+    start_background_worker()
+
+
 @app.errorhandler(Exception)
 def handle_exception(e):
     """Tüm yakalanmamış hataları logla ve 500 döndür."""
