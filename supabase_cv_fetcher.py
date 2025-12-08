@@ -4,12 +4,19 @@ import json  # <-- BU EKSİKTİ, EKLENDİ
 from supabase import create_client, Client
 from dotenv import load_dotenv
 
-# .env dosyasındaki bilgileri yükle
+# .env dosyasındaki bilgileri yükle (Cloud Run'da yoksa sorun yok)
 load_dotenv()
 
 # Bilgileri koddan değil, ortam değişkenlerinden al
 SUPABASE_URL = os.getenv("SUPABASE_URL")
 SUPABASE_KEY = os.getenv("SUPABASE_KEY")
+
+# DEBUG: Environment variables kontrolü
+print(f"🔍 DEBUG - SUPABASE_URL: {'✅ Var' if SUPABASE_URL else '❌ YOK'}")
+print(f"🔍 DEBUG - SUPABASE_KEY: {'✅ Var (' + SUPABASE_KEY[:20] + '...)' if SUPABASE_KEY else '❌ YOK'}")
+if SUPABASE_URL:
+    print(f"   URL değeri: {SUPABASE_URL}")
+
 
 # Tablo İsimleri
 TABLE_NAME = 'aday_profil'         # Kaynak tablo
