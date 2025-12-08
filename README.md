@@ -2,7 +2,7 @@
 
 Bu proje, Supabase veritabanındaki aday profillerini çeken, bu profillerdeki yetenek listelerini yerel bir SQLite veritabanında tanımlı rol haritalarıyla karşılaştıran ve analiz sonuçlarını (puanlama, rol tespiti, rapor) tekrar Supabase'e yazan bir Python servisidir.
 
-Sistem, "iş kuyruğu" mantığıyla çalışır; `aday_profil` tablosundaki `status='pending'` olarak işaretlenmiş kayıtları işler ve işi bitince `status='completed'` olarak günceller.
+Sistem, "iş kuyruğu" mantığıyla çalışır; `aday_profil` tablosundaki `status='approved'` olarak işaretlenmiş kayıtları işler ve işi bitince `status='completed'` olarak günceller.
 
 ## Ana Özellikler
 
@@ -14,7 +14,7 @@ Sistem, "iş kuyruğu" mantığıyla çalışır; `aday_profil` tablosundaki `st
 ## Proje Mimarisi ve İş Akışı
 
 1.  **Tetikleme:** `supabase_skill_analyzer.py` script'i çalıştırılır.
-2.  **Veri Çekme:** `SupabaseCvFetcher`, `aday_profil` tablosundan `status='pending'` olan tüm kayıtları çeker.
+2.  **Veri Çekme:** `SupabaseCvFetcher`, `aday_profil` tablosundan `status='approved'` olan tüm kayıtları çeker.
 3.  **Analiz (Döngü):** Her bir aday için:
     * `RoleDetector`, adayın yetenek listesine (`yetenekler`) bakarak en uygun rolü (`detected_role`) bulur.
     * `RoadmapRepository`, bu rol için gereken yetenekleri `roadmap_database.db` (SQLite) dosyasından okur.
@@ -57,7 +57,7 @@ Proje, SOLID prensiplerine uygun olarak modüllere ayrılmıştır:
 
 3.  **Supabase Kurulumu:**
     * Supabase projenizde iki tablo oluşturun:
-        * **`aday_profil`**: Aday bilgilerini ve `yetenekler` (text) sütununu içermelidir. Mutlaka `status` (text) adında bir sütun ekleyin ve "Default Value" olarak `'pending'` atayın.
+        * **`aday_profil`**: Aday bilgilerini ve `yetenekler` (text) sütununu içermelidir. Mutlaka `status` (text) adında bir sütun ekleyin ve "Default Value" olarak `'approved'` atayın.
         * **`analiz_sonuclari`**: `aday_id` (foreign key), `detected_role` (text), `overall_score` (float4), `core_score` (float4), `report_text` (text) sütunlarını içermelidir. `created_at` sütununun "Default Value" olarak `now()` kullandığından emin olun.
     * `supabase_cv_fetcher.py` dosyasının içine kendi `SUPABASE_URL` ve `SUPABASE_KEY` bilgilerinizi girin. (Güvenlik için bunları Environment Variables olarak ayarlamanız tavsiye edilir.)
 
@@ -70,7 +70,7 @@ Proje, SOLID prensiplerine uygun olarak modüllere ayrılmıştır:
 
 ## Kullanım
 
-Sistemi çalıştırmak (Supabase'deki `'pending'` işleri kontrol edip işlemek) için ana orkestra şefi script'ini çalıştırmanız yeterlidir:
+Sistemi çalıştırmak (Supabase'deki `'approved'` işleri kontrol edip işlemek) için ana orkestra şefi script'ini çalıştırmanız yeterlidir:
 
 ```bash
 python supabase_skill_analyzer.py

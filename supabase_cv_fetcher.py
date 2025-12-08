@@ -47,15 +47,15 @@ class SupabaseCvFetcher:
                 flat_list.append(cleaned)
         return flat_list
 
-    def get_pending_skill_lists(self, limit=10):
+    def get_approved_skill_lists(self, limit=10):
         """
-        Durumu 'pending' olan kayıtları çeker ve 'yetenekler' sütununu ayrıştırır.
+        Durumu 'approved' olan kayıtları çeker ve 'yetenekler' sütununu ayrıştırır.
         """
         if not self.supabase: return []
         try:
             response = self.supabase.table(TABLE_NAME) \
                                      .select('id, yetenekler') \
-                                     .eq('status', 'pending') \
+                                     .eq('status', 'approved') \
                                      .limit(limit) \
                                      .execute()
 

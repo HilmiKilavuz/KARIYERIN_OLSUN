@@ -1,28 +1,25 @@
-import functions_framework
-from flask import jsonify
+# main.py
+import os
+os.environ['TRANSFORMERS_OFFLINE'] = '1'
 
-# Yanındaki dosyadan (supabase_skill_analyzer.py) ana fonksiyonu çağırıyoruz
-from supabase_skill_analyzer import process_all_pending_cvs
+from supabase_skill_analyzer import process_all_approved_cvs
 
-@functions_framework.http
-def run_cv_analysis(request):
+def main():
     """
-    Google Cloud Run Tetikleyicisi.
-    Sadece analiz sürecini başlatır ve sonucu ekrana basar.
+    Render.com üzerinde çalışacak ana fonksiyon.
     """
+    print("🚀 Supabase Analiz Sistemi başlatılıyor...")
+    
     try:
-        # Analiz sürecini başlat
-        result_message = process_all_pending_cvs()
-        
-        # Sonucu JSON olarak döndür
-        return jsonify({
-            "status": "success",
-            "message": result_message
-        }), 200
-
+        # Tek bir fonksiyon çağrısı yapıyoruz
+        result_message = process_all_approved_cvs()
+        print("✅ " + result_message)
+        return result_message
     except Exception as e:
-        print(f"Kritik Server Hatası: {e}")
-        return jsonify({
-            "status": "error",
-            "message": str(e)
-        }), 500
+        error_msg = f"❌ Genel hata: {e}"
+        print(error_msg)
+        return error_msg
+
+# Render.com veya yerel ortamda doğrudan çalıştırılabilir
+if __name__ == "__main__":
+    main()

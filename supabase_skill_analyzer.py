@@ -69,7 +69,7 @@ def analyze_and_update_supabase(skill_record, repository, role_detector, engine,
         fetcher.save_results_and_update_status(input_id, 'error', error_message=str(e))
         return False
 
-def process_all_pending_cvs():
+def process_all_approved_cvs():
     """
     Main.py tarafından çağrılacak olan ANA FONKSİYON budur.
     Tüm süreci başlatır ve sonucu metin olarak döndürür.
@@ -94,9 +94,9 @@ def process_all_pending_cvs():
         return "Supabase bağlantısı kurulamadı (.env kontrol et)."
 
     # 3. Verileri Çek
-    pending_skill_lists = fetcher.get_pending_skill_lists(limit=50)
+    approved_skill_lists = fetcher.get_approved_skill_lists(limit=50)
     
-    if not pending_skill_lists:
+    if not approved_skill_lists:
         repository.close()
         return "İşlenecek yeni kayıt yok."
 
@@ -104,7 +104,7 @@ def process_all_pending_cvs():
     processed_count = 0
     success_count = 0
     
-    for skill_record in pending_skill_lists:
+    for skill_record in approved_skill_lists:
         is_success = analyze_and_update_supabase(skill_record, repository, role_detector, engine, reporter, fetcher)
         processed_count += 1
         if is_success: success_count += 1
@@ -210,16 +210,16 @@ def main():
         print("❌ Supabase bağlantısı kurulamadığı için işlem durduruldu.")
         return
         
-    pending_skill_lists = fetcher.get_pending_skill_lists(limit=50) 
+    approved_skill_lists = fetcher.get_approved_skill_lists(limit=50) 
 
-    if not pending_skill_lists:
+    if not approved_skill_lists:
         print("İşlem tamamlandı. Yeni yetkinlik listesi bulunamadı.")
         if repository: repository.close() # Veritabanı bağlantısını kapat
         return
 
     # Her bir kayıt için analiz fonksiyonunu çalıştır
     processed_count = 0
-    for skill_record in pending_skill_lists:
+    for skill_record in approved_skill_lists:
         analyze_and_update_supabase(skill_record, repository, role_detector, engine, reporter, fetcher)
         processed_count += 1
 
