@@ -1,17 +1,35 @@
 # server.py
 import os
+import logging
 from flask import Flask, jsonify
 from supabase_skill_analyzer import process_all_approved_cvs
 
 app = Flask(__name__)
 
-@app.route('/')
+# Cloud Run logging yapılandırması
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+)
+logger = logging.getLogger(__name__)
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    """Tüm yakalanmamış hataları logla ve 500 döndür."""
+    logger.error(f"Unhandled exception: {str(e)}", exc_info=True)
+    return jsonify({
+        "status": "error",
+        "message": "Internal server error"
+    }), 500
+
+
+@app.route('/', methods=['GET', 'POST', 'HEAD'])
 def home():
     """Cloud Run health check endpoint."""
     return jsonify({
         "status": "healthy",
         "service": "Kariyerin Olsun - CV Analysis Service"
-    })
+    }), 200
 
 @app.route('/analyze', methods=['GET', 'POST'])
 def analyze():
