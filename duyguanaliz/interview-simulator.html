@@ -1,0 +1,1301 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Mülakat Simülatörü</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --bg-dark: #0f172a;
+            --bg-card: rgba(30, 41, 59, 0.7);
+            --glass: rgba(255, 255, 255, 0.1);
+            --text: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: var(--text);
+            overflow-x: hidden;
+        }
+
+        /* Glassmorphic Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            animation: fadeInDown 0.8s ease;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #fff, #a5b4fc);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1em;
+        }
+
+        /* Screens */
+        .screen {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .screen.active {
+            display: block;
+        }
+
+        /* Start Screen */
+        .start-form {
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        /* Interview Screen */
+        .interview-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 20px;
+        }
+
+        /* Video Section */
+        .video-section {
+            position: relative;
+        }
+
+        #video {
+            width: 100%;
+            border-radius: 15px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 15px;
+        }
+
+        /* Emotion Display */
+        .emotion-display {
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+        }
+
+        .current-emotion {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .emotion-emoji {
+            font-size: 4em;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .emotion-label {
+            font-size: 1.3em;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .emotion-bars {
+            margin-top: 15px;
+        }
+
+        .emotion-bar {
+            margin-bottom: 10px;
+        }
+
+        .emotion-bar-label {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+            font-size: 0.9em;
+        }
+
+        .emotion-bar-fill {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .emotion-bar-progress {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--primary-dark));
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        /* Question Section */
+        .question-section h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .question-text {
+            font-size: 1.4em;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            border-left: 4px solid var(--primary);
+        }
+
+        .timer {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        .timer-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .timer-label {
+            font-size: 0.8em;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+        }
+
+        .timer-value {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--success);
+        }
+
+        .timer-value.warning {
+            color: var(--warning);
+        }
+
+        .timer-value.danger {
+            color: var(--danger);
+        }
+
+        /* Answer Input */
+        .answer-input {
+            margin-bottom: 20px;
+        }
+
+        .input-controls {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .btn-voice {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .btn-voice.recording {
+            background: var(--danger);
+            animation: pulse 1.5s infinite;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 150px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.05);
+            color: var(--text);
+            font-size: 1em;
+            font-family: inherit;
+            resize: vertical;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .word-count {
+            text-align: right;
+            margin-top: 5px;
+            font-size: 0.9em;
+            color: var(--text-muted);
+        }
+
+        /* Progress Bar */
+        .progress-section {
+            margin-bottom: 20px;
+        }
+
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .progress-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary), var(--success));
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        /* Buttons */
+        button {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: var(--primary);
+            color: white;
+        }
+
+        button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.4);
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .btn-success {
+            background: var(--success);
+        }
+
+        .btn-success:hover {
+            background: #059669;
+        }
+
+        .btn-large {
+            padding: 15px 40px;
+            font-size: 1.2em;
+        }
+
+        /* Results Screen */
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-value {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            color: var(--text-muted);
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .chart-container {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .chart-title {
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feedback-section {
+            padding: 25px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .feedback-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .feedback-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .feedback-section li {
+            padding: 10px 0;
+            padding-left: 30px;
+            position: relative;
+        }
+
+        .feedback-section li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+        }
+
+        .action-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        /* Status Message */
+        .status-message {
+            text-align: center;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-size: 1.1em;
+        }
+
+        .status-message.success {
+            background: rgba(16, 185, 129, 0.2);
+            border: 1px solid var(--success);
+        }
+
+        .status-message.warning {
+            background: rgba(245, 158, 11, 0.2);
+            border: 1px solid var(--warning);
+        }
+
+        .status-message.error {
+            background: rgba(239, 68, 68, 0.2);
+            border: 1px solid var(--danger);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .interview-layout {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 2em;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🎯 AI Mülakat Simülatörü</h1>
+            <p>Yapay zeka destekli gerçek mülakat deneyimi</p>
+        </header>
+
+        <!-- START SCREEN -->
+        <div id="startScreen" class="screen active">
+            <div class="glass-card start-form">
+                <h2 style="margin-bottom: 25px;">Mülakat Bilgileri</h2>
+                <div class="form-group">
+                    <label>Adınız Soyadınız</label>
+                    <input type="text" id="userName" placeholder="Örn: Ahmet Yılmaz" required>
+                </div>
+                <div class="form-group">
+                    <label>Başvurulan Pozisyon</label>
+                    <select id="position">
+                        <option value="Frontend Developer">Frontend Developer</option>
+                        <option value="Backend Developer">Backend Developer</option>
+                        <option value="Full Stack Developer">Full Stack Developer</option>
+                        <option value="DevOps Engineer">DevOps Engineer</option>
+                        <option value="Data Scientist">Data Scientist</option>
+                        <option value="Product Manager">Product Manager</option>
+                        <option value="UX/UI Designer">UX/UI Designer</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Deneyim Seviyesi</label>
+                    <select id="experience">
+                        <option value="junior">Junior (0-2 yıl)</option>
+                        <option value="mid">Mid-Level (2-5 yıl)</option>
+                        <option value="senior">Senior (5+ yıl)</option>
+                    </select>
+                </div>
+                <button class="btn-large btn-success" onclick="startInterview()" style="width: 100%; margin-top: 20px;">
+                    🚀 Mülakatı Başlat
+                </button>
+            </div>
+        </div>
+
+        <!-- INTERVIEW SCREEN -->
+        <div id="interviewScreen" class="screen">
+            <div class="status-message" id="statusMessage">Modeller yükleniyor...</div>
+            
+            <div class="glass-card progress-section">
+                <div class="progress-info">
+                    <span id="progressText">Soru 1 / 5</span>
+                    <span id="progressPercent">20%</span>
+                </div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 20%"></div>
+                </div>
+            </div>
+
+            <div class="interview-layout">
+                <!-- LEFT: Video & Emotion Analysis -->
+                <div>
+                    <div class="glass-card video-section">
+                        <video id="video" width="640" height="480" autoplay muted></video>
+                    </div>
+                    
+                    <div class="glass-card emotion-display">
+                        <div class="current-emotion">
+                            <span class="emotion-emoji" id="emotionEmoji">😐</span>
+                            <div class="emotion-label" id="emotionLabel">Yüz aranıyor...</div>
+                        </div>
+                        <div class="emotion-bars" id="emotionBars"></div>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Question & Answer -->
+                <div>
+                    <div class="glass-card question-section">
+                        <h3 id="questionCategory">Davranışsal Soru</h3>
+                        <div class="question-text" id="questionText">Soru yükleniyor...</div>
+                        
+                        <div class="timer">
+                            <div class="timer-item">
+                                <div class="timer-label">Düşünme</div>
+                                <div class="timer-value" id="thinkTimer">60</div>
+                            </div>
+                            <div class="timer-item">
+                                <div class="timer-label">Cevap</div>
+                                <div class="timer-value" id="answerTimer">120</div>
+                            </div>
+                        </div>
+
+                        <div class="answer-input">
+                            <div class="input-controls">
+                                <button class="btn-voice" id="voiceBtn" onclick="toggleVoice()">
+                                    🎤 Sesli Yanıtla
+                                </button>
+                            </div>
+                            <textarea id="answerText" placeholder="Cevabınızı buraya yazın veya sesli yanıt verin..."></textarea>
+                            <div class="word-count">
+                                <span id="wordCount">0</span> kelime
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 15px;">
+                            <button onclick="nextQuestion()" id="nextBtn" style="flex: 1;">
+                                Sonraki Soru →
+                            </button>
+                            <button onclick="finishInterview()" class="btn-success">
+                                Mülakatı Bitir
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESULTS SCREEN -->
+        <div id="resultsScreen" class="screen">
+            <div class="glass-card">
+                <h2 style="margin-bottom: 30px; text-align: center;">📊 Mülakat Raporu</h2>
+                
+                <div class="results-grid">
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalScore">0</div>
+                        <div class="stat-label">Genel Skor</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="totalTime">0:00</div>
+                        <div class="stat-label">Toplam Süre</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="questionsCompleted">0/5</div>
+                        <div class="stat-label">Tamamlanan Soru</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="confidenceScore">0%</div>
+                        <div class="stat-label">Özgüven Skoru</div>
+                    </div>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">Duygu Dağılımı</div>
+                    <canvas id="emotionPieChart"></canvas>
+                </div>
+
+                <div class="chart-container">
+                    <div class="chart-title">Zaman İçinde Duygu Değişimi</div>
+                    <canvas id="emotionLineChart"></canvas>
+                </div>
+
+                <div class="feedback-section">
+                    <h3>💪 Güçlü Yönleriniz</h3>
+                    <ul id="strengthsList"></ul>
+                </div>
+
+                <div class="feedback-section">
+                    <h3>🎯 Gelişim Alanları</h3>
+                    <ul id="improvementsList"></ul>
+                </div>
+
+                <div class="action-buttons">
+                    <button onclick="downloadPDF()">📄 PDF İndir</button>
+                    <button onclick="downloadJSON()">💾 Veri İndir (JSON)</button>
+                    <button onclick="restartInterview()" class="btn-success">🔄 Yeni Mülakat</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ============ GLOBAL VARIABLESİ ============
+        const video = document.getElementById('video');
+        let mediaRecorder;
+        let recordedChunks = [];
+        let recognition;
+        let isRecording = false;
+        let currentQuestionIndex = 0;
+        let thinkTime = 60;
+        let answerTime = 120;
+        let thinkInterval, answerInterval;
+        let emotionData = [];
+        let interviewStartTime;
+        let sessionData = {
+            user: {},
+            questions: [],
+            emotions: [],
+            totalScore: 0
+        };
+
+        // ============ INTERVIEW QUESTIONS ============
+        const questionBank = {
+            davranissal: [
+                "Bir ekip üyesiyle yaşadığınız en büyük anlaşmazlığı ve nasıl çözdüğünüzü anlatır mısınız?",
+                "Başarısızlıkla karşılaştığınız bir projeyi ve bundan neler öğrendiğinizi paylaşır mısınız?",
+                "Zor bir müşteriyle nasıl başa çıktığınıza dair bir örnek verebilir misiniz?",
+                "Liderlik yeteneğinizi gösterdiğiniz bir durumu anlatın.",
+                "Çok stresli bir durumda nasıl sakin kaldığınızı anlatan bir deneyim paylaşın."
+            ],
+            teknik: [
+                "En son üzerinde çalıştığınız projeyi ve kullandığınız teknolojileri anlatır mısınız?",
+                "Karmaşık bir teknik sorunu nasıl çözdüğünüze dair bir örnek verebilir misiniz?",
+                "Kod kalitesini nasıl sağlarsınız? Hangi best practice'leri kullanırsınız?",
+                "Yeni bir teknoloji öğrenme sürecinizi anlatır mısınız?",
+                "Bir performans sorunu ile karşılaştığınızda nasıl yaklaşırsınız?"
+            ],
+            durumAnalizi: [
+                "Kısa bir deadline ile büyük bir görev verildiğinde nasıl önceliklendirirsiniz?",
+                "Belirsiz gereksinimlerle başlayan bir projede nasıl ilerleme kaydedersiniz?",
+                "İki önemli projenin aynı anda acil olduğu bir durumda ne yapardınız?",
+                "Ekibinizin moral ve motivasyonunu nasıl yüksek tutarsınız?",
+                "Bir projede beklenmedik bir değişiklik talep edildiğinde nasıl tepki verirsiniz?"
+            ]
+        };
+
+        let selectedQuestions = [];
+
+        // ============ EMOTION CONFIG ============
+        const emotionConfig = {
+            happy: { emoji: '😊', label: 'Mutlu', color: '#10b981' },
+            sad: { emoji: '😢', label: 'Üzgün', color: '#3b82f6' },
+            angry: { emoji: '😠', label: 'Kızgın', color: '#ef4444' },
+            surprised: { emoji: '😲', label: 'Şaşkın', color: '#f59e0b' },
+            neutral: { emoji: '😐', label: 'Nötr', color: '#94a3b8' },
+            fearful: { emoji: '😨', label: 'Korkmuş', color: '#8b5cf6' },
+            disgusted: { emoji: '🤢', label: 'İğrenmiş', color: '#ec4899' }
+        };
+
+        // ============ INITIALIZATION ============
+        async function init() {
+            try {
+                await Promise.all([
+                    faceapi.nets.tinyFaceDetector.loadFromUri('/models'),
+                    faceapi.nets.faceExpressionNet.loadFromUri('/models')
+                ]);
+                console.log('Models loaded successfully');
+            } catch (error) {
+                console.error('Model loading error:', error);
+                showStatus('Hata: models klasörü bulunamadı!', 'error');
+            }
+
+            // Initialize Speech Recognition (if available)
+            if ('webkitSpeechRecognition' in window || 'SpeechRecognition' in window) {
+                const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+                recognition = new SpeechRecognition();
+                recognition.lang = 'tr-TR';
+                recognition.continuous = true;
+                recognition.interimResults = true;
+
+                recognition.onresult = (event) => {
+                    let finalTranscript = '';
+                    for (let i = event.resultIndex; i < event.results.length; i++) {
+                        if (event.results[i].isFinal) {
+                            finalTranscript += event.results[i][0].transcript + ' ';
+                        }
+                    }
+                    if (finalTranscript) {
+                        document.getElementById('answerText').value += finalTranscript;
+                        updateWordCount();
+                    }
+                };
+
+                recognition.onerror = (event) => {
+                    console.error('Speech recognition error:', event.error);
+                    isRecording = false;
+                    document.getElementById('voiceBtn').classList.remove('recording');
+                    document.getElementById('voiceBtn').innerHTML = '🎤 Sesli Yanıtla';
+                };
+            } else {
+                document.getElementById('voiceBtn').disabled = true;
+                document.getElementById('voiceBtn').innerHTML = '🎤 Desteklenmiyor';
+            }
+
+            // Word count listener
+            document.getElementById('answerText').addEventListener('input', updateWordCount);
+        }
+
+        // ============ START INTERVIEW ============
+        function startInterview() {
+            const userName = document.getElementById('userName').value;
+            const position = document.getElementById('position').value;
+            const experience = document.getElementById('experience').value;
+
+            if (!userName) {
+                alert('Lütfen adınızı girin!');
+                return;
+            }
+
+            sessionData.user = { userName, position, experience };
+            sessionData.sessionId = `interview_${Date.now()}`;
+            interviewStartTime = Date.now();
+
+            // Select random questions
+            selectedQuestions = selectRandomQuestions();
+            currentQuestionIndex = 0;
+
+            // Switch to interview screen
+            document.getElementById('startScreen').classList.remove('active');
+            document.getElementById('interviewScreen').classList.add('active');
+
+            // Start camera and analysis
+            startCamera();
+            displayQuestion();
+        }
+
+        function selectRandomQuestions() {
+            const categories = Object.keys(questionBank);
+            const selected = [];
+            
+            for (let i = 0; i < 5; i++) {
+                const category = categories[Math.floor(Math.random() * categories.length)];
+                const questions = questionBank[category];
+                const question = questions[Math.floor(Math.random() * questions.length)];
+                selected.push({ category, question });
+            }
+            
+            return selected;
+        }
+
+        async function startCamera() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    video: true, 
+                    audio: true 
+                });
+                video.srcObject = stream;
+                
+                // Start video recording
+                mediaRecorder = new MediaRecorder(stream);
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0) {
+                        recordedChunks.push(event.data);
+                    }
+                };
+                mediaRecorder.start();
+
+                showStatus('Kamera açık! Mülakat başladı.', 'success');
+                
+                // Start face analysis
+                video.addEventListener('play', startFaceAnalysis);
+            } catch (error) {
+                console.error('Camera error:', error);
+                showStatus('Kamera erişim hatası! Lütfen izin verin.', 'error');
+            }
+        }
+
+        function startFaceAnalysis() {
+            const canvas = faceapi.createCanvasFromMedia(video);
+            document.querySelector('.video-section').appendChild(canvas);
+            const displaySize = { width: video.width, height: video.height };
+            faceapi.matchDimensions(canvas, displaySize);
+
+            setInterval(async () => {
+                const detections = await faceapi.detectAllFaces(
+                    video, 
+                    new faceapi.TinyFaceDetectorOptions()
+                ).withFaceExpressions();
+
+                if (detections.length > 0) {
+                    const resizedDetections = faceapi.resizeResults(detections, displaySize);
+                    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+                    faceapi.draw.drawDetections(canvas, resizedDetections);
+
+                    const expressions = detections[0].expressions;
+                    updateEmotionDisplay(expressions);
+                    
+                    // Store emotion data
+                    const dominant = Object.keys(expressions).reduce((a, b) => 
+                        expressions[a] > expressions[b] ? a : b
+                    );
+                    
+                    emotionData.push({
+                        timestamp: Date.now() - interviewStartTime,
+                        emotion: dominant,
+                        score: expressions[dominant],
+                        all: {...expressions}
+                    });
+                }
+            }, 200);
+        }
+
+        function updateEmotionDisplay(expressions) {
+            const dominant = Object.keys(expressions).reduce((a, b) => 
+                expressions[a] > expressions[b] ? a : b
+            );
+            
+            const config = emotionConfig[dominant];
+            document.getElementById('emotionEmoji').textContent = config.emoji;
+            document.getElementById('emotionLabel').textContent = config.label;
+
+            // Update bars
+            let barsHTML = '';
+            Object.keys(expressions).forEach(emotion => {
+                const percentage = (expressions[emotion] * 100).toFixed(0);
+                const config = emotionConfig[emotion];
+                barsHTML += `
+                    <div class="emotion-bar">
+                        <div class="emotion-bar-label">
+                            <span>${config.emoji} ${config.label}</span>
+                            <span>${percentage}%</span>
+                        </div>
+                        <div class="emotion-bar-fill">
+                            <div class="emotion-bar-progress" style="width: ${percentage}%; background: ${config.color}"></div>
+                        </div>
+                    </div>
+                `;
+            });
+            document.getElementById('emotionBars').innerHTML = barsHTML;
+        }
+
+        // ============ QUESTION MANAGEMENT ============
+        function displayQuestion() {
+            if (currentQuestionIndex >= selectedQuestions.length) {
+                finishInterview();
+                return;
+            }
+
+            const q = selectedQuestions[currentQuestionIndex];
+            document.getElementById('questionCategory').textContent = getCategoryName(q.category);
+            document.getElementById('questionText').textContent = q.question;
+            document.getElementById('answerText').value = '';
+            updateWordCount();
+
+            // Update progress
+            const progress = ((currentQuestionIndex + 1) / selectedQuestions.length) * 100;
+            document.getElementById('progressText').textContent = 
+                `Soru ${currentQuestionIndex + 1} / ${selectedQuestions.length}`;
+            document.getElementById('progressPercent').textContent = `${Math.round(progress)}%`;
+            document.getElementById('progressFill').style.width = `${progress}%`;
+
+            // Start timers
+            startTimers();
+        }
+
+        function getCategoryName(category) {
+            const names = {
+                davranissal: 'Davranışsal Soru',
+                teknik: 'Teknik Soru',
+                durumAnalizi: 'Durum Analizi'
+            };
+            return names[category] || category;
+        }
+
+        function startTimers() {
+            thinkTime = 60;
+            answerTime = 120;
+            
+            clearInterval(thinkInterval);
+            clearInterval(answerInterval);
+
+            thinkInterval = setInterval(() => {
+                thinkTime--;
+                updateTimerDisplay('thinkTimer', thinkTime);
+                
+                if (thinkTime <= 0) {
+                    clearInterval(thinkInterval);
+                    startAnswerTimer();
+                }
+            }, 1000);
+        }
+
+        function startAnswerTimer() {
+            answerInterval = setInterval(() => {
+                answerTime--;
+                updateTimerDisplay('answerTimer', answerTime);
+                
+                if (answerTime <= 0) {
+                    clearInterval(answerInterval);
+                    nextQuestion();
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay(id, seconds) {
+            const element = document.getElementById(id);
+            element.textContent = seconds;
+            
+            if (seconds <= 10) {
+                element.className = 'timer-value danger';
+            } else if (seconds <= 30) {
+                element.className = 'timer-value warning';
+            } else {
+                element.className = 'timer-value';
+            }
+        }
+
+        function nextQuestion() {
+            // Save current answer
+            const answer = document.getElementById('answerText').value;
+            const questionData = {
+                ...selectedQuestions[currentQuestionIndex],
+                answer: answer,
+                wordCount: answer.split(/\s+/).filter(w => w.length > 0).length,
+                timeSpent: (60 - thinkTime) + (120 - answerTime),
+                emotionSnapshot: emotionData.slice(-50) // Last 50 emotion readings
+            };
+            
+            sessionData.questions.push(questionData);
+
+            currentQuestionIndex++;
+            displayQuestion();
+        }
+
+        // ============ VOICE CONTROL ============
+        function toggleVoice() {
+            if (!recognition) return;
+
+            if (isRecording) {
+                recognition.stop();
+                isRecording = false;
+                document.getElementById('voiceBtn').classList.remove('recording');
+                document.getElementById('voiceBtn').innerHTML = '🎤 Sesli Yanıtla';
+            } else {
+                recognition.start();
+                isRecording = true;
+                document.getElementById('voiceBtn').classList.add('recording');
+                document.getElementById('voiceBtn').innerHTML = '⏸️ Durdur';
+            }
+        }
+
+        function updateWordCount() {
+            const text = document.getElementById('answerText').value;
+            const words = text.split(/\s+/).filter(w => w.length > 0).length;
+            document.getElementById('wordCount').textContent = words;
+        }
+
+        // ============ FINISH & RESULTS ============
+        function finishInterview() {
+            clearInterval(thinkInterval);
+            clearInterval(answerInterval);
+            
+            if (recognition && isRecording) {
+                recognition.stop();
+            }
+
+            if (mediaRecorder && mediaRecorder.state !== 'inactive') {
+                mediaRecorder.stop();
+            }
+
+            sessionData.emotions = emotionData;
+            sessionData.duration = Date.now() - interviewStartTime;
+            
+            calculateScores();
+            displayResults();
+
+            // Save to localStorage
+            saveToLocalStorage();
+
+            document.getElementById('interviewScreen').classList.remove('active');
+            document.getElementById('resultsScreen').classList.add('active');
+        }
+
+        function calculateScores() {
+            // Emotion Analysis
+            const emotionCounts = {};
+            emotionData.forEach(d => {
+                emotionCounts[d.emotion] = (emotionCounts[d.emotion] || 0) + 1;
+            });
+
+            const totalEmotions = emotionData.length;
+            const positiveEmotions = (emotionCounts.happy || 0) + (emotionCounts.surprised || 0);
+            const negativeEmotions = (emotionCounts.sad || 0) + (emotionCounts.angry || 0) + 
+                                      (emotionCounts.fearful || 0) + (emotionCounts.disgusted || 0);
+
+            // Scoring (0-100)
+            const emotionScore = (positiveEmotions / totalEmotions) * 100;
+            const confidenceScore = ((emotionCounts.neutral || 0) + (emotionCounts.happy || 0)) / totalEmotions * 100;
+            
+            let engagementScore = 0;
+            sessionData.questions.forEach(q => {
+                if (q.wordCount > 0) engagementScore += 20;
+            });
+
+            const totalScore = Math.round((emotionScore * 0.3 + confidenceScore * 0.3 + engagementScore) * 0.4);
+
+            sessionData.totalScore = totalScore;
+            sessionData.emotionScore = Math.round(emotionScore);
+            sessionData.confidenceScore = Math.round(confidenceScore);
+            sessionData.engagementScore = Math.round(engagementScore);
+            sessionData.emotionCounts = emotionCounts;
+        }
+
+        function displayResults() {
+            // Stats
+            document.getElementById('totalScore').textContent = sessionData.totalScore;
+            document.getElementById('totalTime').textContent = formatTime(sessionData.duration);
+            document.getElementById('questionsCompleted').textContent = 
+                `${sessionData.questions.length}/${selectedQuestions.length}`;
+            document.getElementById('confidenceScore').textContent = 
+                `${sessionData.confidenceScore}%`;
+
+            // Emotion Pie Chart
+            const emotionCtx = document.getElementById('emotionPieChart').getContext('2d');
+            new Chart(emotionCtx, {
+                type: 'pie',
+                data: {
+                    labels: Object.keys(sessionData.emotionCounts).map(e => emotionConfig[e].label),
+                    datasets: [{
+                        data: Object.values(sessionData.emotionCounts),
+                        backgroundColor: Object.keys(sessionData.emotionCounts).map(e => emotionConfig[e].color)
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        legend: { labels: { color: '#f1f5f9' } }
+                    }
+                }
+            });
+
+            // Emotion Timeline
+            const timelineCtx = document.getElementById('emotionLineChart').getContext('2d');
+            const timelineData = processTimelineData();
+            
+            new Chart(timelineCtx, {
+                type: 'line',
+                data: {
+                    labels: timelineData.labels,
+                    datasets: [{
+                        label: 'Pozitif Duygular',
+                        data: timelineData.positive,
+                        borderColor: '#10b981',
+                        tension: 0.4
+                    }, {
+                        label: 'Negatif Duygular',
+                        data: timelineData.negative,
+                        borderColor: '#ef4444',
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    scales: {
+                        y: { 
+                            ticks: { color: '#f1f5f9' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        },
+                        x: { 
+                            ticks: { color: '#f1f5f9' },
+                            grid: { color: 'rgba(255,255,255,0.1)' }
+                        }
+                    },
+                    plugins: {
+                        legend: { labels: { color: '#f1f5f9' } }
+                    }
+                }
+            });
+
+            // Feedback
+            generateFeedback();
+        }
+
+        function processTimelineData() {
+            const bucketSize = 10; // 10 second buckets
+            const buckets = {};
+            
+            emotionData.forEach(d => {
+                const bucket = Math.floor(d.timestamp / 1000 / bucketSize);
+                if (!buckets[bucket]) {
+                    buckets[bucket] = { positive: 0, negative: 0, count: 0 };
+                }
+                
+                if (['happy', 'surprised'].includes(d.emotion)) {
+                    buckets[bucket].positive += d.score;
+                } else if (['sad', 'angry', 'fearful', 'disgusted'].includes(d.emotion)) {
+                    buckets[bucket].negative += d.score;
+                }
+                buckets[bucket].count++;
+            });
+
+            const labels = [];
+            const positive = [];
+            const negative = [];
+
+            Object.keys(buckets).sort((a, b) => a - b).forEach(bucket => {
+                const data = buckets[bucket];
+                labels.push(`${bucket * bucketSize}s`);
+                positive.push((data.positive / data.count * 100).toFixed(0));
+                negative.push((data.negative / data.count * 100).toFixed(0));
+            });
+
+            return { labels, positive, negative };
+        }
+
+        function generateFeedback() {
+            const strengths = [];
+            const improvements = [];
+
+            if (sessionData.confidenceScore > 60) {
+                strengths.push('Mülakatlar sırasında yüksek özgüven gösterdiniz');
+            } else {
+                improvements.push('Özgüveninizi artırmaya çalışın, daha rahat olun');
+            }
+
+            if (sessionData.emotionScore > 50) {
+                strengths.push('Pozitif bir enerji sergileyerek iyi bir izlenim bıraktınız');
+            } else {
+                improvements.push('Daha pozitif ve enerjik görünmeye çalışın');
+            }
+
+            const avgWords = sessionData.questions.reduce((sum, q) => sum + q.wordCount, 0) / 
+                            sessionData.questions.length;
+            
+            if (avgWords > 50) {
+                strengths.push('Sorulara detaylı ve kapsamlı cevaplar verdiniz');
+            } else {
+                improvements.push('Cevaplarınızı daha detaylandırabilirsiniz');
+            }
+
+            document.getElementById('strengthsList').innerHTML = 
+                strengths.map(s => `<li>${s}</li>`).join('');
+            document.getElementById('improvementsList').innerHTML = 
+                improvements.map(i => `<li>${i}</li>`).join('');
+        }
+
+        // ============ UTILITY FUNCTIONS ============
+        function showStatus(message, type = 'success') {
+            const statusEl = document.getElementById('statusMessage');
+            statusEl.textContent = message;
+            statusEl.className = `status-message ${type}`;
+        }
+
+        function formatTime(ms) {
+            const minutes = Math.floor(ms / 60000);
+            const seconds = Math.floor((ms % 60000) / 1000);
+            return `${minutes}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function saveToLocalStorage() {
+            const history = JSON.parse(localStorage.getItem('interviewHistory') || '[]');
+            history.push({
+                sessionId: sessionData.sessionId,
+                date: new Date().toISOString(),
+                user: sessionData.user,
+                score: sessionData.totalScore,
+                duration: sessionData.duration
+            });
+            localStorage.setItem('interviewHistory', JSON.stringify(history));
+            localStorage.setItem(`interview_${sessionData.sessionId}`, JSON.stringify(sessionData));
+        }
+
+        function downloadJSON() {
+            const dataStr = JSON.stringify(sessionData, null, 2);
+            const blob = new Blob([dataStr], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `mulakat_${sessionData.sessionId}.json`;
+            a.click();
+        }
+
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            doc.setFontSize(20);
+            doc.text('Mülakat Raporu', 20, 20);
+            
+            doc.setFontSize(12);
+            doc.text(`Aday: ${sessionData.user.userName}`, 20, 35);
+            doc.text(`Pozisyon: ${sessionData.user.position}`, 20, 42);
+            doc.text(`Genel Skor: ${sessionData.totalScore}/100`, 20, 49);
+            doc.text(`Süre: ${formatTime(sessionData.duration)}`, 20, 56);
+            
+            doc.text('Detaylı analiz için JSON dosyasını indirin.', 20, 70);
+            
+            doc.save(`mulakat_rapor_${sessionData.sessionId}.pdf`);
+        }
+
+        function restartInterview() {
+            location.reload();
+        }
+
+        // ============ INITIALIZE ON LOAD ============
+        window.addEventListener('load', init);
+    </script>
+</body>
+</html>

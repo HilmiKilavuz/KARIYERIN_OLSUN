@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mülakat Testi (Veritabanı Yok)</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; background: #333; color: white; }
+        h1 { margin-bottom: 10px; }
+        #container { position: relative; margin-top: 20px; }
+        video { border-radius: 10px; border: 3px solid #fff; }
+        canvas { position: absolute; top: 0; left: 0; }
+        .controls { margin-top: 20px; }
+        button { padding: 15px 30px; cursor: pointer; background: #28a745; color: white; border: none; border-radius: 5px; font-size: 18px; font-weight: bold; }
+        button:hover { background: #218838; }
+        #status { margin-top: 15px; font-size: 1.2em; color: yellow; }
+        #sonuc-kutusu { margin-top: 20px; padding: 10px; background: #444; width: 80%; border-radius: 5px; display: none;}
+    </style>
+    
+    <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
+</head>
+<body>
+
+    <h1>Mülakat Duygu Testi</h1>
+    <p>Kameraya bak, gülümse, kız veya şaşır. Sonra bitir butonuna bas.</p>
+    
+    <div id="container">
+        <video id="video" width="640" height="480" autoplay muted></video>
+    </div>
+
+    <div class="controls">
+        <button onclick="testiBitir()">Testi Bitir ve Sonucu Gör</button>
+    </div>
+    <div id="status">Modeller yükleniyor... Lütfen bekleyin.</div>
+
+    <div id="sonuc-kutusu">
+        <h3>Toplanan Veri Özeti:</h3>
+        <pre id="json-cikti"></pre>
+    </div>
+
+<script>
+    const video = document.getElementById('video');
+    let duyguKumbarasi = []; 
+    let analizInterval;
+
+    // --- 1. MODELLERİ YÜKLE ---
+    Promise.all([
+        faceapi.nets.tinyFaceDetector.loadFromUri('/models'), 
+        faceapi.nets.faceExpressionNet.loadFromUri('/models')
+    ]).then(startVideo).catch(err => {
+        console.error(err);
+        document.getElementById('status').innerText = "Hata: 'models' klasörü bulunamadı veya eksik!";
+        document.getElementById('status').style.color = "red";
+    });
+
+    function startVideo() {
+        navigator.mediaDevices.getUserMedia({ video: {} })
+            .then(stream => {
+                video.srcObject = stream;
+                document.getElementById('status').innerText = "Kamera Açık! Yüz aranıyor...";
+                document.getElementById('status').style.color = "#00ff00";
+            })
+            .catch(err => console.error("Kamera hatası:", err));
+    }
+
+    // --- 2. GÖRÜNTÜ İŞLEME ---
+    video.addEventListener('play', () => {
+        const canvas = faceapi.createCanvasFromMedia(video);
+        document.getElementById('container').append(canvas);
+        const displaySize = { width: video.width, height: video.height };
+        faceapi.matchDimensions(canvas, displaySize);
+
+        analizInterval = setInterval(async () => {
+            const detections = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions()).withFaceExpressions();
+            
+            if (detections.length > 0) {
+                // Yüzün etrafına kutu çiz
+                const resizedDetections = faceapi.resizeResults(detections, displaySize);
+                canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+                faceapi.draw.drawDetections(canvas, resizedDetections);
+                faceapi.draw.drawFaceExpressions(canvas, resizedDetections);
+
+                // Veriyi kaydet
+                const expressions = detections[0].expressions;
+                
+                // En yüksek skora sahip duyguyu bul (Örn: happy: 0.9)
+                const baskinDuygu = Object.keys(expressions).reduce((a, b) => expressions[a] > expressions[b] ? a : b);
+                
+                // Kumbaraya at
+                duyguKumbarasi.push({
+                    zaman: new Date().toLocaleTimeString(),
+                    duygu: baskinDuygu,
+                    skor: expressions[baskinDuygu].toFixed(2) // Virgülden sonra 2 hane
+                });
+                
+                document.getElementById('status').innerText = `Algılanan: ${baskinDuygu.toUpperCase()}`;
+            } else {
+                document.getElementById('status').innerText = "Yüz bulunamadı...";
+            }
+        }, 200); // Çok hızlı tepki vermesi için 200ms yaptık
+    });
+
+    // --- 3. TESTİ BİTİR VE KONSOLA YAZ ---
+    function testiBitir() {
+        clearInterval(analizInterval);
+        
+        console.log("--- MÜLAKAT RAPORU ---");
+        console.log("Toplam Kare Sayısı:", duyguKumbarasi.length);
+        console.table(duyguKumbarasi); // Konsolda tablo olarak gösterir
+        
+        // Ekrana da yazdıralım
+        const sonucKutusu = document.getElementById('sonuc-kutusu');
+        const jsonCikti = document.getElementById('json-cikti');
+        
+        sonucKutusu.style.display = "block";
+        
+        // Son 10 veriyi ekrana bas
+        const ornekVeri = duyguKumbarasi.slice(-10); 
+        jsonCikti.innerText = JSON.stringify(ornekVeri, null, 2);
+        
+        document.getElementById('status').innerText = "Test Bitti! F12 tuşuna basıp Console sekmesine bakabilirsin.";
+        alert(`Test Bitti! Toplam ${duyguKumbarasi.length} veri toplandı. Detaylar aşağıda ve konsolda.`);
+    }
+</script>
+
+</body>
+</html>

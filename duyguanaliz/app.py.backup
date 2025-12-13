@@ -1,0 +1,539 @@
+import streamlit as st
+import cv2
+import mediapipe as mp
+from deepface import DeepFace
+import pandas as pd
+from openai import OpenAI
+import os
+from dotenv import load_dotenv
+import numpy as np
+import time
+from collections import Counter
+import plotly.express as px
+import plotly.graph_objects as go
+
+# =====================
+# AYARLAR
+# =====================
+load_dotenv()
+st.set_page_config(page_title="🎯 Profesyonel Mülakat Simülatörü", layout="wide", initial_sidebar_state="expanded")
+
+# =====================
+# MODEL YÜKLEMELERİ
+# =====================
+@st.cache_resource
+def load_face_mesh():
+    mp_face_mesh = mp.solutions.face_mesh
+    return mp_face_mesh.FaceMesh(
+        max_num_faces=1, 
+        refine_landmarks=True,
+        min_detection_confidence=0.5,
+        min_tracking_confidence=0.5
+    )
+
+face_mesh = load_face_mesh()
+
+# Landmark indeksleri
+TOP_LID, BOTTOM_LID = 159, 145
+
+# Mülakat Soruları
+SORULAR = [
+    "1. Kendinizden bahseder misiniz? Eğitim ve iş deneyiminiz nedir?",
+    "2. Güçlü yönleriniz nelerdir? Kendinizi nasıl tanımlarsınız?",
+    "3. Neden bu pozisyon için uygun adaysınız? Şirketimize neler katabileceğinizi düşünüyorsunuz?",
+    "4. Bir zorlukla karşılaştığınızda nasıl çözüm üretirsiniz? Örnek verebilir misiniz?",
+    "5. 5 yıl sonra kendinizi nerede görüyorsunuz?"
+]
+
+# =====================
+# SESSION STATE INIT
+# =====================
+if 'soru_index' not in st.session_state:
+    st.session_state.soru_index = 0
+
+if 'kamera_aktif' not in st.session_state:
+    st.session_state.kamera_aktif = False
+
+if 'analiz_data' not in st.session_state:
+    st.session_state.analiz_data = []
+
+if 'current_emotions' not in st.session_state:
+    st.session_state.current_emotions = []
+
+if 'current_blinks' not in st.session_state:
+    st.session_state.current_blinks = 0
+
+if 'frame_placeholder' not in st.session_state:
+    st.session_state.frame_placeholder = None
+
+if 'camera_obj' not in st.session_state:
+    st.session_state.camera_obj = None
+
+if 'last_blink_frame' not in st.session_state:
+    st.session_state.last_blink_frame = 0
+
+if 'mulakata_baslandi' not in st.session_state:
+    st.session_state.mulakata_baslandi = False
+
+# =====================
+# YARDIMCI FONKSİYONLAR
+# =====================
+
+def kamera_baslat():
+    """Kamerayı başlat"""
+    if st.session_state.camera_obj is None:
+        st.session_state.camera_obj = cv2.VideoCapture(0)
+        st.session_state.camera_obj.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
+        st.session_state.camera_obj.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
+        st.session_state.camera_obj.set(cv2.CAP_PROP_FPS, 30)
+    st.session_state.kamera_aktif = True
+
+def kamera_durdur():
+    """Kamerayı durdur"""
+    st.session_state.kamera_aktif = False
+    if st.session_state.camera_obj is not None:
+        st.session_state.camera_obj.release()
+        st.session_state.camera_obj = None
+
+def frame_isle(frame_counter):
+    """Tek bir frame'i işle ve analiz et"""
+    if st.session_state.camera_obj is None or not st.session_state.camera_obj.isOpened():
+        return None
+    
+    ret, frame = st.session_state.camera_obj.read()
+    if not ret:
+        return None
+    
+    # Ayna efekti
+    frame = cv2.flip(frame, 1)
+    h, w, _ = frame.shape
+    rgb_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    
+    # MediaPipe Face Mesh
+    results = face_mesh.process(rgb_frame)
+    
+    if results.multi_face_landmarks:
+        for landmarks in results.multi_face_landmarks:
+            # Göz kırpma tespiti
+            top_y = int(landmarks.landmark[TOP_LID].y * h)
+            bottom_y = int(landmarks.landmark[BOTTOM_LID].y * h)
+            eye_distance = abs(bottom_y - top_y)
+            
+            # Göz kırpma algılama
+            if eye_distance < 5:
+                if frame_counter - st.session_state.last_blink_frame > 10:
+                    st.session_state.current_blinks += 1
+                    st.session_state.last_blink_frame = frame_counter
+            
+            # Yüz bounding box çiz
+            x_coords = [int(landmarks.landmark[i].x * w) for i in [234, 454, 10, 152]]
+                            actions=['emotion'], 
+                            enforce_detection=False, 
+                            silent=True
+                        )
+                        
+                        emotion = analysis[0]['dominant_emotion']
+                        
+                        # Türkçe çeviri
+                        emotion_tr = {
+                            'happy': 'Mutlu',
+                            'sad': 'Üzgün',
+                            'angry': 'Kızgın',
+                            'fear': 'Gergin',
+                            'neutral': 'Nötr',
+                            'disgust': 'İğrenme',
+                            'surprise': 'Şaşkın'
+                        }.get(emotion, emotion)
+                        
+                        st.session_state.current_emotions.append(emotion_tr)
+                except Exception as e:
+                    pass
+    
+    # Bilgileri frame üzerine yaz
+    cv2.putText(frame, "KAYIT ALINIYOR", (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+    cv2.putText(frame, f"Goz Kirpma: {st.session_state.current_blinks}", (10, 60), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 2)
+    
+    if st.session_state.current_emotions:
+        son_duygu = st.session_state.current_emotions[-1]
+        cv2.putText(frame, f"Duygu: {son_duygu}", (10, 90), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
+    
+    return frame
+
+def ai_ile_puanla(soru, cevap, api_key):
+    """OpenAI ile cevabı puanla"""
+    if not api_key:
+        return "⚠️ API Key bulunamadı. Puanlama yapılamadı."
+    
+    try:
+        client = OpenAI(api_key=api_key)
+        prompt = f"""Aşağıdaki mülakat sorusu ve cevabını değerlendir:
+
+SORU: {soru}
+
+CEVAP: {cevap}
+
+Lütfen aşağıdaki formatta değerlendir:
+1. Puan (0-10): 
+2. Güçlü Yönler:
+3. Geliştirilebilir Alanlar:
+4. Öneriler:
+
+Profesyonel ve yapıcı bir dille değerlendir."""
+
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[{"role": "user", "content": prompt}],
+            temperature=0.7,
+            max_tokens=500
+        )
+        
+        return response.choices[0].message.content
+    except Exception as e:
+        return f"⚠️ AI Puanlama Hatası: {str(e)}"
+
+def duygu_grafiği_olustur(emotions_list):
+    """Duygu dağılımı için pasta grafiği oluştur"""
+    if not emotions_list:
+        return None
+    
+    emotion_counts = Counter(emotions_list)
+    
+    fig = go.Figure(data=[go.Pie(
+        labels=list(emotion_counts.keys()),
+        values=list(emotion_counts.values()),
+        hole=0.3,
+        marker=dict(colors=['#FF6B6B', '#4ECDC4', '#45B7D1', '#FFA07A', '#98D8C8', '#F7DC6F', '#BB8FCE'])
+    )])
+    
+    fig.update_layout(
+        title="Duygu Durumu Dağılımı",
+        height=300,
+        margin=dict(l=20, r=20, t=40, b=20)
+    )
+    
+    return fig
+
+# =====================
+# CUSTOM CSS
+# =====================
+st.markdown("""
+<style>
+    .main-header {
+        text-align: center;
+        color: #1E88E5;
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 1rem;
+    }
+    .soru-card {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+        border-radius: 15px;
+        color: white;
+        margin: 1rem 0;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+    .soru-text {
+        font-size: 1.3rem;
+        font-weight: 500;
+        margin: 0;
+    }
+    .stButton>button {
+        width: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        font-size: 1.1rem;
+        padding: 0.8rem;
+        border-radius: 10px;
+        border: none;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+    .stButton>button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+    }
+    .metric-card {
+        background: #f8f9fa;
+        padding: 1rem;
+        border-radius: 10px;
+        text-align: center;
+        margin: 0.5rem 0;
+    }
+</style>
+""", unsafe_allow_html=True)
+
+# =====================
+# SIDEBAR
+# =====================
+with st.sidebar:
+    st.markdown("### ⚙️ Ayarlar")
+    
+    # API Key
+    env_key = os.getenv("OPENAI_API_KEY")
+    if env_key:
+        api_key = env_key
+        st.success("✅ API Key .env'den yüklendi")
+    else:
+        api_key = st.text_input("OpenAI API Key:", type="password", help="AI puanlama için gerekli")
+        if api_key:
+            st.success("✅ API Key girildi")
+    
+    st.markdown("---")
+    
+    # İstatistikler
+    st.markdown("### 📊 Mülakat Durumu")
+    st.metric("Tamamlanan Soru", f"{st.session_state.soru_index}/{len(SORULAR)}")
+    
+    progress = st.session_state.soru_index / len(SORULAR)
+    st.progress(progress)
+    
+    if st.session_state.kamera_aktif:
+        st.success("🎥 Kamera Aktif")
+        if st.session_state.current_emotions:
+            st.info(f"Son Duygu: {st.session_state.current_emotions[-1]}")
+        st.metric("Göz Kırpma", st.session_state.current_blinks)
+    else:
+        st.warning("⏸️ Kamera Kapalı")
+    
+    st.markdown("---")
+    
+    # Reset butonu
+    if st.button("🔄 Baştan Başla", help="Tüm verileri sıfırlar"):
+        kamera_durdur()
+        st.session_state.clear()
+        st.rerun()
+    
+    st.markdown("---")
+    st.markdown("### 💡 İpuçları")
+    st.info("""
+    • Kameraya doğrudan bakın
+    • Net ve öz cevaplar verin
+    • Doğal olun
+    • Sorular bitince detaylı rapor alacaksınız
+    """)
+
+# =====================
+# ANA UYGULAMA
+# =====================
+
+# Header
+st.markdown('<h1 class="main-header">🎯 Profesyonel Mülakat Simülatörü</h1>', unsafe_allow_html=True)
+
+# Eğer tüm sorular tamamlandıysa, RAPOR EKRANI
+if st.session_state.soru_index >= len(SORULAR):
+    kamera_durdur()
+    
+    st.balloons()
+    st.success("🎉 Mülakat Tamamlandı! İşte Detaylı Raporunuz:")
+    
+    # Genel Özet
+    col1, col2, col3 = st.columns(3)
+    
+    total_blinks = sum([item['blinks'] for item in st.session_state.analiz_data])
+    all_emotions = []
+    for item in st.session_state.analiz_data:
+        all_emotions.extend(item['emotions'])
+    
+    baskin_duygu = max(set(all_emotions), key=all_emotions.count) if all_emotions else "Bilinmiyor"
+    
+    with col1:
+        st.markdown('<div class="metric-card">', unsafe_allow_html=True)
+        st.metric("Toplam Soru", len(SORULAR))
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with col2:
+        st.markdown('<div class="metric-card">', unsafe_allow_html=True)
+        st.metric("Toplam Göz Kırpma", total_blinks)
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    with col3:
+        st.markdown('<div class="metric-card">', unsafe_allow_html=True)
+        st.metric("Baskın Duygu", baskin_duygu)
+        st.markdown('</div>', unsafe_allow_html=True)
+    
+    st.markdown("---")
+    
+    # Genel Duygu Grafiği
+    if all_emotions:
+        st.subheader("📊 Genel Duygu Durumu Analizi")
+        fig = duygu_grafiği_olustur(all_emotions)
+        if fig:
+            st.plotly_chart(fig, use_container_width=True)
+    
+    st.markdown("---")
+    
+    # Her soru için detaylı rapor
+    st.subheader("📝 Soru Bazlı Detaylı Rapor")
+    
+    for idx, item in enumerate(st.session_state.analiz_data):
+        with st.expander(f"Soru {idx+1}: {item['soru'][:50]}...", expanded=(idx==0)):
+            col_a, col_b = st.columns([2, 1])
+            
+            with col_a:
+                st.markdown(f"**Soru:** {item['soru']}")
+                st.markdown(f"**Cevabınız:**")
+                st.info(item['cevap'])
+                
+                st.markdown("**AI Değerlendirmesi:**")
+                st.success(item['ai_feedback'])
+            
+            with col_b:
+                st.markdown("**Duygu Analizi:**")
+                if item['emotions']:
+                    emotion_count = Counter(item['emotions'])
+                    baskin = max(emotion_count, key=emotion_count.get)
+                    st.metric("Baskın Duygu", baskin)
+                    
+                    # Mini pasta grafiği
+                    mini_fig = go.Figure(data=[go.Pie(
+                        labels=list(emotion_count.keys()),
+                        values=list(emotion_count.values()),
+                        hole=0.4
+                    )])
+                    mini_fig.update_layout(height=200, margin=dict(l=0, r=0, t=0, b=0), showlegend=False)
+                    st.plotly_chart(mini_fig, use_container_width=True)
+                
+                st.metric("Göz Kırpma", item['blinks'])
+    
+    st.markdown("---")
+    
+    # İndir butonları
+    col_x, col_y = st.columns(2)
+    
+    with col_x:
+        # CSV indir
+        df = pd.DataFrame([{
+            'Soru': item['soru'],
+            'Cevap': item['cevap'],
+            'Göz Kırpma': item['blinks'],
+            'Baskın Duygu': max(set(item['emotions']), key=item['emotions'].count) if item['emotions'] else 'N/A'
+        } for item in st.session_state.analiz_data])
+        
+        csv = df.to_csv(index=False, encoding='utf-8-sig')
+        st.download_button(
+            label="📥 CSV İndir",
+            data=csv,
+            file_name="mulakat_raporu.csv",
+            mime="text/csv"
+        )
+    
+    with col_y:
+        if st.button("🏠 Ana Sayfaya Dön"):
+            kamera_durdur()
+            st.session_state.clear()
+            st.rerun()
+
+else:
+    # MÜLAKAT EKRANI
+    
+    # İlk başlangıç ekranı
+    if not st.session_state.mulakata_baslandi:
+        st.markdown("""
+        ## Hoş Geldiniz! 👋
+        
+        Bu profesyonel mülakat simülatörü ile gerçek bir mülakat deneyimi yaşayacaksınız.
+        
+        ### Nasıl Çalışır?
+        
+        1. **Kameranızı Açın**: Mülakat boyunca yüz ifadeleriniz analiz edilecek
+        2. **Soruları Cevaplayın**: Her soru için metin alanına cevabınızı yazın
+        3. **Rapor Alın**: Tüm sorular bittiğinde detaylı bir performans raporu alacaksınız
+        
+        ### Neleri Analiz Ediyoruz?
+        
+        - 😊 **Duygu Durumu**: Yüz ifadeleriniz (mutlu, nötr, gergin, vb.)
+        - 👁️ **Göz Kırpma**: Stres seviyenizi anlamak için
+        - 🤖 **AI Değerlendirme**: Cevaplarınızın içerik kalitesi
+        
+        Hazır olduğunuzda başlayalım!
+        """)
+        
+        if st.button("🚀 Mülakata Başla", type="primary"):
+            st.session_state.mulakata_baslandi = True
+            st.rerun()
+    
+    else:
+        # Mülakat devam ediyor
+        soru_metni = SORULAR[st.session_state.soru_index]
+        
+        # Soru kartı
+        st.markdown(f"""
+        <div class="soru-card">
+            <p style="margin: 0; font-size: 0.9rem; opacity: 0.9;">Soru {st.session_state.soru_index + 1} / {len(SORULAR)}</p>
+            <p class="soru-text">{soru_metni}</p>
+        </div>
+        """, unsafe_allow_html=True)
+        
+        # İki kolon: Sol = Kamera, Sağ = Cevap
+        col_left, col_right = st.columns([1, 1])
+        
+        with col_left:
+            st.markdown("### 🎥 Kamera Görüntüsü")
+            
+            # Kamera kontrolü
+            if not st.session_state.kamera_aktif:
+                if st.button("📷 Kamerayı Başlat", type="primary"):
+                    kamera_baslat()
+                    st.rerun()
+                st.info("Kamerayı başlatarak mülakat analizi yapabilirsiniz.")
+            else:
+                # Kamera akışı - her rerun'da bir frame işle
+                if 'frame_counter' not in st.session_state:
+                    st.session_state.frame_counter = 0
+                
+                processed_frame = frame_isle(st.session_state.frame_counter)
+                
+                if processed_frame is not None:
+                    st.image(processed_frame, channels="BGR", use_container_width=True, caption="📹 Canlı Kamera")
+                
+                st.session_state.frame_counter += 1
+                
+                st.success("✅ Kamera çalışıyor - Cevabınızı yazmaya başlayabilirsiniz")
+                
+                # Auto-rerun için - performans optimize edildi
+                if st.session_state.frame_counter % 10 == 0:  # Her 10 frame'de bir rerun (daha az kasma)
+                    time.sleep(0.05)
+                    st.rerun()
+        
+        with col_right:
+            st.markdown("### ✍️ Cevabınız")
+            
+            with st.form(key=f"form_{st.session_state.soru_index}"):
+                cevap = st.text_area(
+                    "Cevabınızı buraya yazın:",
+                    height=300,
+                    placeholder="Detaylı ve öz bir şekilde cevabınızı yazın...",
+                    help="En az 10 karakter yazmalısınız"
+                )
+                
+                submit = st.form_submit_button("➡️ Cevabı Gönder ve Sonraki Soru", type="primary")
+                
+                if submit:
+                    if len(cevap.strip()) < 10:
+                        st.error("❌ Lütfen en az 10 karakter uzunluğunda bir cevap yazın.")
+                    else:
+                        # Kamerayı durdur
+                        kamera_durdur()
+                        
+                        # AI ile puanla
+                        with st.spinner("🤖 AI cevabınızı değerlendiriyor..."):
+                            ai_feedback = ai_ile_puanla(soru_metni, cevap, api_key)
+                        
+                        # Verileri kaydet
+                        st.session_state.analiz_data.append({
+                            'soru': soru_metni,
+                            'cevap': cevap,
+                            'emotions': st.session_state.current_emotions.copy(),
+                            'blinks': st.session_state.current_blinks,
+                            'ai_feedback': ai_feedback
+                        })
+                        
+                        # Sıfırla
+                        st.session_state.current_emotions = []
+                        st.session_state.current_blinks = 0
+                        st.session_state.last_blink_frame = 0
+                        
+                        # Sonraki soruya geç
+                        st.session_state.soru_index += 1
+                        st.rerun()
