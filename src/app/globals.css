@@ -1,0 +1,427 @@
+@import "tailwindcss";
+
+@keyframes gradient-bg {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Slow, subtle rotation for conic aura */
+@keyframes slow-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Hafif yüzen arka plan ışıkları için */
+@keyframes float-orb {
+
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate3d(40px, -20px, 0) scale(1.06);
+  }
+}
+
+/* Diagonal sweeping beam animations (background-position X animasyonu) */
+@keyframes sweep-pos {
+  0% {
+    background-position: -50% 0;
+  }
+
+  100% {
+    background-position: 150% 0;
+  }
+}
+
+@keyframes sweep-pos-rev {
+  0% {
+    background-position: 150% 0;
+  }
+
+  100% {
+    background-position: -50% 0;
+  }
+}
+
+/* Aurora layered glows */
+.aurora {
+  position: absolute;
+  width: 100vmax;
+  height: 100vmax;
+  filter: blur(90px);
+  opacity: 0.22;
+  will-change: transform;
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+/* Bokeh star field */
+.bokeh-field {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.bokeh {
+  position: absolute;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.28) 0%, rgba(0, 240, 255, 0.0) 70%);
+  filter: blur(1.2px);
+  opacity: 0.45;
+  mix-blend-mode: screen;
+  animation: bokeh-drift 24s ease-in-out infinite alternate;
+}
+
+.bokeh.purple {
+  background: radial-gradient(circle, rgba(157, 0, 255, 0.22) 0%, rgba(157, 0, 255, 0.0) 70%);
+}
+
+.bokeh.sm {
+  width: 6px;
+  height: 6px;
+}
+
+.bokeh.md {
+  width: 10px;
+  height: 10px;
+}
+
+.bokeh.lg {
+  width: 14px;
+  height: 14px;
+}
+
+@keyframes bokeh-drift {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(12px, -10px, 0);
+  }
+}
+
+/* Starfield - Glowing stars with light beam halos */
+.starfield {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Individual star with glow and beam */
+.star {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.95) 0%, rgba(0, 240, 255, 0.65) 35%, rgba(0, 240, 255, 0.25) 60%, transparent 100%);
+  box-shadow:
+    0 0 16px 4px rgba(0, 240, 255, 0.45),
+    0 0 32px 8px rgba(0, 240, 255, 0.25),
+    inset 0 0 6px rgba(255, 255, 255, 0.8);
+  /* Optimized: Removed box-shadow animation, only animating opacity and scale */
+  animation: star-twinkle 6s ease-in-out infinite;
+  opacity: 0.75;
+  will-change: transform, opacity;
+}
+
+/* Light beam/halo behind star */
+.star::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80px;
+  height: 80px;
+  margin: -40px 0 0 -40px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(0, 240, 255, 0.18) 0%, rgba(0, 240, 255, 0.08) 40%, transparent 70%);
+  filter: blur(12px);
+  animation: halo-pulse 8s ease-in-out infinite;
+  z-index: -1;
+}
+
+/* Cross-shaped beam effect */
+.star::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 2px;
+  height: 48px;
+  margin: -24px 0 0 -1px;
+  background: linear-gradient(180deg, transparent 0%, rgba(0, 240, 255, 0.35) 50%, transparent 100%);
+  filter: blur(1px);
+  box-shadow:
+    0 0 0 1px rgba(0, 240, 255, 0.25),
+    0 0 12px 2px rgba(0, 240, 255, 0.15);
+  animation: beam-rotate 12s linear infinite;
+}
+
+/* Star distribution across viewport */
+.star-1 {
+  top: 8%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.star-2 {
+  top: 22%;
+  left: 5%;
+  animation-delay: 1.5s;
+}
+
+.star-3 {
+  top: 12%;
+  right: 12%;
+  animation-delay: 3s;
+}
+
+.star-4 {
+  top: 28%;
+  right: 7%;
+  animation-delay: 0.8s;
+}
+
+.star-5 {
+  top: 45%;
+  left: 8%;
+  animation-delay: 2.2s;
+}
+
+.star-6 {
+  top: 52%;
+  right: 10%;
+  animation-delay: 1.2s;
+}
+
+.star-7 {
+  bottom: 18%;
+  left: 7%;
+  animation-delay: 2.8s;
+}
+
+.star-8 {
+  bottom: 28%;
+  left: 12%;
+  animation-delay: 0.5s;
+}
+
+.star-9 {
+  bottom: 14%;
+  right: 9%;
+  animation-delay: 1.8s;
+}
+
+.star-10 {
+  bottom: 25%;
+  right: 14%;
+  animation-delay: 2.5s;
+}
+
+/* Purple accent stars */
+.star.purple {
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.9) 0%, rgba(157, 0, 255, 0.6) 35%, rgba(157, 0, 255, 0.22) 60%, transparent 100%);
+  box-shadow:
+    0 0 16px 4px rgba(157, 0, 255, 0.4),
+    0 0 32px 8px rgba(157, 0, 255, 0.2),
+    inset 0 0 6px rgba(255, 255, 255, 0.7);
+}
+
+.star.purple::before {
+  background: radial-gradient(circle, rgba(157, 0, 255, 0.15) 0%, rgba(157, 0, 255, 0.06) 40%, transparent 70%);
+}
+
+.star.purple::after {
+  background: linear-gradient(180deg, transparent 0%, rgba(157, 0, 255, 0.32) 50%, transparent 100%);
+  box-shadow:
+    0 0 0 1px rgba(157, 0, 255, 0.22),
+    0 0 12px 2px rgba(157, 0, 255, 0.12);
+}
+
+@keyframes star-twinkle {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+
+  50% {
+    transform: scale(1.15);
+    opacity: 0.95;
+  }
+}
+
+@keyframes halo-pulse {
+
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.8;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes beam-rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.aurora-a {
+  top: -20vmax;
+  left: -10vmax;
+  background:
+    radial-gradient(40% 40% at 50% 50%, rgba(0, 240, 255, 0.22), rgba(0, 240, 255, 0) 60%),
+    radial-gradient(30% 30% at 70% 30%, rgba(157, 0, 255, 0.12), rgba(157, 0, 255, 0) 60%);
+  animation: aurora-move 28s ease-in-out infinite alternate;
+}
+
+.aurora-b {
+  bottom: -22vmax;
+  right: -18vmax;
+  background:
+    radial-gradient(45% 45% at 50% 50%, rgba(0, 240, 255, 0.18), rgba(0, 240, 255, 0) 60%),
+    radial-gradient(28% 28% at 30% 70%, rgba(157, 0, 255, 0.10), rgba(157, 0, 255, 0) 60%);
+  animation: aurora-move-2 32s ease-in-out infinite alternate;
+}
+
+.aurora-c {
+  top: 20%;
+  right: 10%;
+  width: 60vmax;
+  height: 60vmax;
+  background:
+    radial-gradient(50% 50% at 50% 50%, rgba(0, 240, 255, 0.16), rgba(0, 240, 255, 0) 60%);
+  animation: aurora-move-3 36s ease-in-out infinite alternate;
+}
+
+@keyframes aurora-move {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(6vw, -4vh, 0) scale(1.06);
+  }
+}
+
+@keyframes aurora-move-2 {
+  0% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+
+  100% {
+    transform: translate3d(-5vw, 3vh, 0) rotate(8deg) scale(1.05);
+  }
+}
+
+@keyframes aurora-move-3 {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  100% {
+    transform: translate3d(3vw, 2vh, 0) scale(1.04);
+  }
+}
+
+/* Tailwind v4 design tokens - renk paleti */
+@theme inline {
+  --color-background: #000010;
+  --color-primary: #9D00FF;
+  --color-secondary: #00F0FF;
+  --color-accent: #FFFFFF;
+  --color-muted: #A0A0A0;
+}
+
+/* Modern ince scrollbar */
+:root {
+  scrollbar-color: rgb(157 0 255 / 40%) transparent;
+  /* Firefox */
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgb(157 0 255 / 60%), rgb(0 240 255 / 60%));
+  border-radius: 9999px;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, rgb(157 0 255 / 80%), rgb(0 240 255 / 80%));
+}
+
+/* Globally visible focus styles for interactive elements */
+button:focus-visible,
+a:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid rgb(0 240 255 / 60%);
+  outline-offset: 2px;
+}
+
+body {
+  @apply bg-background text-accent;
+  /* Optimized: Static background instead of animating background-position which causes full page repaints */
+  background-image: radial-gradient(circle at top left, rgb(157 0 255 / 15%), transparent 40%),
+    radial-gradient(circle at bottom right, rgb(0 240 255 / 15%), transparent 40%);
+  background-attachment: fixed;
+}
+
+/* Form genel stilleri */
+label {
+  @apply mb-1 block text-sm text-accent/80;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="file"],
+textarea,
+select {
+  @apply w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-accent placeholder:text-accent/50 outline-none transition;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+textarea:focus,
+select:focus {
+  @apply border-secondary;
+  box-shadow: 0 0 0 3px rgba(0, 240, 255, 0.15);
+}
